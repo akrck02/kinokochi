@@ -123,6 +123,7 @@ scale = Vector2(9.98547, 9.98547)
 texture = ExtResource("2_b405y")
 
 [node name="Angry" type="Sprite2D" parent="."]
+modulate = Color(0.912283, 0, 0, 1)
 position = Vector2(91, 19)
 scale = Vector2(0.0169458, 0.0144958)
 texture = ExtResource("3_cpy03")

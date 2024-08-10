@@ -13,7 +13,7 @@ func _ready():
 	animationPlayer.animation_finished.connect(finishPerformingAnimation)
 
 func _process(delta):
-	return;
+
 	var state = calculate_state()
 	playAnimationByState(state)
 
