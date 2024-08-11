@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfe218fpwkj7d"]
+[gd_scene load_steps=4 format=3 uid="uid://cfe218fpwkj7d"]
 
 [ext_resource type="Texture2D" uid="uid://bbo6drwn0na5k" path="res://resources/wallpaper.png" id="1_3nx37"]
 [ext_resource type="PackedScene" uid="uid://b0yoyoyti0ooj" path="res://nodes/player/character.tscn" id="2_6byjk"]
+[ext_resource type="AudioStream" uid="uid://bvualkriqsdsl" path="res://resources/sounds/backgroundMusic.mp3" id="3_2ndac"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -14,3 +15,7 @@ texture = ExtResource("1_3nx37")
 [node name="character" parent="." instance=ExtResource("2_6byjk")]
 position = Vector2(624, 308)
 scale = Vector2(2.16, 2.16)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2ndac")
+autoplay = true
