@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl7j5p83xai6"
-path="res://.godot/imported/Chibi.png-c57b0565c84e6b70a6c8b4765684efbd.ctex"
+uid="uid://bbo6drwn0na5k"
+path="res://.godot/imported/wallpaper.png-f419951b4fa78c8b01dd53710f5f1156.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/Chibi.png"
-dest_files=["res://.godot/imported/Chibi.png-c57b0565c84e6b70a6c8b4765684efbd.ctex"]
+source_file="res://resources/old/wallpaper.png"
+dest_files=["res://.godot/imported/wallpaper.png-f419951b4fa78c8b01dd53710f5f1156.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

@@ -12,7 +12,7 @@ func _ready():
 	AngrySprite.visible = false;
 	animationPlayer.animation_finished.connect(finishPerformingAnimation)
 
-func _process(delta):
+func _process(_delta):
 
 	var state = calculate_state()
 	playAnimationByState(state)
@@ -41,5 +41,5 @@ func calculate_state() -> States.CharacterStates:
 	
 	return States.CharacterStates.ANGRY
 
-func finishPerformingAnimation(param):
+func finishPerformingAnimation(_param):
 	isPerformingAnimation = false

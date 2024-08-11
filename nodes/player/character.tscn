@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b0yoyoyti0ooj"]
 
 [ext_resource type="Script" path="res://nodes/player/character.gd" id="1_4ovx2"]
-[ext_resource type="Texture2D" uid="uid://bl7j5p83xai6" path="res://resources/Chibi.png" id="2_b405y"]
-[ext_resource type="Texture2D" uid="uid://5j6fvymvhj73" path="res://resources/angry.webp" id="3_cpy03"]
+[ext_resource type="Texture2D" path="res://resources/Chibi.png" id="2_b405y"]
+[ext_resource type="Texture2D" path="res://resources/angry.webp" id="3_cpy03"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iem7l"]
 radius = 44.6875

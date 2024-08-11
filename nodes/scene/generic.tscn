@@ -1,21 +1,81 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfe218fpwkj7d"]
+[gd_scene load_steps=5 format=3 uid="uid://cfe218fpwkj7d"]
 
-[ext_resource type="Texture2D" uid="uid://bbo6drwn0na5k" path="res://resources/wallpaper.png" id="1_3nx37"]
-[ext_resource type="PackedScene" uid="uid://b0yoyoyti0ooj" path="res://nodes/player/character.tscn" id="2_6byjk"]
-[ext_resource type="AudioStream" uid="uid://bvualkriqsdsl" path="res://resources/sounds/backgroundMusic.mp3" id="3_2ndac"]
+[ext_resource type="Texture2D" uid="uid://c5rxdacyh2p5r" path="res://resources/sprites/charact.png" id="1_riu23"]
+[ext_resource type="Texture2D" uid="uid://tb8i71wek8v5" path="res://resources/sprites/landscape.png" id="1_sbgfo"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0670"]
+texture = ExtResource("1_sbgfo")
+texture_region_size = Vector2i(128, 128)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, 20)
+2:0/0/z_index = 2
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(0, 11)
+0:1/0/z_index = 2
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 11)
+1:0/0/z_index = 1
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, 18)
+1:1/0/z_index = 1
+0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, 20)
+0:2/0/z_index = 2
+1:2/0 = 0
+1:2/0/texture_origin = Vector2i(0, 18)
+1:2/0/z_index = 1
+0:3/0 = 0
+0:3/0/texture_origin = Vector2i(0, 29)
+0:3/0/z_index = 2
+0:4/0 = 0
+0:4/0/z_index = 2
+1:3/0 = 0
+1:3/0/texture_origin = Vector2i(0, 18)
+1:3/0/z_index = 1
+1:4/0 = 0
+1:4/0/texture_origin = Vector2i(0, 18)
+1:4/0/z_index = 1
+0:0/0 = 0
+0:0/0/z_index = 2
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(0, 18)
+2:1/0/z_index = 2
+
+[sub_resource type="TileSet" id="TileSet_m5c70"]
+tile_shape = 1
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(128, 64)
+sources/0 = SubResource("TileSetAtlasSource_p0670")
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(1940, 1)
 
-[node name="Wallpaper" type="Sprite2D" parent="."]
+[node name="ground" type="TileMap" parent="."]
+y_sort_enabled = true
 texture_filter = 1
-position = Vector2(579.658, 328.62)
-scale = Vector2(7.23457, 7.25289)
-texture = ExtResource("1_3nx37")
+position = Vector2(-1679, 125)
+tile_set = SubResource("TileSet_m5c70")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(131073, 65536, 0, 65537, 65536, 1, 1, 65536, 0, -65535, 65536, 0, -65536, 65536, 0, 0, 65536, 0, 131072, 65536, 0, 65536, 65536, 1, 65538, 65536, 1, 2, 65536, 0, -65534, 65536, 0, 4, 65536, 1, -65533, 65536, 0, 3, 65536, 1, 196608, 65536, 0, -65532, 65536, 0, -65531, 65536, 0, -131068, 65536, 0, -131069, 65536, 0, -131070, 65536, 0, -131071, 65536, 0, 65539, 65536, 1, 65541, 65536, 0, 131076, 65536, 0, 65540, 65536, 0, 131074, 65536, 0, 131075, 65536, 0, -131067, 65536, 0, 5, 65536, 1, 131077, 65536, 0, 196609, 65536, 0, 196611, 65536, 0, 196610, 65536, 0, 196612, 65536, 0, 262147, 65536, 0, 65542, 65536, 0, -65530, 65536, 0, -131066, 65536, 0, 6, 65536, 1, 262144, 65536, 0, 262145, 65536, 0, 262146, 65536, 0, -131072, 65536, 0)
 
-[node name="character" parent="." instance=ExtResource("2_6byjk")]
-position = Vector2(624, 308)
-scale = Vector2(2.16, 2.16)
+[node name="decorations" type="TileMap" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(-1679, 125)
+tile_set = SubResource("TileSet_m5c70")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-131071, 131072, 0, -131070, 131072, 0, -65535, 131072, 0, -131069, 131072, 0, 0, 131072, 0, 131072, 131072, 0, -65530, 131072, 0, 65542, 131072, 0, -65532, 131072, 1, 65540, 131072, 1, 131077, 0, 3, 196612, 0, 3, 131076, 0, 3, 196608, 0, 2, -65536, 0, 2, -131072, 0, 0, 262144, 0, 0, -131066, 0, 0, -131067, 0, 1)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_2ndac")
-autoplay = true
+[node name="Charact" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(-1425, 202)
+scale = Vector2(1.95625, 1.95625)
+texture = ExtResource("1_riu23")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1939, -2)
+anchor_mode = 0
+zoom = Vector2(1.25, 1.25)
