@@ -1,14 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0ipn7okukbm7"]
 
-[ext_resource type="Texture2D" uid="uid://bbo6drwn0na5k" path="res://resources/old/wallpaper.png" id="1_7hvwm"]
 [ext_resource type="Texture2D" uid="uid://c5rxdacyh2p5r" path="res://resources/sprites/charact.png" id="1_to5pk"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_athmr"]
+load_path = "res://.godot/imported/wallpaper.png-f419951b4fa78c8b01dd53710f5f1156.ctex"
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Wallpaper" type="Sprite2D" parent="."]
 position = Vector2(576.778, 323.5)
 scale = Vector2(7.21111, 7.21111)
-texture = ExtResource("1_7hvwm")
+texture = SubResource("CompressedTexture2D_athmr")
 
 [node name="Charact" type="Sprite2D" parent="."]
 position = Vector2(766, 363)
