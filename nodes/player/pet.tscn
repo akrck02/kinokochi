@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://il7cfafhjcp0"]
+
+[ext_resource type="Texture2D" uid="uid://c5rxdacyh2p5r" path="res://resources/sprites/charact.png" id="1_ayr6c"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oj67d"]
+radius = 23.0
+height = 70.0
+
+[node name="Pet" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -9)
+shape = SubResource("CapsuleShape2D_oj67d")
+
+[node name="Charact" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(3, -7)
+texture = ExtResource("1_ayr6c")
