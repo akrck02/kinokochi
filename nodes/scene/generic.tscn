@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfe218fpwkj7d"]
+[gd_scene load_steps=9 format=3 uid="uid://cfe218fpwkj7d"]
 
 [ext_resource type="Texture2D" uid="uid://c5rxdacyh2p5r" path="res://resources/sprites/charact.png" id="1_riu23"]
 [ext_resource type="Texture2D" uid="uid://tb8i71wek8v5" path="res://resources/sprites/landscape.png" id="1_sbgfo"]
 [ext_resource type="Texture2D" uid="uid://cl3mohrpcyefy" path="res://resources/sprites/wireframe.png" id="2_a6ejp"]
 [ext_resource type="Texture2D" uid="uid://dqp30tsofkpqk" path="res://resources/sprites/cat.png" id="4_tyfmt"]
+[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/camera/camera_2d.tscn" id="5_lnugb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0670"]
 resource_name = "landscape"
@@ -83,12 +84,22 @@ texture_filter = 1
 position = Vector2(-1400, 197)
 texture = ExtResource("1_riu23")
 
-[node name="Cat" type="Sprite2D" parent="."]
+[node name="Cattotem" type="Node2D" parent="."]
+
+[node name="Cat" type="Sprite2D" parent="Cattotem"]
 z_index = 1
 position = Vector2(-1517, 181)
 texture = ExtResource("4_tyfmt")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-texture_filter = 1
-position = Vector2(-1487, 208)
-zoom = Vector2(1.65, 1.65)
+[node name="Cat2" type="Sprite2D" parent="Cattotem"]
+z_index = 1
+position = Vector2(-1517, 173)
+texture = ExtResource("4_tyfmt")
+
+[node name="Cat3" type="Sprite2D" parent="Cattotem"]
+z_index = 1
+position = Vector2(-1518, 165)
+texture = ExtResource("4_tyfmt")
+
+[node name="Camera2D" parent="." instance=ExtResource("5_lnugb")]
+position = Vector2(-2018, -128)

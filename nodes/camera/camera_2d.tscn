@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtqvovtctndtl"]
+
+[ext_resource type="Shader" path="res://nodes/shaders/sepia.gdshader" id="1_3fhr4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_drsf5"]
+shader = ExtResource("1_3fhr4")
+shader_parameter/base = null
+
+[sub_resource type="Gradient" id="Gradient_cj238"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ldw2k"]
+gradient = SubResource("Gradient_cj238")
+
+[node name="Camera2D" type="Camera2D"]
+z_index = 4096
+anchor_mode = 0
+position_smoothing_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4096
+material = SubResource("ShaderMaterial_drsf5")
+position = Vector2(576.25, 324.125)
+scale = Vector2(4.6543, 681.75)
+texture = SubResource("GradientTexture1D_ldw2k")

@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/stretch/aspect="ignore"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
 
 [rendering]
 
