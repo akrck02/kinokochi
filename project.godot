@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Tinypets"
-run/main_scene="res://nodes/scene/generic.tscn"
+run/main_scene="res://scenes/park.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SignalDatabase="*res://shared/signal_database.gd"
 
 [display]
 

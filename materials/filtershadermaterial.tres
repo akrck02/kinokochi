@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://de0kp0bflu8l6"]
+
+[ext_resource type="Shader" path="res://shaders/camera.gdshader" id="1_s06ts"]
+
+[resource]
+shader = ExtResource("1_s06ts")
