@@ -7,9 +7,9 @@ void fragment() {
 	float pos_x = float(pixel_pos.x);
 	float pos_y = float(pixel_pos.y);
 	
-	float r = current.r + 0.2;
-	float g = current.g + 0.05;
-	float b = current.b + 0.05;
+	float r = current.r; // + 0.2;
+	float g = current.g; // + 0.05;
+	float b = current.b; // + 0.05;
 	
 	COLOR = vec4(r ,g, b, current.a);
   

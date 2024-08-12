@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://nodes/pet/pet.gd" id="1_t2hn5"]
 [ext_resource type="Texture2D" uid="uid://c5rxdacyh2p5r" path="res://resources/sprites/pets/foxy.png" id="2_1oag7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nycw"]
-size = Vector2(53, 67)
-
 [sub_resource type="Animation" id="Animation_juwsa"]
 length = 0.001
 tracks/0/type = "value"
@@ -43,12 +40,13 @@ _data = {
 "jump": SubResource("Animation_74ktd")
 }
 
-[node name="Pet" type="CharacterBody2D"]
-script = ExtResource("1_t2hn5")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5mgkw"]
+radius = 12.0
+height = 26.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -8.5)
-shape = SubResource("RectangleShape2D_4nycw")
+[node name="Pet" type="CharacterBody2D" node_paths=PackedStringArray("stats")]
+script = ExtResource("1_t2hn5")
+stats = NodePath("")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 1
@@ -60,3 +58,9 @@ texture = ExtResource("2_1oag7")
 libraries = {
 "": SubResource("AnimationLibrary_d5owt")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, 9)
+shape = SubResource("CapsuleShape2D_5mgkw")
+debug_color = Color(1, 1, 1, 0.42)

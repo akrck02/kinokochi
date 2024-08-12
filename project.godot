@@ -21,8 +21,11 @@ SignalDatabase="*res://shared/signal_database.gd"
 
 [display]
 
+window/size/viewport_width=648
+window/size/viewport_height=1152
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
+window/handheld/orientation=1
 
 [rendering]
 

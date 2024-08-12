@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://cba3m5gci8old"]
+
+[ext_resource type="FontFile" uid="uid://bjf25rcjkkxlh" path="res://resources/fonts/DotGothic16-Regular.ttf" id="1_2dfvl"]
+[ext_resource type="Texture2D" uid="uid://cqutuq0jrsqbu" path="res://resources/sprites/icons/park.svg" id="2_wwa4d"]
+
+[node name="Ui" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 648.0
+offset_bottom = 71.0
+color = Color(0, 0, 0, 0.835294)
+
+[node name="Location" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_left = 0.015
+anchor_top = 0.029
+anchor_right = 0.963
+anchor_bottom = 0.127
+offset_left = 15.28
+offset_top = -20.408
+offset_right = -279.024
+offset_bottom = -85.304
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_2dfvl")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Central park"
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(584, 37)
+metadata/_edit_group_ = true
+
+[node name="Park" type="Sprite2D" parent="Node2D"]
+position = Vector2(-0.5, -2.50002)
+scale = Vector2(1.625, 1.625)
+texture = ExtResource("2_wwa4d")
+
+[node name="Park2" type="Sprite2D" parent="Node2D"]
+position = Vector2(26, 3)
+scale = Vector2(1.00521, 1.00521)
+texture = ExtResource("2_wwa4d")

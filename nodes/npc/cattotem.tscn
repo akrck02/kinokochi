@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb0q2fy8l6iaj"]
+
+[ext_resource type="Material" uid="uid://de0kp0bflu8l6" path="res://materials/filtershadermaterial.tres" id="1_585s4"]
+[ext_resource type="Texture2D" uid="uid://dqp30tsofkpqk" path="res://resources/sprites/cat.png" id="2_i7mkd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_481ud"]
+size = Vector2(40, 50)
+
+[node name="Cattotem" type="CharacterBody2D"]
+y_sort_enabled = true
+material = ExtResource("1_585s4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+show_behind_parent = true
+position = Vector2(-3, -7)
+shape = SubResource("RectangleShape2D_481ud")
+
+[node name="Cat" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -12)
+texture = ExtResource("2_i7mkd")
+
+[node name="Cat2" type="Sprite2D" parent="Cat"]
+z_index = 1
+position = Vector2(0, -9)
+texture = ExtResource("2_i7mkd")
+
+[node name="Cat3" type="Sprite2D" parent="Cat"]
+z_index = 1
+position = Vector2(0, -19)
+texture = ExtResource("2_i7mkd")
