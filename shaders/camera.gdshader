@@ -1,16 +1,24 @@
 shader_type canvas_item;
 
-void fragment() {
-	vec4 current = texture(TEXTURE,UV);
-	ivec2 pixel_pos = ivec2(UV / TEXTURE_PIXEL_SIZE);
+uniform sampler2D warm_color;
+uniform sampler2D cool_color;
+uniform float temperature = 0;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+void fragment(){
 	
-	float pos_x = float(pixel_pos.x);
-	float pos_y = float(pixel_pos.y);
+	vec4 input_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
 	
-	float r = current.r; // + 0.2;
-	float g = current.g; // + 0.05;
-	float b = current.b; // + 0.05;
-	
-	COLOR = vec4(r ,g, b, current.a);
-  
+	float grayscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
+	vec3 sampled_color;
+	if (temperature > 0.0){
+		sampled_color = texture(warm_color, vec2(grayscale_value, 0.0)).rgb;
+		COLOR.rgb = mix(input_color.rgb, sampled_color, temperature);
+	}
+	else{
+		sampled_color = texture(cool_color, vec2(grayscale_value, 0.0)).rgb;
+		COLOR.rgb = mix(input_color.rgb, sampled_color, temperature * -1.0);
+	}
+	COLOR.a = input_color.a;
 }

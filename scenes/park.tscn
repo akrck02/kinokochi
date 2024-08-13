@@ -139,9 +139,9 @@ position = Vector2(1940, 1)
 script = ExtResource("1_y5n7u")
 
 [node name="ground" type="TileMap" parent="."]
-y_sort_enabled = true
 texture_filter = 1
 material = ExtResource("2_3t074")
+use_parent_material = true
 position = Vector2(-1319, -818)
 tile_set = SubResource("TileSet_m5c70")
 format = 2
@@ -164,10 +164,11 @@ position = Vector2(1199, -848)
 [node name="Pet" parent="." instance=ExtResource("6_bdx4c")]
 z_index = 8
 material = ExtResource("2_3t074")
-position = Vector2(1293.03, -847.436)
+position = Vector2(1315, -844)
+velocity = Vector2(100, 0)
 
-[node name="Camera2D" parent="." instance=ExtResource("7_lsj0o")]
-position = Vector2(1287, -873)
+[node name="Camera2D" parent="Pet" instance=ExtResource("7_lsj0o")]
+position = Vector2(0.972656, -20.5638)
 zoom = Vector2(2, 2)
 
 [node name="Ui" parent="." instance=ExtResource("8_k82j5")]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgd58tknkodwv"]
+[gd_scene load_steps=8 format=3 uid="uid://bgd58tknkodwv"]
 
 [ext_resource type="Script" path="res://nodes/pet/pet.gd" id="1_t2hn5"]
 [ext_resource type="Texture2D" uid="uid://c5rxdacyh2p5r" path="res://resources/sprites/pets/foxy.png" id="2_1oag7"]
+[ext_resource type="Texture2D" uid="uid://dtnrq3qm6emc" path="res://resources/sprites/shadow.png" id="3_03fhf"]
 
 [sub_resource type="Animation" id="Animation_juwsa"]
 length = 0.001
@@ -63,4 +64,9 @@ libraries = {
 z_index = 1
 position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_5mgkw")
-debug_color = Color(1, 1, 1, 0.42)
+debug_color = Color(0.611756, 0.117942, 0.116228, 0.109804)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(5, 5)
+scale = Vector2(0.731788, 0.746667)
+texture = ExtResource("3_03fhf")
