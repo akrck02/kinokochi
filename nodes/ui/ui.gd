@@ -13,8 +13,7 @@ func _input(event):
 		_on_zoom_out_button_pressed()
 
 func _on_zoom_in_button_pressed():
-	SignalDatabase.zoom_in.emit(.25)
-
+	SignalDatabase.zoom_in.emit(.5)
 
 func _on_zoom_out_button_pressed():
-	SignalDatabase.zoom_out.emit(.25)
+	SignalDatabase.zoom_out.emit(.5)

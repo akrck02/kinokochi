@@ -7,4 +7,4 @@ z_index = 4096
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("1_so8b7")
-pan_speed = 0.35
+pan_speed = 1.0

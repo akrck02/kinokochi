@@ -30,17 +30,11 @@ func _input(event):
 	
 # Zoom in the camera
 func zoom_in(value : float):
-	zoom += Vector2(value,value)
+	zoom = limit_zoom(zoom + Vector2(value,value));
 
 # Zoom out the camera
 func zoom_out(value : float):
-	
-	var new_zoom = zoom - Vector2(value,value);
-	if new_zoom.x < 0:
-		new_zoom = Vector2.ZERO;
-		return
-	
-	zoom -= Vector2(value,value);
+	zoom = limit_zoom(zoom - Vector2(value,value));
 
 # Handle touch events 
 func handle_touch(event : InputEventScreenTouch):
@@ -53,11 +47,9 @@ func handle_touch(event : InputEventScreenTouch):
 	if touch_points.size() == 2:
 		var touch_point_positions = touch_points.values()
 		start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
-		
 		start_zoom = zoom
 	elif touch_points.size() < 2:
 		start_distance = 0
-		
 
 
 # Handle touch events 
@@ -66,20 +58,19 @@ func handle_drag(event : InputEventScreenDrag):
 	
 	if touch_points.size() == 1:
 		if can_pan:
-			offset -= event.relative / zoom.x * pan_speed;
+			offset -= event.relative * pan_speed / zoom.x;
 
 	elif touch_points.size() == 2:
 		var touch_point_positions = touch_points.values()
 		var current_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
-		var zoom_factor = start_distance / current_distance
-		
+			 
 		if can_zoom:
-			zoom = start_zoom / zoom_factor
-		
-		limit_zoom(zoom)
-
-func limit_zoom(new_zoom : Vector2):
-	if new_zoom.x <= 0: zoom.x = 0.1
-	if new_zoom.y <= 0: zoom.y = 0.1
-	if new_zoom.x >= 10: zoom.x = 10
-	if new_zoom.y >= 10: zoom.y = 10
+			var zoom_factor = start_distance / current_distance
+			zoom = limit_zoom(start_zoom / zoom_factor)
+ 
+func limit_zoom(new_zoom : Vector2) -> Vector2:
+	if new_zoom.x <= 1: new_zoom.x = 1
+	if new_zoom.y <= 1: new_zoom.y = 1
+	if new_zoom.x >= 3: new_zoom.x = 3
+	if new_zoom.y >= 3: new_zoom.y = 3
+	return new_zoom
