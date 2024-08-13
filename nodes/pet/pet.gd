@@ -1,8 +1,7 @@
-# @tool
 class_name Pet
 extends CharacterBody2D
 
-@export var pet_name : String = "foxy" :
+@export var pet_name : String = "tas" :
 	set(value):
 		pet_name = value
 		change_sprite()
@@ -10,20 +9,23 @@ extends CharacterBody2D
 @onready var sprite : Sprite2D = $Sprite
 @export var stats : PetStats
 
+@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+
 const SPEED = 100
 
 func _physics_process(_delta):
-	
+
+	return;
 	var random = RandomNumberGenerator.new()
 	random.randomize()
 	
-	var direction = randi() % 5
+	var direction = 3 #randi() % 5
 	var directionVector = Vector2.ZERO 
 		
 	match direction:
 		1: directionVector = Vector2.UP
 		2: directionVector = Vector2.DOWN
-		3: directionVector = Vector2.LEFT
+		3: directionVector = Vector2(-1.5,1) # Vector2.LEFT
 		4: directionVector = Vector2.RIGHT
 
 	if direction:
@@ -36,6 +38,8 @@ func _physics_process(_delta):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	change_sprite()
+	animationPlayer.play("walk")
+	
 	loadFromSavestate();
 	
 # loadPetDataFromSavestate
