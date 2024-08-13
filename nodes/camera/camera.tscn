@@ -1,25 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtqvovtctndtl"]
+[gd_scene load_steps=2 format=3 uid="uid://dtqvovtctndtl"]
 
-[ext_resource type="Shader" path="res://shaders/camera.gdshader" id="1_wbr33"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_drsf5"]
-shader = ExtResource("1_wbr33")
-
-[sub_resource type="Gradient" id="Gradient_cj238"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ldw2k"]
-gradient = SubResource("Gradient_cj238")
+[ext_resource type="Script" path="res://nodes/camera/camera.gd" id="1_so8b7"]
 
 [node name="Camera2D" type="Camera2D"]
 z_index = 4096
+limit_smoothed = true
 position_smoothing_enabled = true
-
-[node name="filter" type="Sprite2D" parent="."]
-visible = false
-z_index = 4096
-material = SubResource("ShaderMaterial_drsf5")
-position = Vector2(-22.5, 5.99999)
-scale = Vector2(4.94922, 678)
-texture = SubResource("GradientTexture1D_ldw2k")
+script = ExtResource("1_so8b7")
+pan_speed = 0.35

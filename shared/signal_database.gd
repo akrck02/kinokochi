@@ -2,6 +2,8 @@ extends Node
 
 # Engine signals
 signal scene_change_requested(scene : String) 
+signal zoom_in(value : float)
+signal zoom_out(value : float)
 
 # Savestate signals
 signal new_game_created

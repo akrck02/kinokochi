@@ -1,12 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://cba3m5gci8old"]
+[gd_scene load_steps=16 format=3 uid="uid://cba3m5gci8old"]
 
 [ext_resource type="FontFile" uid="uid://bjf25rcjkkxlh" path="res://resources/fonts/DotGothic16-Regular.ttf" id="1_2dfvl"]
+[ext_resource type="Script" path="res://nodes/ui/ui.gd" id="1_yktcp"]
 [ext_resource type="Texture2D" uid="uid://cqutuq0jrsqbu" path="res://resources/sprites/icons/park.svg" id="2_wwa4d"]
+[ext_resource type="Shader" path="res://shaders/brightness.gdshader" id="3_ds6t7"]
 [ext_resource type="Material" uid="uid://de0kp0bflu8l6" path="res://materials/filtershadermaterial.tres" id="3_nosqo"]
+[ext_resource type="Texture2D" uid="uid://d3pgrufjmhdg7" path="res://materials/cool_gradient.tres" id="4_nffrm"]
+[ext_resource type="Texture2D" uid="uid://datp43fjnncxf" path="res://materials/warm_gradient.tres" id="5_bykp0"]
+[ext_resource type="Texture2D" uid="uid://dptxys2tpqwm1" path="res://resources/sprites/icons/icons.png" id="7_acr4x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crhds"]
+shader = ExtResource("3_ds6t7")
+shader_parameter/temperature = 0.25
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.223
+shader_parameter/saturation = 1.0
+shader_parameter/redVal = 1.0
+shader_parameter/greenVal = 1.0
+shader_parameter/blueVal = 1.0
+shader_parameter/tint_color = Vector4(0, 0, 0, 0)
+shader_parameter/tint_effect_factor = 0.0
+shader_parameter/warm_color = ExtResource("5_bykp0")
+shader_parameter/cool_color = ExtResource("4_nffrm")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16lef"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3q2we"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_400cc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2pxu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mo36"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yld6r"]
 
 [node name="Ui" type="CanvasLayer"]
+script = ExtResource("1_yktcp")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Banner" type="ColorRect" parent="."]
 offset_right = 648.0
 offset_bottom = 71.0
 color = Color(0, 0, 0, 0.835294)
@@ -27,23 +59,104 @@ theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Central park"
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Icon" type="Node2D" parent="."]
 position = Vector2(584, 37)
 metadata/_edit_group_ = true
 
-[node name="Park" type="Sprite2D" parent="Node2D"]
+[node name="Icon" type="Sprite2D" parent="Icon"]
 position = Vector2(-0.5, -2.50002)
 scale = Vector2(1.625, 1.625)
 texture = ExtResource("2_wwa4d")
 
-[node name="Park2" type="Sprite2D" parent="Node2D"]
+[node name="Icon2" type="Sprite2D" parent="Icon"]
 position = Vector2(26, 3)
 scale = Vector2(1.00521, 1.00521)
 texture = ExtResource("2_wwa4d")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="BrightnessFilter" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_crhds")
+offset_left = -3879.0
+offset_top = -1584.0
+offset_right = 4665.0
+offset_bottom = 2864.0
+
+[node name="WarmFilter" type="ColorRect" parent="."]
+visible = false
 material = ExtResource("3_nosqo")
 offset_left = -3897.0
 offset_top = -1587.0
 offset_right = 4668.0
 offset_bottom = 2871.0
+
+[node name="ZoomIn" type="Node2D" parent="."]
+position = Vector2(509, 119)
+scale = Vector2(2.04, 2.04)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="ZoomIn"]
+offset_left = -19.1176
+offset_top = -18.1372
+offset_right = 20.8824
+offset_bottom = 21.8628
+color = Color(0, 0, 0, 0.768627)
+
+[node name="Button" type="Button" parent="ZoomIn"]
+texture_filter = 1
+anchors_preset = -1
+anchor_left = 0.847
+anchor_top = 0.072
+anchor_right = 0.968
+anchor_bottom = 0.129
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 18.0
+offset_bottom = 19.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_16lef")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3q2we")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_400cc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m2pxu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4mo36")
+
+[node name="Icons" type="Sprite2D" parent="ZoomIn"]
+position = Vector2(1, 2)
+scale = Vector2(1.71875, 1.71875)
+texture = ExtResource("7_acr4x")
+hframes = 2
+
+[node name="ZoomOut" type="Node2D" parent="."]
+position = Vector2(592, 119)
+scale = Vector2(2.04, 2.04)
+metadata/_edit_group_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="ZoomOut"]
+offset_left = -16.6666
+offset_top = -17.6471
+offset_right = 23.3334
+offset_bottom = 22.3529
+color = Color(0, 0, 0, 0.768627)
+
+[node name="Button" type="Button" parent="ZoomOut"]
+anchors_preset = -1
+anchor_left = 0.847
+anchor_top = 0.072
+anchor_right = 0.968
+anchor_bottom = 0.129
+offset_left = -13.7255
+offset_top = -15.1961
+offset_right = 20.2745
+offset_bottom = 19.8039
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yld6r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3q2we")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_400cc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m2pxu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4mo36")
+
+[node name="Icons" type="Sprite2D" parent="ZoomOut"]
+position = Vector2(3.27452, 2.80393)
+scale = Vector2(1.71875, 1.71875)
+texture = ExtResource("7_acr4x")
+hframes = 2
+frame = 1
+
+[connection signal="pressed" from="ZoomIn/Button" to="." method="_on_zoom_in_button_pressed"]
+[connection signal="pressed" from="ZoomOut/Button" to="." method="_on_zoom_out_button_pressed"]

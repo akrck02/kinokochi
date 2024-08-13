@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://de0kp0bflu8l6" path="res://materials/filtershadermaterial.tres" id="1_585s4"]
 [ext_resource type="Script" path="res://nodes/npc/cattotem.gd" id="2_hm1f6"]
-[ext_resource type="Texture2D" uid="uid://dqp30tsofkpqk" path="res://resources/sprites/cat.png" id="2_i7mkd"]
+[ext_resource type="Texture2D" uid="uid://dqp30tsofkpqk" path="res://resources/sprites/npc/cat.png" id="3_w6u44"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f42l2"]
 radius = 9.0
@@ -111,7 +111,7 @@ shape = SubResource("CapsuleShape2D_f42l2")
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -12)
-texture = ExtResource("2_i7mkd")
+texture = ExtResource("3_w6u44")
 
 [node name="cat 2" type="Node2D" parent="."]
 
@@ -119,7 +119,7 @@ texture = ExtResource("2_i7mkd")
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -9)
-texture = ExtResource("2_i7mkd")
+texture = ExtResource("3_w6u44")
 
 [node name="cat 3" type="Node2D" parent="."]
 
@@ -127,7 +127,7 @@ texture = ExtResource("2_i7mkd")
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -19)
-texture = ExtResource("2_i7mkd")
+texture = ExtResource("3_w6u44")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -11,13 +11,11 @@ extends CharacterBody2D
 
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 
-const SPEED = 100
+var SPEED = 100
 
 func _physics_process(_delta):
 
 	return;
-	var random = RandomNumberGenerator.new()
-	random.randomize()
 	
 	var direction = 3 #randi() % 5
 	var directionVector = Vector2.ZERO 
@@ -25,7 +23,7 @@ func _physics_process(_delta):
 	match direction:
 		1: directionVector = Vector2.UP
 		2: directionVector = Vector2.DOWN
-		3: directionVector = Vector2(-1.5,1) # Vector2.LEFT
+		3: directionVector = Vector2(-2,1) # Vector2.LEFT
 		4: directionVector = Vector2.RIGHT
 
 	if direction:
@@ -37,6 +35,12 @@ func _physics_process(_delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	
+	SPEED = 100 + randi() % 21
+	
 	change_sprite()
 	animationPlayer.play("walk")
 	
