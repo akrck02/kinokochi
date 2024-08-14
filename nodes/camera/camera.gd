@@ -34,6 +34,14 @@ func _input(event):
 	if event is InputEventScreenDrag:
 		handle_drag(event);
 	
+
+func _process(delta):
+	if zoom != default_zoom || offset.x < -80 || offset.x > 80 || offset.y < -80 || offset.y > 80 : 
+		SignalDatabase.notification_shown.emit("[center]Tap twice to center the camera")
+	else: SignalDatabase.notification_hidden.emit() 
+	
+	
+
 # Zoom in the camera
 func zoom_in(value : float):
 	zoom = limit_zoom(zoom + Vector2(value,value));

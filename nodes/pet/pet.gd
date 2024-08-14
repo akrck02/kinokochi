@@ -4,10 +4,13 @@ extends CharacterBody2D
 @export var pet_name : String = "tas"
 @export var stats : PetStats
 @onready var sprite : Sprite2D = $Sprite
-@onready var pointLight : PointLight2D = $PointLight2D
+@onready var point_light : PointLight2D = $PointLight2D
+
+# Emotions
+@onready var chat_bubble_animation_player = $Metasprites/AnimationPlayer
 
 # Movement
-@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var ray : RayCast2D = $RayCast2D
 @onready var tween : Tween
 @export var movement_speed = 1.00/1.5;
@@ -17,10 +20,14 @@ var moving = false
 func _ready():
 	load_from_savestate();
 	update_sprite()
+
 	SignalDatabase.tick_reached.connect(tick_update)
-	animationPlayer.play("idle")
 	SignalDatabase.night_started.connect(set_night)
 	SignalDatabase.day_started.connect(set_day)
+	
+	animation_player.play("idle")
+	chat_bubble_animation_player.play("idle")
+	
 
 # loadPetDataFromSavestate
 func load_from_savestate():
@@ -60,20 +67,20 @@ func automatic_movement():
 	
 	# If a collision will happen, stop
 	if not ray.is_colliding() and new_position != Vector2.ZERO:
-		animationPlayer.play("walk")
+		animation_player.play("walk")
 		tween = create_tween()
 		tween.tween_property(self, NodeExtensor.POSITION_PROPERTIES, position + new_position, movement_speed).set_trans(Tween.TRANS_SINE)
 		await tween.finished
 		tween.kill()
-		animationPlayer.play("idle")
+		animation_player.play("idle")
 		
 	moving = false
 	
 
 # Prepare the visuals for nighttime
 func set_night() : 
-	pointLight.show()
+	point_light.show()
 
 # Prepare the visuals for daytime
 func set_day() : 
-	pointLight.hide()
+	point_light.hide()

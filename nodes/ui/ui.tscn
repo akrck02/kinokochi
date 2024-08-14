@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cba3m5gci8old"]
+[gd_scene load_steps=17 format=3 uid="uid://cba3m5gci8old"]
 
 [ext_resource type="FontFile" uid="uid://bjf25rcjkkxlh" path="res://resources/fonts/DotGothic16-Regular.ttf" id="1_2dfvl"]
 [ext_resource type="Script" path="res://nodes/ui/ui.gd" id="1_yktcp"]
@@ -17,6 +17,67 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mo36"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yld6r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elumy"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+
+[sub_resource type="Animation" id="Animation_34fcx"]
+resource_name = "notification_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t16xq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_av3cc"]
+resource_name = "notification_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fht44"]
+_data = {
+"RESET": SubResource("Animation_t16xq"),
+"notification_in": SubResource("Animation_34fcx"),
+"notification_out": SubResource("Animation_av3cc")
+}
 
 [node name="Ui" type="CanvasLayer"]
 script = ExtResource("1_yktcp")
@@ -91,10 +152,10 @@ material = ExtResource("4_y8ln0")
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.061
-offset_left = -3879.0
-offset_top = -1584.0
-offset_right = 4017.0
-offset_bottom = 2793.73
+offset_left = -3860.0
+offset_top = -1562.0
+offset_right = 4036.0
+offset_bottom = 2815.73
 
 [node name="ZoomIn" type="Node2D" parent="."]
 visible = false
@@ -167,6 +228,56 @@ scale = Vector2(1.71875, 1.71875)
 texture = ExtResource("7_acr4x")
 hframes = 2
 frame = 1
+
+[node name="InfoBanner" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 333.0
+offset_top = 110.0
+offset_right = 373.0
+offset_bottom = 150.0
+
+[node name="Panel" type="Panel" parent="InfoBanner"]
+z_index = 1
+y_sort_enabled = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 4.1
+anchor_top = 1.95
+anchor_right = 11.925
+anchor_bottom = 3.2
+offset_left = -359.0
+offset_top = -86.0
+offset_right = -297.0
+offset_bottom = -69.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_elumy")
+
+[node name="Info" type="RichTextLabel" parent="InfoBanner"]
+z_index = 2
+y_sort_enabled = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 4.25
+anchor_top = 2.175
+anchor_right = 11.725
+anchor_bottom = 3.3
+offset_left = -344.0
+offset_top = -77.0
+offset_right = -304.0
+offset_bottom = -82.0
+theme_override_colors/default_color = Color(1, 1, 1, 0.662745)
+theme_override_fonts/normal_font = ExtResource("1_2dfvl")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Tap twice to center the camera"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InfoBanner"]
+libraries = {
+"": SubResource("AnimationLibrary_fht44")
+}
+
+[node name="Timer" type="Timer" parent="InfoBanner"]
 
 [connection signal="pressed" from="ZoomIn/Button" to="." method="_on_zoom_in_button_pressed"]
 [connection signal="pressed" from="ZoomOut/Button" to="." method="_on_zoom_out_button_pressed"]

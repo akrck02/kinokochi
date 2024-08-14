@@ -5,6 +5,8 @@ signal scene_change_requested(scene : String)
 signal night_started()
 signal day_started()
 signal tick_reached();
+signal notification_shown(message : String)
+signal notification_hidden()
 
 # Camera signals
 signal zoom_in(value : float)

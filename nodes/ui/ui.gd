@@ -2,12 +2,19 @@ extends CanvasLayer
 
 @onready var timeLabel : RichTextLabel = $Banner/Time 
 @onready var filter : ColorRect = $Filter
+@onready var info : RichTextLabel = $InfoBanner/Info
+@onready var info_animation_player : AnimationPlayer = $InfoBanner/AnimationPlayer
+@onready var info_timer : Timer = $InfoBanner/Timer
+
+var notification_showing = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SignalDatabase.tick_reached.connect(update_tick);
 	SignalDatabase.night_started.connect(set_night_color_palette)
 	SignalDatabase.day_started.connect(set_day_color_palette)
+	SignalDatabase.notification_shown.connect(show_notification)
+	SignalDatabase.notification_hidden.connect(hide_notification)
 	update_time()
 
 func _input(_event):
@@ -37,4 +44,24 @@ func set_night_color_palette():
 # Set day color palette
 func set_day_color_palette():
 	filter.material = load("res://materials/filter_shader_material_day.tres")
+
+# Show notification
+func show_notification(message : String):
 	
+	if notification_showing: 
+		return
+	
+	info.text = message
+	info_animation_player.play("notification_in")
+	notification_showing = true
+
+# Hide notification
+func hide_notification():
+	
+	if not notification_showing:
+		return
+	
+	info_animation_player.play("notification_out")
+	info.text = ""
+	notification_showing = false
+
