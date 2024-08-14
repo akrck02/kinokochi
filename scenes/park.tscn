@@ -221,11 +221,8 @@ sources/1 = SubResource("TileSetAtlasSource_ovres")
 position = Vector2(1940, 1)
 script = ExtResource("1_y5n7u")
 
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
-current = true
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(1291, -826)
+position = Vector2(4036, -249)
 rotation = 3.14159
 scale = Vector2(304.916, -3.88885)
 stream = ExtResource("10_bnlch")
@@ -299,5 +296,29 @@ metadata/_edit_group_ = true
 
 [node name="Camera2D" parent="Pet" instance=ExtResource("7_lsj0o")]
 position = Vector2(0.972656, -20.5638)
+default_zoom = Vector2(3, 3)
+zoom_speed = 0.1
+rotation_speed = 0.1
+can_zoom = true
+can_pan = true
+can_rotate = false
+movement_speed = 0.666667
+
+[node name="Teko" parent="." instance=ExtResource("6_bdx4c")]
+z_index = 1
+material = ExtResource("2_3t074")
+position = Vector2(4084, -257)
+velocity = Vector2(-2.04974, 0)
+pet_name = "teko"
+metadata/_edit_group_ = true
+
+[node name="Foxy" parent="." instance=ExtResource("6_bdx4c")]
+visible = false
+z_index = 1
+material = ExtResource("2_3t074")
+position = Vector2(4003, -217)
+velocity = Vector2(-2.04974, 0)
+pet_name = "foxy"
+metadata/_edit_group_ = true
 
 [node name="Ui" parent="." instance=ExtResource("8_k82j5")]

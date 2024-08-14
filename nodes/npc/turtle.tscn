@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://rw88feax5dwj"]
+[gd_scene load_steps=8 format=3 uid="uid://rw88feax5dwj"]
 
 [ext_resource type="Texture2D" uid="uid://bitnbo65hrdej" path="res://resources/sprites/npc/gomi.png" id="1_e04s2"]
 [ext_resource type="Script" path="res://nodes/npc/turtle.gd" id="1_kreq4"]
+[ext_resource type="Material" uid="uid://c0q6k8bo0nc7y" path="res://materials/outline_shader_material.tres" id="2_bo71p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_py8ww"]
 radius = 12.0
@@ -49,6 +50,7 @@ _data = {
 script = ExtResource("1_kreq4")
 
 [node name="Gomi" type="Sprite2D" parent="."]
+material = ExtResource("2_bo71p")
 position = Vector2(0, -13)
 rotation = 0.0075196
 texture = ExtResource("1_e04s2")

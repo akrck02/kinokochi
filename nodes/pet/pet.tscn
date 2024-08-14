@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgd58tknkodwv"]
+[gd_scene load_steps=12 format=3 uid="uid://bgd58tknkodwv"]
 
 [ext_resource type="Script" path="res://nodes/pet/pet.gd" id="1_t2hn5"]
 [ext_resource type="Texture2D" uid="uid://bm6uy3x5dk7qw" path="res://resources/sprites/pets/tas.png" id="2_dbtwv"]
 [ext_resource type="Texture2D" uid="uid://dtnrq3qm6emc" path="res://resources/sprites/shadow.png" id="3_03fhf"]
+[ext_resource type="Material" uid="uid://c0q6k8bo0nc7y" path="res://materials/outline_shader_material.tres" id="3_abgn8"]
 [ext_resource type="Texture2D" uid="uid://g84fjvgcei1i" path="res://resources/sprites/effects/light-cast.png" id="4_a1wdx"]
 
 [sub_resource type="Animation" id="Animation_juwsa"]
@@ -143,6 +144,7 @@ texture = ExtResource("3_03fhf")
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
+material = ExtResource("3_abgn8")
 position = Vector2(3, -7)
 texture = ExtResource("2_dbtwv")
 hframes = 3

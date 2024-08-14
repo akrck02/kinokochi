@@ -9,3 +9,6 @@ limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("1_so8b7")
 pan_speed = 1.0
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true

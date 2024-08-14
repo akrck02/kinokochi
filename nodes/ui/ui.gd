@@ -32,11 +32,9 @@ func update_time():
 	
 # Set night color palette
 func set_night_color_palette():
-	print("night")
 	filter.material = load("res://materials/filter_shader_material_night.tres")
 
 # Set day color palette
 func set_day_color_palette():
-	print("day")
 	filter.material = load("res://materials/filter_shader_material_day.tres")
 	
