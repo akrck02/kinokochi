@@ -2,6 +2,9 @@ extends Node
 
 # Engine signals
 signal scene_change_requested(scene : String) 
+signal tick_reached();
+
+# Camera signals
 signal zoom_in(value : float)
 signal zoom_out(value : float)
 

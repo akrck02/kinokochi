@@ -44,7 +44,10 @@ func handle_touch(event : InputEventScreenTouch):
 	else:
 		touch_points.erase(event.index)
 		
-	if touch_points.size() == 2:
+	if touch_points.size() == 1:
+		if event.double_tap:
+			offset = Vector2.ZERO
+	elif touch_points.size() == 2:
 		var touch_point_positions = touch_points.values()
 		start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
 		start_zoom = zoom
@@ -71,6 +74,6 @@ func handle_drag(event : InputEventScreenDrag):
 func limit_zoom(new_zoom : Vector2) -> Vector2:
 	if new_zoom.x <= 1: new_zoom.x = 1
 	if new_zoom.y <= 1: new_zoom.y = 1
-	if new_zoom.x >= 3: new_zoom.x = 3
-	if new_zoom.y >= 3: new_zoom.y = 3
+	if new_zoom.x >= 6: new_zoom.x = 6
+	if new_zoom.y >= 6: new_zoom.y = 6
 	return new_zoom

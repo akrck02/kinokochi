@@ -4,6 +4,7 @@
 
 [node name="Camera2D" type="Camera2D"]
 z_index = 4096
+zoom = Vector2(3, 3)
 limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("1_so8b7")

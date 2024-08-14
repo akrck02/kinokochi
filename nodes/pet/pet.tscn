@@ -91,7 +91,14 @@ height = 26.0
 y_sort_enabled = true
 script = ExtResource("1_t2hn5")
 
+[node name="Shadow" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 12)
+scale = Vector2(0.531457, 0.606667)
+texture = ExtResource("3_03fhf")
+
 [node name="Sprite" type="Sprite2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(3, -7)
 texture = ExtResource("2_dbtwv")
@@ -107,9 +114,3 @@ z_index = 1
 position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_5mgkw")
 debug_color = Color(0.611756, 0.117942, 0.116228, 0.109804)
-
-[node name="Shadow" type="Sprite2D" parent="."]
-y_sort_enabled = true
-position = Vector2(5.96046e-08, 12)
-scale = Vector2(0.531457, 0.606667)
-texture = ExtResource("3_03fhf")
