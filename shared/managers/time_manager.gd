@@ -12,8 +12,21 @@ func _ready():
 	timer.timeout.connect(emitTickSignal)
 	add_child(timer)
 
-
 # Emit tick signal
 func emitTickSignal():
 	SignalDatabase.tick_reached.emit()
 
+# Get real device time
+func get_real_time() -> Dictionary:
+	return Time.get_time_dict_from_system();
+
+# Emits a signal with the given daytime
+func emit_daytime():
+
+	if is_daytime(): SignalDatabase.day_started.emit()
+	else : SignalDatabase.night_started.emit()
+
+# Get if it is night or day
+func is_daytime() -> bool:
+	var time = get_real_time()
+	return time.hour > 6 && time.hour < 20 

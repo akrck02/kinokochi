@@ -2,6 +2,8 @@ extends Node
 
 # Engine signals
 signal scene_change_requested(scene : String) 
+signal night_started()
+signal day_started()
 signal tick_reached();
 
 # Camera signals

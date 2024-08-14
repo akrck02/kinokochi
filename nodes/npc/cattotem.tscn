@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://bb0q2fy8l6iaj"]
 
-[ext_resource type="Material" uid="uid://de0kp0bflu8l6" path="res://materials/filtershadermaterial.tres" id="1_585s4"]
+[ext_resource type="Material" uid="uid://de0kp0bflu8l6" path="res://materials/filter_shader_material_day.tres" id="1_585s4"]
 [ext_resource type="Script" path="res://nodes/npc/cattotem.gd" id="2_hm1f6"]
 [ext_resource type="Texture2D" uid="uid://dqp30tsofkpqk" path="res://resources/sprites/npc/cat.png" id="3_w6u44"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f42l2"]
-radius = 9.0
-height = 20.0
+radius = 24.0
+height = 68.0
 
 [sub_resource type="Animation" id="Animation_uc57t"]
 length = 0.001
@@ -99,16 +99,14 @@ material = ExtResource("1_585s4")
 script = ExtResource("2_hm1f6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 show_behind_parent = true
 z_index = 2
-position = Vector2(-1, 8)
+position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_f42l2")
 
 [node name="cat" type="Node2D" parent="."]
 
 [node name="Cat" type="Sprite2D" parent="cat"]
-z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -12)
 texture = ExtResource("3_w6u44")
@@ -116,7 +114,6 @@ texture = ExtResource("3_w6u44")
 [node name="cat 2" type="Node2D" parent="."]
 
 [node name="Cat2" type="Sprite2D" parent="cat 2"]
-z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -9)
 texture = ExtResource("3_w6u44")
@@ -124,7 +121,6 @@ texture = ExtResource("3_w6u44")
 [node name="cat 3" type="Node2D" parent="."]
 
 [node name="Cat3" type="Sprite2D" parent="cat 3"]
-z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -19)
 texture = ExtResource("3_w6u44")

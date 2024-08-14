@@ -1,11 +1,14 @@
 extends CanvasLayer
 
-@onready var timeLabel : RichTextLabel = $Time 
-var current_tick : int = 0
+@onready var timeLabel : RichTextLabel = $Banner/Time 
+@onready var filter : ColorRect = $Filter
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	SignalDatabase.tick_reached.connect(show_tick);
+	SignalDatabase.tick_reached.connect(update_tick);
+	SignalDatabase.night_started.connect(set_night_color_palette)
+	SignalDatabase.day_started.connect(set_day_color_palette)
+	update_time()
 
 func _input(_event):
 	if Input.is_action_just_released('ui_zoom_in'):
@@ -19,6 +22,21 @@ func _on_zoom_in_button_pressed():
 func _on_zoom_out_button_pressed():
 	SignalDatabase.zoom_out.emit(.5)
 
-func show_tick():
-	current_tick += 1
-	timeLabel.text = "[right] %s" % current_tick
+func update_tick():
+	update_time()
+	
+func update_time():
+	var time = TimeManager.get_real_time();
+	timeLabel.text = "[right] {hh}:{mm}".format({"hh": "%02d" % time.hour, "mm": "%02d" % time.minute })
+	TimeManager.emit_daytime()
+	
+# Set night color palette
+func set_night_color_palette():
+	print("night")
+	filter.material = load("res://materials/filter_shader_material_night.tres")
+
+# Set day color palette
+func set_day_color_palette():
+	print("day")
+	filter.material = load("res://materials/filter_shader_material_day.tres")
+	

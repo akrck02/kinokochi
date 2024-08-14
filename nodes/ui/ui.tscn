@@ -1,26 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cba3m5gci8old"]
+[gd_scene load_steps=12 format=3 uid="uid://cba3m5gci8old"]
 
 [ext_resource type="FontFile" uid="uid://bjf25rcjkkxlh" path="res://resources/fonts/DotGothic16-Regular.ttf" id="1_2dfvl"]
 [ext_resource type="Script" path="res://nodes/ui/ui.gd" id="1_yktcp"]
 [ext_resource type="Texture2D" uid="uid://cqutuq0jrsqbu" path="res://resources/sprites/icons/park.svg" id="2_wwa4d"]
-[ext_resource type="Shader" path="res://shaders/brightness.gdshader" id="3_ds6t7"]
-[ext_resource type="Texture2D" uid="uid://d3pgrufjmhdg7" path="res://materials/cool_gradient.tres" id="4_nffrm"]
-[ext_resource type="Texture2D" uid="uid://datp43fjnncxf" path="res://materials/warm_gradient.tres" id="5_bykp0"]
+[ext_resource type="Material" uid="uid://de0kp0bflu8l6" path="res://materials/filter_shader_material_day.tres" id="4_y8ln0"]
 [ext_resource type="Texture2D" uid="uid://dptxys2tpqwm1" path="res://resources/sprites/icons/icons.png" id="7_acr4x"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_crhds"]
-shader = ExtResource("3_ds6t7")
-shader_parameter/temperature = 0.25
-shader_parameter/brightness = 0.0
-shader_parameter/contrast = 1.223
-shader_parameter/saturation = 1.0
-shader_parameter/redVal = 1.0
-shader_parameter/greenVal = 1.0
-shader_parameter/blueVal = 1.0
-shader_parameter/tint_color = Vector4(0, 0, 0, 0)
-shader_parameter/tint_effect_factor = 0.0
-shader_parameter/warm_color = ExtResource("5_bykp0")
-shader_parameter/cool_color = ExtResource("4_nffrm")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16lef"]
 
@@ -37,63 +21,80 @@ shader_parameter/cool_color = ExtResource("4_nffrm")
 [node name="Ui" type="CanvasLayer"]
 script = ExtResource("1_yktcp")
 
-[node name="Banner" type="ColorRect" parent="."]
-offset_right = 648.0
-offset_bottom = 71.0
-color = Color(0, 0, 0, 0.835294)
+[node name="Banner" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.994
+anchor_bottom = 0.064
+offset_right = -0.112
+offset_bottom = 0.271996
 
-[node name="Time" type="RichTextLabel" parent="."]
+[node name="Icon" type="Node2D" parent="Banner"]
+z_index = 1
+position = Vector2(584, 37)
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="Banner/Icon"]
+position = Vector2(-0.5, -2.50002)
+scale = Vector2(1.625, 1.625)
+texture = ExtResource("2_wwa4d")
+
+[node name="Icon2" type="Sprite2D" parent="Banner/Icon"]
+position = Vector2(26, 3)
+scale = Vector2(1.00521, 1.00521)
+texture = ExtResource("2_wwa4d")
+
+[node name="Time" type="RichTextLabel" parent="Banner"]
+z_index = 1
+y_sort_enabled = true
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.015
 anchor_top = 0.029
-anchor_right = 0.963
-anchor_bottom = 0.127
-offset_left = 298.28
-offset_top = -21.408
-offset_right = -71.024
-offset_bottom = -84.304
+anchor_right = 0.857
+anchor_bottom = 0.797
+offset_left = 307.34
+offset_top = 10.854
+offset_right = 0.09198
+offset_bottom = 0.0219955
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("1_2dfvl")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[right] "
+text = "[right] 00:00"
 
-[node name="Location" type="RichTextLabel" parent="."]
+[node name="Location" type="RichTextLabel" parent="Banner"]
+z_index = 1
+y_sort_enabled = true
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.015
 anchor_top = 0.029
-anchor_right = 0.963
-anchor_bottom = 0.127
-offset_left = 15.28
-offset_top = -20.408
-offset_right = -279.024
-offset_bottom = -85.304
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.34
+offset_top = 11.854
+offset_right = -368.0
+offset_bottom = -16.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("1_2dfvl")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Central park"
 
-[node name="Icon" type="Node2D" parent="."]
-position = Vector2(584, 37)
-metadata/_edit_group_ = true
-
-[node name="Icon" type="Sprite2D" parent="Icon"]
-position = Vector2(-0.5, -2.50002)
-scale = Vector2(1.625, 1.625)
-texture = ExtResource("2_wwa4d")
-
-[node name="Icon2" type="Sprite2D" parent="Icon"]
-position = Vector2(26, 3)
-scale = Vector2(1.00521, 1.00521)
-texture = ExtResource("2_wwa4d")
+[node name="Banner" type="ColorRect" parent="Banner"]
+offset_right = 648.0
+offset_bottom = 71.0
+color = Color(0, 0, 0, 0.835294)
 
 [node name="Filter" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_crhds")
+material = ExtResource("4_y8ln0")
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.061
 offset_left = -3879.0
 offset_top = -1584.0
-offset_right = 4665.0
-offset_bottom = 2864.0
+offset_right = 4017.0
+offset_bottom = 2793.73
 
 [node name="ZoomIn" type="Node2D" parent="."]
 visible = false
