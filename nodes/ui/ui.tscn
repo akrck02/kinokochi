@@ -80,6 +80,9 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02b0w"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
 
 [sub_resource type="FontFile" id="FontFile_chwde"]
 cache/0/16/0/ascent = 0.0
@@ -478,12 +481,9 @@ text = "Settings"
 label_settings = SubResource("LabelSettings_iyci6")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Settings/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Exit"
-
 [node name="Volume" type="HBoxContainer" parent="Settings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="VolumeLabel" type="Label" parent="Settings/ScrollContainer/VBoxContainer/Volume"]
@@ -492,8 +492,18 @@ text = "Volume"
 
 [node name="HSlider" type="HSlider" parent="Settings/ScrollContainer/VBoxContainer/Volume"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="OutlineCheckButton" type="CheckButton" parent="Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Outline"
+
+[node name="ExitButton" type="Button" parent="Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
 
 [connection signal="pressed" from="ZoomIn/Button" to="." method="_on_zoom_in_button_pressed"]
 [connection signal="pressed" from="ZoomOut/Button" to="." method="_on_zoom_out_button_pressed"]
 [connection signal="pressed" from="Show settings/Button" to="." method="toggle_settings"]
-[connection signal="pressed" from="Settings/ScrollContainer/VBoxContainer/Button" to="." method="toggle_settings"]
+[connection signal="pressed" from="Settings/ScrollContainer/VBoxContainer/ExitButton" to="." method="toggle_settings"]
