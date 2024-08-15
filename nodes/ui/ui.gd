@@ -1,27 +1,24 @@
 extends CanvasLayer
 
-@onready var timeLabel : RichTextLabel = $Banner/Time 
+@onready var time_label : RichTextLabel = $Banner/Time 
 @onready var filter : ColorRect = $Filter
 @onready var info : RichTextLabel = $InfoBanner/Info
 @onready var info_animation_player : AnimationPlayer = $InfoBanner/AnimationPlayer
 @onready var info_timer : Timer = $InfoBanner/Timer
-@onready var show_settings_button = $"Show settings"
-@onready var settings = $Settings
+@onready var show_settings_button : Button = $ShowSettings/Button
 @onready var banner = $Banner
-@onready var settings_2 = $Settings2
+@onready var settings = $Settings
 
 var notification_showing = false;
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	settings.visible=false
-	settings_2.visible=false
-	
+func _ready():	
 	SignalDatabase.tick_reached.connect(update_tick);
 	SignalDatabase.night_started.connect(set_night_color_palette)
 	SignalDatabase.day_started.connect(set_day_color_palette)
 	SignalDatabase.notification_shown.connect(show_notification)
 	SignalDatabase.notification_hidden.connect(hide_notification)
+	show_settings_button.pressed.connect(toggle_settings)
 	update_time()
 
 func _input(_event):
@@ -41,7 +38,7 @@ func update_tick():
 	
 func update_time():
 	var time = TimeManager.get_real_time();
-	timeLabel.text = "[right] {hh}:{mm}".format({"hh": "%02d" % time.hour, "mm": "%02d" % time.minute })
+	time_label.text = "[right] {hh}:{mm}".format({"hh": "%02d" % time.hour, "mm": "%02d" % time.minute })
 	TimeManager.emit_daytime()
 	
 # Set night color palette
@@ -73,6 +70,4 @@ func hide_notification():
 	notification_showing = false
 
 func toggle_settings():
-	#settings.visible=!settings.visible
-	settings_2.visible=!settings_2.visible
-	
+	settings.visible=!settings.visible

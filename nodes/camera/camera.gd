@@ -35,7 +35,7 @@ func _input(event):
 		handle_drag(event);
 	
 
-func _process(delta):
+func _process(_delta):
 	if zoom != default_zoom || offset.x < -80 || offset.x > 80 || offset.y < -80 || offset.y > 80 : 
 		SignalDatabase.notification_shown.emit("[center]Tap twice to center the camera")
 	else: SignalDatabase.notification_hidden.emit() 

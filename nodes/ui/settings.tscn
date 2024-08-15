@@ -1,17 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1sb67q4oi72g"]
+[gd_scene load_steps=16 format=3 uid="uid://bkxydu410llqn"]
 
 [ext_resource type="Script" path="res://nodes/ui/settings.gd" id="1_6woeb"]
 [ext_resource type="FontFile" uid="uid://bjf25rcjkkxlh" path="res://resources/fonts/DotGothic16-Regular.ttf" id="1_uaw83"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="2_5pn4c"]
+[ext_resource type="Texture2D" uid="uid://dqp30tsofkpqk" path="res://resources/sprites/npc/cat.png" id="3_ghqpg"]
 
 [sub_resource type="Theme" id="Theme_r7cyn"]
 default_font = ExtResource("1_uaw83")
 /font_sizes/Title = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6avqh"]
+shader = ExtResource("2_5pn4c")
+shader_parameter/blur = 2.836
+
+[sub_resource type="Gradient" id="Gradient_14lpc"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.313726)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1flq4"]
+gradient = SubResource("Gradient_14lpc")
+width = 282
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6a5p8"]
 content_margin_left = 20.0
 content_margin_top = 20.0
 content_margin_right = 20.0
 content_margin_bottom = 20.0
+bg_color = Color(0.343317, 0.20257, 0.097886, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4oajl"]
 content_margin_left = 4.0
@@ -107,7 +122,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_urppp")
 Button/styles/normal = SubResource("StyleBoxFlat_q1u6u")
 Button/styles/pressed = SubResource("StyleBoxFlat_fi20d")
 
-[node name="Control" type="Control"]
+[node name="Settings" type="Control"]
 z_index = 1
 layout_mode = 3
 anchors_preset = 15
@@ -116,8 +131,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_r7cyn")
+script = ExtResource("1_6woeb")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="Filter" type="TextureRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_6avqh")
+layout_mode = 2
+offset_left = -1760.0
+offset_top = 24.0
+offset_right = -1478.0
+offset_bottom = 25.0
+scale = Vector2(13.0617, 1951.55)
+texture = SubResource("GradientTexture1D_1flq4")
+
+[node name="Scroll" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,40 +153,42 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6a5p8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="Margin" type="MarginContainer" parent="Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 10
+size_flags_vertical = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+[node name="Controls" type="VBoxContainer" parent="Scroll/Margin"]
 layout_mode = 2
-theme_type_variation = &"HeaderLarge"
-text = "Settings"
-horizontal_alignment = 1
+size_flags_horizontal = 3
+theme_override_constants/separation = 18
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="VolumeControls" type="VBoxContainer" parent="Scroll/Margin/Controls"]
+custom_minimum_size = Vector2(-7, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Scroll/Margin/Controls/VolumeControls"]
 layout_mode = 2
 theme_type_variation = &"TooltipLabel"
+theme_override_font_sizes/font_size = 41
 text = "Volume"
 
-[node name="HSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="Scroll/Margin/Controls/VolumeControls"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("3_ghqpg")
+theme_override_icons/grabber_highlight = ExtResource("3_ghqpg")
 
-[node name="OutlineCheckButton" type="CheckButton" parent="ScrollContainer/VBoxContainer"]
+[node name="OutlineCheckButton" type="CheckButton" parent="Scroll/Margin/Controls"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 38
 text = "Outline"
 
-[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="Scroll/Margin/Controls"]
 layout_mode = 2
 theme = SubResource("Theme_gdefx")
 theme_type_variation = &"FlatButton"
 text = "Exit"
-script = ExtResource("1_6woeb")
-
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/OutlineCheckButton" to="ScrollContainer/VBoxContainer/Button" method="toggle_outline"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/Button" to="ScrollContainer/VBoxContainer/Button" method="on_exit_click"]

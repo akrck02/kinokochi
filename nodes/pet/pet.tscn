@@ -213,6 +213,7 @@ texture = ExtResource("4_a1wdx")
 texture_scale = 1.43
 
 [node name="Metasprites" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 y_sort_enabled = true
 position = Vector2(0, -56)

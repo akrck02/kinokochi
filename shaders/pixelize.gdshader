@@ -5,8 +5,8 @@ uniform float size_x = 0.008;
 uniform float size_y = 0.008;
 
 void fragment() {
-	vec2 uv = SCREEN_UV;
+	vec2 uv = UV;
 	uv -= mod(uv, vec2(size_x, size_y));
 
-	COLOR.rgb = textureLod(screen_texture, uv, 0.0).rgb;
+	COLOR.rgb = textureLod(TEXTURE, uv, 0.0).rgb;
 }
