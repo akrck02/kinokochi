@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://cba3m5gci8old"]
 
-[ext_resource type="FontFile" uid="uid://bjf25rcjkkxlh" path="res://resources/fonts/DotGothic16-Regular.ttf" id="1_2dfvl"]
 [ext_resource type="Script" path="res://nodes/ui/ui.gd" id="1_yktcp"]
 [ext_resource type="Texture2D" uid="uid://cqutuq0jrsqbu" path="res://resources/sprites/icons/park.svg" id="2_wwa4d"]
+[ext_resource type="FontFile" uid="uid://b3v175ls5slpe" path="res://resources/fonts/PIXELADE.TTF" id="3_g1lr1"]
 [ext_resource type="Material" uid="uid://de0kp0bflu8l6" path="res://materials/filter_shader_material_day.tres" id="4_y8ln0"]
 [ext_resource type="PackedScene" uid="uid://bkxydu410llqn" path="res://nodes/ui/settings.tscn" id="6_1eey1"]
 [ext_resource type="Texture2D" uid="uid://dptxys2tpqwm1" path="res://resources/sprites/icons/icons.png" id="7_acr4x"]
@@ -99,7 +99,6 @@ offset_bottom = 0.271996
 [node name="Icon" type="Node2D" parent="Banner"]
 z_index = 1
 position = Vector2(584, 37)
-metadata/_edit_group_ = true
 
 [node name="Icon" type="Sprite2D" parent="Banner/Icon"]
 position = Vector2(-0.5, -2.50002)
@@ -121,12 +120,12 @@ anchor_top = 0.029
 anchor_right = 0.857
 anchor_bottom = 0.797
 offset_left = 307.34
-offset_top = 10.854
+offset_top = 14.854
 offset_right = 0.09198
-offset_bottom = 0.0219955
+offset_bottom = 4.022
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("1_2dfvl")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_fonts/normal_font = ExtResource("3_g1lr1")
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[right] 00:00"
 
@@ -139,13 +138,13 @@ anchor_left = 0.015
 anchor_top = 0.029
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 24.34
-offset_top = 11.854
-offset_right = -368.0
-offset_bottom = -16.0
+offset_left = 21.34
+offset_top = 12.854
+offset_right = -283.0
+offset_bottom = -18.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("1_2dfvl")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_fonts/normal_font = ExtResource("3_g1lr1")
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "Central park"
 
@@ -160,10 +159,10 @@ material = ExtResource("4_y8ln0")
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.061
-offset_left = -3862.0
-offset_top = -1459.0
-offset_right = 4034.0
-offset_bottom = 2918.73
+offset_left = -3873.0
+offset_top = -1463.0
+offset_right = 4023.0
+offset_bottom = 2914.73
 
 [node name="ShowSettings" type="Node2D" parent="."]
 position = Vector2(592, 119)
@@ -194,8 +193,8 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_4mo36")
 
 [node name="Icons" type="Sprite2D" parent="ShowSettings"]
 modulate = Color(1, 1, 1, 0.729412)
-position = Vector2(2.96589, 2.55552)
-scale = Vector2(1.65132, 1.68946)
+position = Vector2(3.07607, 2.32429)
+scale = Vector2(1.515, 1.54999)
 texture = ExtResource("7_acr4x")
 hframes = 8
 
@@ -228,17 +227,14 @@ z_index = 2
 y_sort_enabled = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 4.25
-anchor_top = 2.175
-anchor_right = 11.725
-anchor_bottom = 3.3
-offset_left = -344.0
-offset_top = -77.0
-offset_right = -304.0
-offset_bottom = -82.0
+anchor_left = -4.35
+anchor_top = 0.25
+anchor_right = 4.125
+anchor_bottom = 1.25
+offset_left = 1.52588e-05
 theme_override_colors/default_color = Color(1, 1, 1, 0.662745)
-theme_override_fonts/normal_font = ExtResource("1_2dfvl")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_fonts/normal_font = ExtResource("3_g1lr1")
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]Tap twice to center the camera"
 
