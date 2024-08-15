@@ -49,7 +49,7 @@ pointing/emulate_touch_from_mouse=true
 
 textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.278431, 0.52549, 0.376471, 1)
+environment/defaults/default_clear_color=Color(0.133333, 0.133333, 0.133333, 1)
 anti_aliasing/quality/msaa_2d=3
 anti_aliasing/quality/msaa_3d=3
 anti_aliasing/quality/screen_space_aa=1
