@@ -282,7 +282,7 @@ libraries = {
 [node name="Timer" type="Timer" parent="InfoBanner"]
 
 [node name="Show settings" type="Node2D" parent="."]
-position = Vector2(592, 119)
+position = Vector2(600, 119)
 scale = Vector2(2.04, 2.04)
 metadata/_edit_group_ = true
 
