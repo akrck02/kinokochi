@@ -11,6 +11,7 @@ func _ready():
 	exit_button.pressed.connect(exit)
 
 func exit():
+	SignalDatabase.camera_movement_updated.emit(true);
 	set_visible(false)
 
 func toggle_outline():

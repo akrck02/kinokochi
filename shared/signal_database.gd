@@ -8,7 +8,9 @@ signal tick_reached();
 signal notification_shown(message : String)
 signal notification_hidden()
 signal outline(value:bool)
+
 # Camera signals
+signal camera_movement_updated(value : bool)
 signal zoom_in(value : float)
 signal zoom_out(value : float)
 

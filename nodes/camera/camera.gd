@@ -5,6 +5,7 @@ extends Camera2D
 @export var pan_speed : float = 0.1;
 @export var rotation_speed : float = 0.1;
 
+@export var can_move : bool = true;
 @export var can_zoom : bool = true;
 @export var can_pan : bool = true;
 @export var can_rotate : bool = false;
@@ -23,6 +24,7 @@ var current_angle
 func _ready():
 	SignalDatabase.zoom_in.connect(zoom_in)
 	SignalDatabase.zoom_out.connect(zoom_out)
+	SignalDatabase.camera_movement_updated.connect(update_can_move)
 	zoom = default_zoom
 
 # Input handle
@@ -31,16 +33,18 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		handle_touch(event);
 		
-	if event is InputEventScreenDrag:
+	if can_move and event is InputEventScreenDrag:
 		handle_drag(event);
 	
 
 func _process(_delta):
-	if zoom != default_zoom || offset.x < -80 || offset.x > 80 || offset.y < -80 || offset.y > 80 : 
+	
+	if not can_move:
+		return;
+	
+	if zoom != default_zoom or offset.x < -80 or offset.x > 80 or offset.y < -80 or offset.y > 80: 
 		SignalDatabase.notification_shown.emit("[center]Tap twice to center the camera")
 	else: SignalDatabase.notification_hidden.emit() 
-	
-	
 
 # Zoom in the camera
 func zoom_in(value : float):
@@ -52,6 +56,9 @@ func zoom_out(value : float):
 
 # Handle touch events 
 func handle_touch(event : InputEventScreenTouch):
+
+	if not can_move: 
+		return;
 	
 	if event.pressed:
 		touch_points[event.index] = event.position
@@ -100,3 +107,6 @@ func limit_zoom(new_zoom : Vector2) -> Vector2:
 	if new_zoom.x >= 6: new_zoom.x = 6
 	if new_zoom.y >= 6: new_zoom.y = 6
 	return new_zoom
+
+func update_can_move(value : bool):
+	can_move = value
