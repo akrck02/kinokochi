@@ -24,6 +24,7 @@ func _ready():
 	SignalDatabase.tick_reached.connect(tick_update)
 	SignalDatabase.night_started.connect(set_night)
 	SignalDatabase.day_started.connect(set_day)
+	SignalDatabase.outline.connect(toggle_outline)
 	
 	animation_player.play("idle")
 	chat_bubble_animation_player.play("idle")
@@ -84,3 +85,9 @@ func set_night() :
 # Prepare the visuals for daytime
 func set_day() : 
 	point_light.hide()
+
+func toggle_outline(value:bool):
+	if value:
+		sprite.material.set_shader_parameter("width",1)
+	else:
+		sprite.material.set_shader_parameter("width",0)

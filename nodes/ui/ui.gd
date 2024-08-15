@@ -5,11 +5,18 @@ extends CanvasLayer
 @onready var info : RichTextLabel = $InfoBanner/Info
 @onready var info_animation_player : AnimationPlayer = $InfoBanner/AnimationPlayer
 @onready var info_timer : Timer = $InfoBanner/Timer
+@onready var show_settings_button = $"Show settings"
+@onready var settings = $Settings
+@onready var banner = $Banner
+@onready var settings_2 = $Settings2
 
 var notification_showing = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	settings.visible=false
+	settings_2.visible=false
+	
 	SignalDatabase.tick_reached.connect(update_tick);
 	SignalDatabase.night_started.connect(set_night_color_palette)
 	SignalDatabase.day_started.connect(set_day_color_palette)
@@ -65,3 +72,7 @@ func hide_notification():
 	info.text = ""
 	notification_showing = false
 
+func toggle_settings():
+	#settings.visible=!settings.visible
+	settings_2.visible=!settings_2.visible
+	
