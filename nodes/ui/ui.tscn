@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cba3m5gci8old"]
+[gd_scene load_steps=18 format=3 uid="uid://cba3m5gci8old"]
 
 [ext_resource type="FontFile" uid="uid://bjf25rcjkkxlh" path="res://resources/fonts/DotGothic16-Regular.ttf" id="1_2dfvl"]
 [ext_resource type="Script" path="res://nodes/ui/ui.gd" id="1_yktcp"]
@@ -79,143 +79,6 @@ _data = {
 "notification_in": SubResource("Animation_34fcx"),
 "notification_out": SubResource("Animation_av3cc")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02b0w"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-
-[sub_resource type="FontFile" id="FontFile_chwde"]
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/17/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/18/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/19/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/21/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/22/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/23/0 = Vector2(0, 0)
-cache/0/16/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/17/0/ascent = 0.0
-cache/0/17/0/descent = 0.0
-cache/0/17/0/underline_position = 0.0
-cache/0/17/0/underline_thickness = 0.0
-cache/0/17/0/scale = 1.0
-cache/0/17/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/17/0/kerning_overrides/17/0 = Vector2(0, 0)
-cache/0/17/0/kerning_overrides/18/0 = Vector2(0, 0)
-cache/0/17/0/kerning_overrides/19/0 = Vector2(0, 0)
-cache/0/17/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/17/0/kerning_overrides/21/0 = Vector2(0, 0)
-cache/0/17/0/kerning_overrides/22/0 = Vector2(0, 0)
-cache/0/17/0/kerning_overrides/23/0 = Vector2(0, 0)
-cache/0/17/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/18/0/ascent = 0.0
-cache/0/18/0/descent = 0.0
-cache/0/18/0/underline_position = 0.0
-cache/0/18/0/underline_thickness = 0.0
-cache/0/18/0/scale = 1.0
-cache/0/18/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/18/0/kerning_overrides/17/0 = Vector2(0, 0)
-cache/0/18/0/kerning_overrides/18/0 = Vector2(0, 0)
-cache/0/18/0/kerning_overrides/19/0 = Vector2(0, 0)
-cache/0/18/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/18/0/kerning_overrides/21/0 = Vector2(0, 0)
-cache/0/18/0/kerning_overrides/22/0 = Vector2(0, 0)
-cache/0/18/0/kerning_overrides/23/0 = Vector2(0, 0)
-cache/0/18/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/19/0/ascent = 0.0
-cache/0/19/0/descent = 0.0
-cache/0/19/0/underline_position = 0.0
-cache/0/19/0/underline_thickness = 0.0
-cache/0/19/0/scale = 1.0
-cache/0/19/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/19/0/kerning_overrides/17/0 = Vector2(0, 0)
-cache/0/19/0/kerning_overrides/18/0 = Vector2(0, 0)
-cache/0/19/0/kerning_overrides/19/0 = Vector2(0, 0)
-cache/0/19/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/19/0/kerning_overrides/21/0 = Vector2(0, 0)
-cache/0/19/0/kerning_overrides/22/0 = Vector2(0, 0)
-cache/0/19/0/kerning_overrides/23/0 = Vector2(0, 0)
-cache/0/19/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/20/0/ascent = 0.0
-cache/0/20/0/descent = 0.0
-cache/0/20/0/underline_position = 0.0
-cache/0/20/0/underline_thickness = 0.0
-cache/0/20/0/scale = 1.0
-cache/0/20/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/17/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/18/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/19/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/21/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/22/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/23/0 = Vector2(0, 0)
-cache/0/20/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/21/0/ascent = 0.0
-cache/0/21/0/descent = 0.0
-cache/0/21/0/underline_position = 0.0
-cache/0/21/0/underline_thickness = 0.0
-cache/0/21/0/scale = 1.0
-cache/0/21/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/21/0/kerning_overrides/17/0 = Vector2(0, 0)
-cache/0/21/0/kerning_overrides/18/0 = Vector2(0, 0)
-cache/0/21/0/kerning_overrides/19/0 = Vector2(0, 0)
-cache/0/21/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/21/0/kerning_overrides/21/0 = Vector2(0, 0)
-cache/0/21/0/kerning_overrides/22/0 = Vector2(0, 0)
-cache/0/21/0/kerning_overrides/23/0 = Vector2(0, 0)
-cache/0/21/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/22/0/ascent = 0.0
-cache/0/22/0/descent = 0.0
-cache/0/22/0/underline_position = 0.0
-cache/0/22/0/underline_thickness = 0.0
-cache/0/22/0/scale = 1.0
-cache/0/22/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/22/0/kerning_overrides/17/0 = Vector2(0, 0)
-cache/0/22/0/kerning_overrides/18/0 = Vector2(0, 0)
-cache/0/22/0/kerning_overrides/19/0 = Vector2(0, 0)
-cache/0/22/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/22/0/kerning_overrides/21/0 = Vector2(0, 0)
-cache/0/22/0/kerning_overrides/22/0 = Vector2(0, 0)
-cache/0/22/0/kerning_overrides/23/0 = Vector2(0, 0)
-cache/0/22/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/23/0/ascent = 0.0
-cache/0/23/0/descent = 0.0
-cache/0/23/0/underline_position = 0.0
-cache/0/23/0/underline_thickness = 0.0
-cache/0/23/0/scale = 1.0
-cache/0/23/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/23/0/kerning_overrides/17/0 = Vector2(0, 0)
-cache/0/23/0/kerning_overrides/18/0 = Vector2(0, 0)
-cache/0/23/0/kerning_overrides/19/0 = Vector2(0, 0)
-cache/0/23/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/23/0/kerning_overrides/21/0 = Vector2(0, 0)
-cache/0/23/0/kerning_overrides/22/0 = Vector2(0, 0)
-cache/0/23/0/kerning_overrides/23/0 = Vector2(0, 0)
-cache/0/23/0/kerning_overrides/24/0 = Vector2(0, 0)
-cache/0/24/0/ascent = 0.0
-cache/0/24/0/descent = 0.0
-cache/0/24/0/underline_position = 0.0
-cache/0/24/0/underline_thickness = 0.0
-cache/0/24/0/scale = 1.0
-cache/0/24/0/kerning_overrides/16/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/17/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/18/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/19/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/20/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/21/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/22/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/23/0 = Vector2(0, 0)
-cache/0/24/0/kerning_overrides/24/0 = Vector2(0, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_iyci6"]
-font = SubResource("FontFile_chwde")
-font_size = 24
 
 [node name="Ui" type="CanvasLayer"]
 script = ExtResource("1_yktcp")
@@ -453,61 +316,9 @@ texture = ExtResource("7_acr4x")
 hframes = 2
 frame = 1
 
-[node name="Settings" type="Control" parent="."]
-z_index = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Settings"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_02b0w")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="SettingsLabel" type="Label" parent="Settings/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Settings"
-label_settings = SubResource("LabelSettings_iyci6")
-horizontal_alignment = 1
-
-[node name="Volume" type="HBoxContainer" parent="Settings/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="VolumeLabel" type="Label" parent="Settings/ScrollContainer/VBoxContainer/Volume"]
-layout_mode = 2
-text = "Volume"
-
-[node name="HSlider" type="HSlider" parent="Settings/ScrollContainer/VBoxContainer/Volume"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-
-[node name="OutlineCheckButton" type="CheckButton" parent="Settings/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Outline"
-
-[node name="ExitButton" type="Button" parent="Settings/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Exit"
-
-[node name="Settings2" parent="." instance=ExtResource("6_edenv")]
+[node name="Settings" parent="." instance=ExtResource("6_edenv")]
 visible = false
 
 [connection signal="pressed" from="ZoomIn/Button" to="." method="_on_zoom_in_button_pressed"]
 [connection signal="pressed" from="ZoomOut/Button" to="." method="_on_zoom_out_button_pressed"]
 [connection signal="pressed" from="Show settings/Button" to="." method="toggle_settings"]
-[connection signal="pressed" from="Settings/ScrollContainer/VBoxContainer/ExitButton" to="." method="toggle_settings"]
