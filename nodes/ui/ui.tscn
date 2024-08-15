@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://cba3m5gci8old"]
+[gd_scene load_steps=21 format=3 uid="uid://cba3m5gci8old"]
 
 [ext_resource type="FontFile" uid="uid://bjf25rcjkkxlh" path="res://resources/fonts/DotGothic16-Regular.ttf" id="1_2dfvl"]
 [ext_resource type="Script" path="res://nodes/ui/ui.gd" id="1_yktcp"]
 [ext_resource type="Texture2D" uid="uid://cqutuq0jrsqbu" path="res://resources/sprites/icons/park.svg" id="2_wwa4d"]
 [ext_resource type="Material" path="res://materials/filter_shader_material_day.tres" id="4_y8ln0"]
+[ext_resource type="PackedScene" uid="uid://b1sb67q4oi72g" path="res://nodes/ui/settings.tscn" id="6_edenv"]
 [ext_resource type="Texture2D" uid="uid://dptxys2tpqwm1" path="res://resources/sprites/icons/icons.png" id="7_acr4x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16lef"]
@@ -502,6 +503,9 @@ text = "Outline"
 [node name="ExitButton" type="Button" parent="Settings/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
+
+[node name="Settings2" parent="." instance=ExtResource("6_edenv")]
+visible = false
 
 [connection signal="pressed" from="ZoomIn/Button" to="." method="_on_zoom_in_button_pressed"]
 [connection signal="pressed" from="ZoomOut/Button" to="." method="_on_zoom_out_button_pressed"]
