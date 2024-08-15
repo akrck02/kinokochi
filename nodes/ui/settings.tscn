@@ -1,11 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bkxydu410llqn"]
+[gd_scene load_steps=28 format=3 uid="uid://bkxydu410llqn"]
 
 [ext_resource type="Script" path="res://nodes/ui/settings.gd" id="1_6woeb"]
 [ext_resource type="FontFile" uid="uid://bjf25rcjkkxlh" path="res://resources/fonts/DotGothic16-Regular.ttf" id="1_uaw83"]
 [ext_resource type="Shader" path="res://shaders/blur.gdshader" id="2_5pn4c"]
 [ext_resource type="Texture2D" uid="uid://dfkmx8ud2ixjl" path="res://resources/sprites/icons/catbrightnessdown.png" id="4_3h7cg"]
-[ext_resource type="Texture2D" uid="uid://cvqdlnvkjyxxq" path="res://resources/sprites/icons/turtle.png" id="6_g3168"]
-[ext_resource type="Texture2D" uid="uid://b24f0x8c2itdo" path="res://resources/sprites/icons/turtledisabled.png" id="6_hyxv5"]
+[ext_resource type="Material" uid="uid://c0q6k8bo0nc7y" path="res://materials/outline_shader_material.tres" id="5_6f1gn"]
+[ext_resource type="Texture2D" uid="uid://dce45j43fcy5i" path="res://resources/sprites/pets/teko.png" id="5_6m6yj"]
 
 [sub_resource type="Theme" id="Theme_r7cyn"]
 default_font = ExtResource("1_uaw83")
@@ -29,6 +29,34 @@ content_margin_top = 20.0
 content_margin_right = 20.0
 content_margin_bottom = 20.0
 bg_color = Color(0.343317, 0.20257, 0.097886, 1)
+
+[sub_resource type="Gradient" id="Gradient_7wxyx"]
+offsets = PackedFloat32Array(0.015625)
+colors = PackedColorArray(0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_82ib8"]
+gradient = SubResource("Gradient_7wxyx")
+width = 1
+
+[sub_resource type="Gradient" id="Gradient_50luq"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qasxr"]
+gradient = SubResource("Gradient_50luq")
+width = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ke6ko"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_terkc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3wbos"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lq2r7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q7tdl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2g68"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4oajl"]
 content_margin_left = 4.0
@@ -191,9 +219,21 @@ theme_override_icons/grabber_highlight = ExtResource("4_3h7cg")
 layout_mode = 2
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 38
-theme_override_icons/checked = ExtResource("6_g3168")
-theme_override_icons/unchecked = ExtResource("6_hyxv5")
+theme_override_icons/checked = SubResource("GradientTexture1D_82ib8")
+theme_override_icons/unchecked = SubResource("GradientTexture1D_qasxr")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ke6ko")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_terkc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3wbos")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lq2r7")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_q7tdl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m2g68")
 text = "Character outline"
+
+[node name="Sprite2D" type="Sprite2D" parent="Scroll/Margin/Controls/OutlineCheckButton"]
+material = ExtResource("5_6f1gn")
+position = Vector2(476, 26)
+texture = ExtResource("5_6m6yj")
+hframes = 3
 
 [node name="ExitButton" type="Button" parent="Scroll/Margin/Controls"]
 layout_mode = 2
