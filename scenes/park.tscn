@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cfe218fpwkj7d"]
 
 [ext_resource type="Script" path="res://scenes/park.gd" id="1_y5n7u"]
-[ext_resource type="Material" uid="uid://de0kp0bflu8l6" path="res://materials/filter_shader_material_day.tres" id="2_3t074"]
+[ext_resource type="Material" path="res://materials/filter_shader_material_day.tres" id="2_3t074"]
 [ext_resource type="Texture2D" uid="uid://tb8i71wek8v5" path="res://resources/sprites/landscape.png" id="3_21a3s"]
 [ext_resource type="Texture2D" uid="uid://cl3mohrpcyefy" path="res://resources/sprites/wireframe.png" id="4_kkt7j"]
 [ext_resource type="Texture2D" uid="uid://d2sob7eu07s4q" path="res://resources/sprites/homeWireframe.png" id="4_xv00a"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/camera/camera.tscn" id="7_lsj0o"]
 [ext_resource type="PackedScene" uid="uid://cba3m5gci8old" path="res://nodes/ui/ui.tscn" id="8_k82j5"]
 [ext_resource type="AudioStream" uid="uid://cxuof4rekkhom" path="res://resources/sounds/guitarHome.mp3" id="10_bnlch"]
-[ext_resource type="PackedScene" uid="uid://rw88feax5dwj" path="res://nodes/npc/turtle.tscn" id="11_ind7k"]
+[ext_resource type="PackedScene" path="res://nodes/npc/turtle.tscn" id="11_ind7k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0670"]
 resource_name = "landscape"

@@ -145,10 +145,12 @@ layout_mode = 2
 theme_type_variation = &"TooltipLabel"
 text = "Volume"
 
-[node name="HSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="VolumeHSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
 
 [node name="OutlineCheckButton" type="CheckButton" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -161,5 +163,6 @@ theme_type_variation = &"FlatButton"
 text = "Exit"
 script = ExtResource("1_6woeb")
 
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/HBoxContainer/VolumeHSlider" to="ScrollContainer/VBoxContainer/Button" method="set_volume"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/OutlineCheckButton" to="ScrollContainer/VBoxContainer/Button" method="toggle_outline"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Button" to="ScrollContainer/VBoxContainer/Button" method="on_exit_click"]
