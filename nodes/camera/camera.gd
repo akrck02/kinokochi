@@ -33,7 +33,7 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		handle_touch(event);
 		
-	if can_move and event is InputEventScreenDrag:
+	if event is InputEventScreenDrag:
 		handle_drag(event);
 	
 
@@ -88,6 +88,9 @@ func handle_touch(event : InputEventScreenTouch):
 # Handle touch events 
 func handle_drag(event : InputEventScreenDrag):
 	touch_points[event.index] = event.position
+	
+	if can_move:
+		return
 	
 	if touch_points.size() == 1:
 		if can_pan:
