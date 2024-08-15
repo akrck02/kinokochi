@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cqutuq0jrsqbu" path="res://resources/sprites/icons/park.svg" id="2_wwa4d"]
 [ext_resource type="Material" path="res://materials/filter_shader_material_day.tres" id="4_y8ln0"]
 [ext_resource type="PackedScene" uid="uid://b1sb67q4oi72g" path="res://nodes/ui/settings.tscn" id="6_edenv"]
-[ext_resource type="Texture2D" uid="uid://dptxys2tpqwm1" path="res://resources/sprites/icons/icons.png" id="7_acr4x"]
+[ext_resource type="Texture2D" path="res://resources/sprites/icons/icons.png" id="7_acr4x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16lef"]
 
@@ -192,7 +192,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_4mo36")
 [node name="Icons" type="Sprite2D" parent="ZoomIn"]
 position = Vector2(1, 2)
 scale = Vector2(1.71875, 1.71875)
-texture = ExtResource("7_acr4x")
 hframes = 2
 
 [node name="ZoomOut" type="Node2D" parent="."]
@@ -227,7 +226,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_4mo36")
 [node name="Icons" type="Sprite2D" parent="ZoomOut"]
 position = Vector2(3.27452, 2.80393)
 scale = Vector2(1.71875, 1.71875)
-texture = ExtResource("7_acr4x")
 hframes = 2
 frame = 1
 

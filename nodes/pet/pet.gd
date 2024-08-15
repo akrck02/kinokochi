@@ -26,6 +26,9 @@ func _ready():
 	SignalDatabase.day_started.connect(set_day)
 	SignalDatabase.outline.connect(toggle_outline)
 	
+	# Set outline based on config file
+	toggle_outline(SettingsManager.get_value("settings","outline"))
+	
 	animation_player.play("idle")
 	chat_bubble_animation_player.play("idle")
 	
