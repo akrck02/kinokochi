@@ -65,26 +65,32 @@ func handle_touch(event : InputEventScreenTouch):
 	else:
 		touch_points.erase(event.index)
 		
-	if touch_points.size() == 1:
-		if event.double_tap:
-			offset_tween = create_tween()
-			offset_tween.tween_property(self, NodeExtensor.OFFSET_PROPERTIES, Vector2.ZERO, movement_speed).set_trans(Tween.TRANS_SINE)
-			await offset_tween.finished
-			offset_tween.kill()
-			
-			zoom_tween = create_tween()
-			zoom_tween.tween_property(self, NodeExtensor.ZOOM_PROPERTIES, default_zoom, movement_speed).set_trans(Tween.TRANS_SINE)
-			await zoom_tween.finished
-			zoom_tween.kill()
-		
+	if touch_points.size() == 1 and event.double_tap:
+		return_to_default_camera_position()
 	elif touch_points.size() == 2:
-		var touch_point_positions = touch_points.values()
-		start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
-		start_zoom = zoom
+		zoom_camera_from_touch()
 	elif touch_points.size() < 2:
 		start_distance = 0
 
+# Zoom camera from touch
+func zoom_camera_from_touch():
+	var touch_point_positions = touch_points.values()
+	start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
+	start_zoom = zoom
 
+# Return to default camera position 
+func return_to_default_camera_position():
+	offset_tween = create_tween()
+	offset_tween.tween_property(self, NodeExtensor.OFFSET_PROPERTIES, Vector2.ZERO, movement_speed).set_trans(Tween.TRANS_SINE)
+	await offset_tween.finished
+	offset_tween.kill()
+	
+	zoom_tween = create_tween()
+	zoom_tween.tween_property(self, NodeExtensor.ZOOM_PROPERTIES, default_zoom, movement_speed).set_trans(Tween.TRANS_SINE)
+	await zoom_tween.finished
+	zoom_tween.kill()
+	
+	
 # Handle touch events 
 func handle_drag(event : InputEventScreenDrag):
 	touch_points[event.index] = event.position
