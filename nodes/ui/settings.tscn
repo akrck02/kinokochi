@@ -161,4 +161,5 @@ theme_type_variation = &"FlatButton"
 text = "Exit"
 script = ExtResource("1_6woeb")
 
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/OutlineCheckButton" to="ScrollContainer/VBoxContainer/Button" method="toggle_outline"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Button" to="ScrollContainer/VBoxContainer/Button" method="on_exit_click"]

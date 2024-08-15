@@ -14,7 +14,7 @@ var notification_showing = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#settings.visible=false
+	settings.visible=false
 	settings_2.visible=false
 	
 	SignalDatabase.tick_reached.connect(update_tick);

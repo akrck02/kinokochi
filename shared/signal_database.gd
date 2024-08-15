@@ -7,7 +7,7 @@ signal day_started()
 signal tick_reached();
 signal notification_shown(message : String)
 signal notification_hidden()
-
+signal outline(value:bool)
 # Camera signals
 signal zoom_in(value : float)
 signal zoom_out(value : float)
