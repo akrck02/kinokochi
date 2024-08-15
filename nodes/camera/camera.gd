@@ -97,7 +97,7 @@ func return_to_default_camera_position():
 func handle_drag(event : InputEventScreenDrag):
 	touch_points[event.index] = event.position
 	
-	if can_move:
+	if not can_move:
 		return
 	
 	if touch_points.size() == 1:

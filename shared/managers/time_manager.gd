@@ -18,7 +18,9 @@ func emitTickSignal():
 
 # Get real device time
 func get_real_time() -> Dictionary:
-	return Time.get_time_dict_from_system();
+	var time = Time.get_time_dict_from_system();
+	time.hour = 15
+	return time
 
 # Emits a signal with the given daytime
 func emit_daytime():

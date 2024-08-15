@@ -102,4 +102,12 @@ velocity = Vector2(-2.04974, 0)
 pet_name = "foxy"
 metadata/_edit_group_ = true
 
+[node name="Foxy2" parent="." instance=ExtResource("6_bdx4c")]
+z_index = 1
+material = ExtResource("2_3t074")
+position = Vector2(4519, -337)
+velocity = Vector2(-2.04974, 0)
+pet_name = "soriel"
+metadata/_edit_group_ = true
+
 [node name="Ui" parent="." instance=ExtResource("8_k82j5")]
