@@ -7,7 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://bkxydu410llqn" path="res://nodes/ui/settings.tscn" id="6_1eey1"]
 [ext_resource type="Texture2D" uid="uid://dptxys2tpqwm1" path="res://resources/sprites/icons/icons.png" id="7_acr4x"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_16lef"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggjfe"]
+bg_color = Color(0, 0, 0, 0.654902)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yld6r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3q2we"]
 
@@ -16,8 +24,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2pxu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mo36"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yld6r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elumy"]
 bg_color = Color(0, 0, 0, 0.509804)
@@ -154,58 +160,21 @@ material = ExtResource("4_y8ln0")
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.061
-offset_left = -3860.0
-offset_top = -1562.0
-offset_right = 4036.0
-offset_bottom = 2815.73
-
-[node name="ZoomIn" type="Node2D" parent="."]
-visible = false
-position = Vector2(509, 119)
-scale = Vector2(2.04, 2.04)
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="ZoomIn"]
-offset_left = -19.1176
-offset_top = -18.1372
-offset_right = 20.8824
-offset_bottom = 21.8628
-color = Color(0, 0, 0, 0.768627)
-
-[node name="Button" type="Button" parent="ZoomIn"]
-texture_filter = 1
-anchors_preset = -1
-anchor_left = 0.847
-anchor_top = 0.072
-anchor_right = 0.968
-anchor_bottom = 0.129
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 18.0
-offset_bottom = 19.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_16lef")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_3q2we")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_400cc")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_m2pxu")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4mo36")
-
-[node name="Icons" type="Sprite2D" parent="ZoomIn"]
-position = Vector2(1, 2)
-scale = Vector2(1.71875, 1.71875)
-texture = ExtResource("7_acr4x")
-hframes = 2
+offset_left = -3862.0
+offset_top = -1459.0
+offset_right = 4034.0
+offset_bottom = 2918.73
 
 [node name="ShowSettings" type="Node2D" parent="."]
 position = Vector2(592, 119)
 scale = Vector2(2.04, 2.04)
-metadata/_edit_group_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="ShowSettings"]
-offset_left = -16.6666
+[node name="Panel" type="Panel" parent="ShowSettings"]
+offset_left = -16.6667
 offset_top = -17.6471
-offset_right = 23.3334
+offset_right = 23.3333
 offset_bottom = 22.3529
-color = Color(0, 0, 0, 0.768627)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ggjfe")
 
 [node name="Button" type="Button" parent="ShowSettings"]
 anchors_preset = -1
@@ -224,11 +193,11 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_m2pxu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_4mo36")
 
 [node name="Icons" type="Sprite2D" parent="ShowSettings"]
-position = Vector2(3.27452, 2.80393)
-scale = Vector2(1.71875, 1.71875)
+modulate = Color(1, 1, 1, 0.729412)
+position = Vector2(2.96589, 2.55552)
+scale = Vector2(1.65132, 1.68946)
 texture = ExtResource("7_acr4x")
-hframes = 2
-frame = 1
+hframes = 8
 
 [node name="InfoBanner" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -283,5 +252,3 @@ libraries = {
 [node name="Settings" parent="." instance=ExtResource("6_1eey1")]
 visible = false
 z_index = 9
-
-[connection signal="pressed" from="ZoomIn/Button" to="." method="_on_zoom_in_button_pressed"]
