@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var point_light : PointLight2D = $PointLight2D
 
 # Emotions
+@onready var chat_bubble = $Metasprites
 @onready var chat_bubble_animation_player = $Metasprites/AnimationPlayer
 
 # Movement
@@ -15,6 +16,9 @@ extends CharacterBody2D
 @onready var tween : Tween
 @export var movement_speed = 1.00/1.5;
 var moving = false
+
+# Interactions
+@onready var touch_screen_button : TouchScreenButton = $TouchScreenButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,6 +30,7 @@ func _ready():
 	SignalDatabase.day_started.connect(set_day)
 	SignalDatabase.outline.connect(toggle_outline)
 	
+	touch_screen_button.pressed.connect(interact)
 	animation_player.play("idle")
 	chat_bubble_animation_player.play("idle")
 	
@@ -91,3 +96,6 @@ func toggle_outline(value:bool):
 		sprite.material.set_shader_parameter("width",1)
 	else:
 		sprite.material.set_shader_parameter("width",0)
+
+func interact():
+	chat_bubble.visible =! chat_bubble.visible

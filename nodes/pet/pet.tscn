@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgd58tknkodwv"]
+[gd_scene load_steps=18 format=3 uid="uid://bgd58tknkodwv"]
 
 [ext_resource type="Script" path="res://nodes/pet/pet.gd" id="1_t2hn5"]
 [ext_resource type="Texture2D" uid="uid://bm6uy3x5dk7qw" path="res://resources/sprites/pets/tas.png" id="2_dbtwv"]
@@ -171,6 +171,8 @@ _data = {
 "idle": SubResource("Animation_3ui2r")
 }
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eaxfs"]
+
 [node name="Pet" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_t2hn5")
@@ -231,3 +233,10 @@ position = Vector2(-1.53846, -10.7692)
 scale = Vector2(0.563904, 0.53983)
 texture = ExtResource("7_lhjx5")
 hframes = 3
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+position = Vector2(-31, -46)
+scale = Vector2(63, 85)
+texture_normal = SubResource("PlaceholderTexture2D_eaxfs")

@@ -36,7 +36,7 @@ func _input(event):
 	if event is InputEventScreenDrag:
 		handle_drag(event);
 	
-
+# Process operations
 func _process(_delta):
 	
 	if not can_move:
@@ -67,6 +67,8 @@ func handle_touch(event : InputEventScreenTouch):
 		
 	if touch_points.size() == 1 and event.double_tap:
 		return_to_default_camera_position()
+		
+		
 	elif touch_points.size() == 2:
 		zoom_camera_from_touch()
 	elif touch_points.size() < 2:
