@@ -19,6 +19,15 @@ var moving = false
 
 # Interactions
 @onready var touch_screen_button : TouchScreenButton = $TouchScreenButton
+@onready var touch_feed_button : TouchScreenButton = $OptionDialog/TouchScreenButtonFeed
+@onready var touch_play_button : TouchScreenButton = $OptionDialog/TouchScreenButtonPlay
+
+# Iteraction dialog
+@onready var pet_action_bubble = $OptionDialog
+
+# Pet states variables
+var pet_hunger = PetStats.DEFAULT_HUNGER
+var pet_affection = PetStats.DEFAULT_AFFECTION
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,6 +57,7 @@ func update_sprite():
 
 # This function will be called every tick
 func tick_update():
+	#pet_bubbles()
 	automatic_movement()
 
 # Automatic movement
@@ -86,7 +96,7 @@ func automatic_movement():
 # Prepare the visuals for nighttime
 func set_night() : 
 	point_light.show()
-
+	
 # Prepare the visuals for daytime
 func set_day() : 
 	point_light.hide()
@@ -97,5 +107,25 @@ func toggle_outline(value:bool):
 	else:
 		sprite.material.set_shader_parameter("width",0)
 
+func pet_bubbles():
+	#TODO -> when pets status is able to be changed, use this function to display emote bubbles to display its status
+	if pet_hunger < 10:
+		chat_bubble.visible =! chat_bubble.visible
+
 func interact():
-	chat_bubble.visible =! chat_bubble.visible
+	# Toggle pet movement and show dialog bubble
+	# There doesnt seem to be a ternary conditional operator on GDScript, i dont like it
+	if moving == true:
+		moving = false
+	else:
+		moving = true
+		
+	# NPCs will show their unique dialogs once the functinality is implemented, 'tas' will show its pet_actions
+	if pet_name == "tas":
+		pet_action_bubble.visible =! pet_action_bubble.visible
+	else:
+		chat_bubble.visible =! chat_bubble.visible
+	
+	
+	
+	

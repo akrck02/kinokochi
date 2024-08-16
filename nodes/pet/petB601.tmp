@@ -258,7 +258,6 @@ scale = Vector2(63, 85)
 texture_normal = SubResource("PlaceholderTexture2D_eaxfs")
 
 [node name="OptionDialog" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-32, -80)
 scale = Vector2(1.125, 0.5)
 texture = SubResource("GradientTexture2D_nw4e7")
