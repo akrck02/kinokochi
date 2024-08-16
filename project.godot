@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 SignalDatabase="*res://shared/signal_database.gd"
 TimeManager="*res://shared/managers/time_manager.gd"
+SettingsManager="*res://shared/managers/settings_manager.gd"
+
 
 [display]
 
