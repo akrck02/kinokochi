@@ -1,5 +1,5 @@
 extends Control
-@onready var outline_check_button : Button = $Scroll/Margin/Controls/OutlineCheckButton
+@onready var outline_check_button : Button = $Scroll/Margin/Controls/VolumeControls/HSlider/OutlineCheckButton
 @onready var exit_button : Button = $Scroll/Margin/Controls/ExitButton
 
 var outline : bool = false

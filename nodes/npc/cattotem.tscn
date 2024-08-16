@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dqp30tsofkpqk" path="res://resources/sprites/npc/cat.png" id="3_w6u44"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f42l2"]
-radius = 24.0
-height = 68.0
+radius = 22.0
+height = 64.0
 
 [sub_resource type="Animation" id="Animation_uc57t"]
 length = 0.001
@@ -101,7 +101,7 @@ script = ExtResource("2_hm1f6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 show_behind_parent = true
 z_index = 2
-position = Vector2(0, -7)
+position = Vector2(-1, -25)
 shape = SubResource("CapsuleShape2D_f42l2")
 
 [node name="cat" type="Node2D" parent="."]
