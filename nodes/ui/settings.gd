@@ -26,3 +26,4 @@ func toggle_outline():
 func set_volume(value:float):
 	var bus_index=AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_volume_db(bus_index,linear_to_db(value))
+	SettingsManager.set_value("settings","volume",value)
