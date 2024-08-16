@@ -2,9 +2,9 @@ extends CanvasLayer
 
 @onready var time_label : RichTextLabel = $UiControl/PanelContainer/MarginContainer/Banner/Time 
 @onready var filter : ColorRect = $Filter
-@onready var info : RichTextLabel = $UiControl/InfoBanner/Info
-@onready var info_animation_player : AnimationPlayer = $UiControl/InfoBanner/AnimationPlayer
-@onready var info_timer : Timer = $UiControl/InfoBanner/Timer
+@onready var info : RichTextLabel = $UiControl/MarginContainer/InfoBanner/Info
+@onready var info_animation_player : AnimationPlayer = $UiControl/MarginContainer/InfoBanner/AnimationPlayer
+@onready var info_timer : Timer = $UiControl/MarginContainer/InfoBanner/Timer
 @onready var show_settings_button : Button = $UiControl/ShowSettings/Control/Button
 @onready var settings = $Settings
 
