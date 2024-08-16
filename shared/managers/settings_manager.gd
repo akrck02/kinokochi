@@ -11,10 +11,6 @@ func _ready():
 		config.save(settings_path)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func set_value(section,key,value):
 	config.set_value(section,key,value)
 	config.save(settings_path)

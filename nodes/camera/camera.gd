@@ -36,6 +36,10 @@ func _input(event):
 	if event is InputEventScreenDrag:
 		handle_drag(event);
 	
+	# if event is InputEventJoypadMotion:
+		# var val = event.< * pan_speed / zoom.x;
+		# offset = val
+		
 # Process operations
 func _process(_delta):
 	

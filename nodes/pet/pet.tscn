@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bgd58tknkodwv"]
+[gd_scene load_steps=18 format=3 uid="uid://bgd58tknkodwv"]
 
 [ext_resource type="Script" path="res://nodes/pet/pet.gd" id="1_t2hn5"]
 [ext_resource type="Texture2D" uid="uid://bm6uy3x5dk7qw" path="res://resources/sprites/pets/tas.png" id="2_dbtwv"]
@@ -173,31 +173,22 @@ _data = {
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eaxfs"]
 
-[sub_resource type="Gradient" id="Gradient_002li"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 0.411765)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vkjg5"]
-gradient = SubResource("Gradient_002li")
-width = 5
-
 [node name="Pet" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_t2hn5")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+material = ExtResource("3_abgn8")
+position = Vector2(3, -7)
+texture = ExtResource("2_dbtwv")
+hframes = 3
 
 [node name="Shadow" type="Sprite2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, 12)
 scale = Vector2(0.531457, 0.606667)
 texture = ExtResource("3_03fhf")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-z_index = 1
-y_sort_enabled = true
-material = ExtResource("3_abgn8")
-position = Vector2(3, -7)
-texture = ExtResource("2_dbtwv")
-hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -213,6 +204,7 @@ debug_color = Color(0.611756, 0.117942, 0.116228, 0.109804)
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-1, 15)
 scale = Vector2(1.4, 1.4)
+target_position = Vector2(0, 40)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
@@ -248,17 +240,3 @@ z_index = 4
 position = Vector2(-31, -46)
 scale = Vector2(63, 85)
 texture_normal = SubResource("PlaceholderTexture2D_eaxfs")
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-offset_left = 5.0
-offset_top = -66.0
-offset_right = 22.0
-offset_bottom = -49.0
-texture = SubResource("GradientTexture1D_vkjg5")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -18.0
-offset_top = -66.0
-offset_right = -1.0
-offset_bottom = -49.0
-texture = SubResource("GradientTexture1D_vkjg5")

@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var chat_bubble_animation_player = $Metasprites/AnimationPlayer
 
 # Movement
+@export var control : bool = false;
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var ray : RayCast2D = $RayCast2D
 @onready var tween : Tween
@@ -49,14 +50,53 @@ func update_sprite():
 	
 	sprite.texture = load("res://resources/sprites/pets/" + pet_name + ".png")
 
+# Handle input for manual control
+func _input(_event):
+	manual_movement()
+
 # This function will be called every tick
 func tick_update():
 	automatic_movement()
+	
+# Manual movement
+func manual_movement():
+	
+	if not control or moving: 
+		return
+	
+	moving = true
+	var length = 40 
+	var new_position = Vector2.ZERO 
+
+	if Input.is_action_pressed("ui_left"): 
+		new_position = length * (Vector2.UP * 0.5 + Vector2.LEFT) 
+	elif Input.is_action_pressed("ui_up"): 
+		new_position = length * (Vector2.UP * 0.5 + Vector2.RIGHT) 
+	elif Input.is_action_pressed("ui_down"): 
+		new_position = length * (Vector2.DOWN * 0.5 + Vector2.LEFT)
+	elif Input.is_action_pressed("ui_right"): 
+		new_position = length * (Vector2.DOWN * 0.5 + Vector2.RIGHT)
+
+	# Check future collisions
+	ray.target_position = new_position
+	ray.force_raycast_update()
+	
+	# If a collision will happen, stop
+	if not ray.is_colliding() and new_position != Vector2.ZERO:
+		animation_player.play("walk")
+		tween = create_tween()
+		tween.tween_property(self, NodeExtensor.POSITION_PROPERTIES, position + new_position, movement_speed).set_trans(Tween.TRANS_SINE)
+		await tween.finished
+		tween.kill()
+		animation_player.play("idle")
+		
+	moving = false
+	
 
 # Automatic movement
 func automatic_movement():
 	
-	if moving: 
+	if control or moving: 
 		return
 	
 	moving = true
