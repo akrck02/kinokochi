@@ -1,7 +1,5 @@
 class_name Constants
 
-class_name Constants
-
 # Project paths
 const NODE_PATH = "res://nodes/"
 const SCENE_PATH = "res://scenes/"

@@ -6,6 +6,9 @@ var focusing : bool = false
 
 
 @export var default_zoom : Vector2 = Vector2(3,3);
+@export var min_zoom : float = 1;
+@export var max_zoom : float = 6;
+
 @export var zoom_speed : float = 0.1;
 @export var pan_speed : float = 0.1;
 @export var rotation_speed : float = 0.1;
@@ -128,10 +131,10 @@ func handle_drag(event : InputEventScreenDrag):
 			zoom = limit_zoom(start_zoom / zoom_factor)
  
 func limit_zoom(new_zoom : Vector2) -> Vector2:
-	if new_zoom.x <= 1: new_zoom.x = 1
-	if new_zoom.y <= 1: new_zoom.y = 1
-	if new_zoom.x >= 6: new_zoom.x = 6
-	if new_zoom.y >= 6: new_zoom.y = 6
+	if new_zoom.x <= min_zoom: new_zoom.x = min_zoom
+	if new_zoom.x >= max_zoom: new_zoom.x = max_zoom
+	if new_zoom.y <= min_zoom: new_zoom.y = min_zoom
+	if new_zoom.y >= max_zoom: new_zoom.y = max_zoom
 	return new_zoom
 
 func update_can_move(value : bool):

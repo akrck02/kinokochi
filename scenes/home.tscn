@@ -1,12 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcxqdnt5poa8p"]
+[gd_scene load_steps=6 format=3 uid="uid://dcxqdnt5poa8p"]
 
 [ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/camera/camera.tscn" id="1_2cb34"]
+[ext_resource type="Script" path="res://scenes/home.gd" id="1_xide2"]
 [ext_resource type="TileSet" uid="uid://b1vppjetxm2w8" path="res://materials/tilemap.tres" id="2_n4ypd"]
 
+[sub_resource type="Gradient" id="Gradient_oy7g3"]
+offsets = PackedFloat32Array(0.504854)
+colors = PackedColorArray(1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t0hi6"]
+gradient = SubResource("Gradient_oy7g3")
+
 [node name="Home" type="Node2D"]
+script = ExtResource("1_xide2")
 
 [node name="Camera2D" parent="." instance=ExtResource("1_2cb34")]
-position = Vector2(112, -192)
+position = Vector2(152, -16)
+zoom = Vector2(1, 1)
+default_zoom = Vector2(1, 1)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_n4ypd")
@@ -18,4 +29,11 @@ layer_1/name = "1"
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 1
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(-262146, 0, 4, 196606, 0, 4, 65534, 0, 4, -131074, 0, 4, -327680, 0, 4, -327677, 0, 4, -327675, 0, 4, -196603, 0, 4, 5, 0, 4, 131077, 0, 4, 131075, 0, 4, 131072, 0, 4)
+layer_1/tile_data = PackedInt32Array(-262146, 0, 4, 196606, 0, 4, 65534, 0, 4, -131074, 0, 4, -327680, 0, 4, -327677, 0, 4, -327675, 0, 4, -196603, 0, 4, 5, 0, 4, 131077, 0, 4, 131075, 0, 4, 131072, 0, 4, -2, 4, 0, -65538, 4, 0)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+z_index = 1
+position = Vector2(-42.2855, -68.4856)
+rotation = -0.471239
+scale = Vector2(0.379173, 59.3866)
+texture_normal = SubResource("GradientTexture1D_t0hi6")

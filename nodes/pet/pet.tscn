@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://nodes/pet/pet.gd" id="1_t2hn5"]
 [ext_resource type="Texture2D" uid="uid://bm6uy3x5dk7qw" path="res://resources/sprites/pets/tas.png" id="2_dbtwv"]
-[ext_resource type="Texture2D" uid="uid://dtnrq3qm6emc" path="res://resources/sprites/shadow.png" id="3_03fhf"]
+[ext_resource type="Texture2D" uid="uid://dtnrq3qm6emc" path="res://resources/sprites/effects/shadow.png" id="3_03fhf"]
 [ext_resource type="Material" uid="uid://c0q6k8bo0nc7y" path="res://materials/outline_shader_material.tres" id="3_abgn8"]
 [ext_resource type="Texture2D" uid="uid://g84fjvgcei1i" path="res://resources/sprites/effects/light-cast.png" id="4_a1wdx"]
 [ext_resource type="PackedScene" uid="uid://uwg3nl77trw1" path="res://nodes/chat_bubble/chat_bubble.tscn" id="6_slsed"]
