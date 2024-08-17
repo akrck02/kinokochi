@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cpu2nxo7r245"]
+
+[ext_resource type="Texture2D" uid="uid://dfkmx8ud2ixjl" path="res://resources/sprites/icons/catbrightnessdown.png" id="1_cbvwn"]
+[ext_resource type="FontFile" uid="uid://b3v175ls5slpe" path="res://resources/fonts/PIXELADE.TTF" id="1_i8spk"]
+
+[resource]
+HSlider/icons/grabber = ExtResource("1_cbvwn")
+HSlider/icons/grabber_highlight = ExtResource("1_cbvwn")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_i8spk")
+RichTextLabel/font_sizes/normal_font_size = 40
+RichTextLabel/fonts/normal_font = ExtResource("1_i8spk")
+Title1/base_type = &"Label"
+Title1/font_sizes/font_size = 70
