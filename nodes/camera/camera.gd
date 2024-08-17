@@ -1,5 +1,10 @@
 extends Camera2D
 
+# Camera focus 
+@export var focus_node : Node2D;
+var focusing : bool = false
+
+
 @export var default_zoom : Vector2 = Vector2(3,3);
 @export var zoom_speed : float = 0.1;
 @export var pan_speed : float = 0.1;
@@ -26,6 +31,9 @@ func _ready():
 	SignalDatabase.zoom_out.connect(zoom_out)
 	SignalDatabase.camera_movement_updated.connect(update_can_move)
 	zoom = default_zoom
+	
+	if focus_node != null: 
+		focusing = true
 
 # Input handle
 func _input(event):
@@ -43,12 +51,17 @@ func _input(event):
 # Process operations
 func _process(_delta):
 	
+
+	
 	if not can_move:
 		return;
 	
 	if zoom != default_zoom or offset.x < -80 or offset.x > 80 or offset.y < -80 or offset.y > 80: 
 		SignalDatabase.notification_shown.emit("[center]Tap twice to center the camera")
-	else: SignalDatabase.notification_hidden.emit() 
+	else: 
+		if focus_node != null:
+			position = focus_node.position
+		SignalDatabase.notification_hidden.emit() 
 
 # Zoom in the camera
 func zoom_in(value : float):
@@ -71,8 +84,6 @@ func handle_touch(event : InputEventScreenTouch):
 		
 	if touch_points.size() == 1 and event.double_tap:
 		return_to_default_camera_position()
-		
-		
 	elif touch_points.size() == 2:
 		zoom_camera_from_touch()
 	elif touch_points.size() < 2:
