@@ -7,7 +7,11 @@
 [resource]
 Button/font_sizes/font_size = 50
 Button/fonts/font = ExtResource("1_i8spk")
+Button/styles/focus = ExtResource("2_nx8f7")
+Button/styles/hover = ExtResource("2_nx8f7")
 Button/styles/normal = ExtResource("2_nx8f7")
+CheckButton/font_sizes/font_size = 50
+CheckButton/fonts/font = ExtResource("1_i8spk")
 HSlider/icons/grabber = ExtResource("1_cbvwn")
 HSlider/icons/grabber_highlight = ExtResource("1_cbvwn")
 Label/font_sizes/font_size = 16
