@@ -18,15 +18,16 @@ corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 anti_aliasing = false
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yld6r"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mo36"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2pxu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3q2we"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_400cc"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2pxu"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yld6r"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mo36"]
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjwsg"]
 bg_color = Color(0, 0, 0, 0.737255)
 corner_radius_top_left = 80
@@ -88,24 +89,6 @@ _data = {
 "notification_out": SubResource("Animation_av3cc")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggjfe"]
-bg_color = Color(0, 0, 0, 0.654902)
-corner_radius_top_left = 50
-corner_radius_top_right = 50
-corner_radius_bottom_right = 50
-corner_radius_bottom_left = 50
-anti_aliasing = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4mo36"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m2pxu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3q2we"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_400cc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yld6r"]
-
 [node name="Ui" type="CanvasLayer"]
 script = ExtResource("1_yktcp")
 
@@ -120,7 +103,7 @@ offset_right = 4023.0
 offset_bottom = 2914.73
 
 [node name="UiControl" type="VBoxContainer" parent="."]
-z_index = 1
+z_index = 4096
 y_sort_enabled = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -227,11 +210,11 @@ offset_right = 96.0
 offset_bottom = 90.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxEmpty_yld6r")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4mo36")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m2pxu")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_3q2we")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_400cc")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_m2pxu")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4mo36")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yld6r")
 
 [node name="MarginContainer" type="MarginContainer" parent="UiControl"]
 layout_mode = 2
@@ -268,5 +251,5 @@ libraries = {
 
 [node name="Settings" parent="." instance=ExtResource("6_1eey1")]
 visible = false
-z_index = 9
+z_index = 4096
 y_sort_enabled = true

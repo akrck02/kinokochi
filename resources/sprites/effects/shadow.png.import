@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl3mohrpcyefy"
-path="res://.godot/imported/wireframe.png-b792406422361d008227661cf71f6c95.ctex"
+uid="uid://dtnrq3qm6emc"
+path="res://.godot/imported/shadow.png-5284422251a426e94827680da48712ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/wireframe.png"
-dest_files=["res://.godot/imported/wireframe.png-b792406422361d008227661cf71f6c95.ctex"]
+source_file="res://resources/sprites/effects/shadow.png"
+dest_files=["res://.godot/imported/shadow.png-5284422251a426e94827680da48712ee.ctex"]
 
 [params]
 
