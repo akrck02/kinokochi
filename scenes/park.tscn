@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfe218fpwkj7d"]
+[gd_scene load_steps=13 format=3 uid="uid://cfe218fpwkj7d"]
 
 [ext_resource type="Script" path="res://scenes/park.gd" id="1_y5n7u"]
 [ext_resource type="Material" uid="uid://de0kp0bflu8l6" path="res://materials/filter_shader_material_day.tres" id="2_3t074"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bwn2pdkkdt3qh" path="res://resources/sprites/image.png" id="10_j4gf4"]
 [ext_resource type="AudioStream" uid="uid://br4eg5rk55r3" path="res://resources/sounds/vinyl.mp3" id="11_1j504"]
 [ext_resource type="PackedScene" uid="uid://rw88feax5dwj" path="res://nodes/npc/turtle.tscn" id="11_ind7k"]
+[ext_resource type="AudioStream" uid="uid://q1sgb5gbqrlk" path="res://resources/sounds/base_lo_fi.wav" id="12_rlywd"]
 
 [node name="Park" type="Node2D"]
 position = Vector2(1940, 1)
@@ -57,18 +58,17 @@ position = Vector2(4079, -434)
 z_index = 4
 position = Vector2(4443, -304)
 
+[node name="Camera2D" parent="." instance=ExtResource("7_lsj0o")]
+z_index = 1
+position = Vector2(4562, -332)
+
 [node name="Pet" parent="." instance=ExtResource("6_bdx4c")]
 z_index = 4
 material = ExtResource("2_3t074")
 position = Vector2(4563, -340)
 velocity = Vector2(-2.04974, 0)
-control = true
-movement_speed = 0.167
+movement_speed = 0.667
 metadata/_edit_group_ = true
-
-[node name="Camera2D" parent="Pet" instance=ExtResource("7_lsj0o")]
-z_index = 1
-position = Vector2(-1, 8.00001)
 
 [node name="Teko" parent="." instance=ExtResource("6_bdx4c")]
 z_index = 4
@@ -109,7 +109,7 @@ position = Vector2(4476, -419)
 rotation = 3.14159
 scale = Vector2(304.916, -3.88885)
 stream = ExtResource("2_pfyjy")
-autoplay = true
+volume_db = 20.0
 bus = &"Music"
 
 [node name="Vinyl" type="AudioStreamPlayer2D" parent="."]
@@ -117,3 +117,11 @@ position = Vector2(4476, -423)
 stream = ExtResource("11_1j504")
 autoplay = true
 bus = &"lo-fi"
+
+[node name="Lofi" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(4476, -419)
+rotation = 3.14159
+scale = Vector2(304.916, -3.88885)
+stream = ExtResource("12_rlywd")
+volume_db = -40.0
+autoplay = true
