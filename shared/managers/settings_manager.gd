@@ -1,5 +1,5 @@
 extends Node
-const settings_path="res://settings.cfg"
+const settings_path="user://kinokoro.esettings.cfg"
 var config = ConfigFile.new()
 @onready var response=config.load(settings_path)
 

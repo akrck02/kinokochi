@@ -173,7 +173,7 @@ _data = {
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eaxfs"]
 
-[node name="Pet" type="CharacterBody2D"]
+[node name="Pet" type="CharacterBody2D" groups=["Persist"]]
 y_sort_enabled = true
 script = ExtResource("1_t2hn5")
 

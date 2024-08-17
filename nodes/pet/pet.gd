@@ -56,7 +56,9 @@ func _input(_event):
 
 # This function will be called every tick
 func tick_update():
+	stats.time += 1
 	automatic_movement()
+	normalize_stats()
 	
 # Manual movement
 func manual_movement():
@@ -92,6 +94,11 @@ func manual_movement():
 		
 	moving = false
 	
+func normalize_stats():
+	stats.hunger = clamp(stats.hunger,0,100)
+	stats.affection = clamp(stats.affection,0,100)
+	stats.energy =  clamp(stats.energy,0,100)
+	stats.fun =  clamp(stats.fun,0,100)
 
 # Automatic movement
 func automatic_movement():
@@ -116,6 +123,9 @@ func automatic_movement():
 	
 	# If a collision will happen, stop
 	if not ray.is_colliding() and new_position != Vector2.ZERO:
+		stats.energy -= 1
+		stats.hunger += 1
+		
 		animation_player.play("walk")
 		tween = create_tween()
 		tween.tween_property(self, NodeExtensor.POSITION_PROPERTIES, position + new_position, movement_speed).set_trans(Tween.TRANS_SINE)
