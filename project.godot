@@ -15,11 +15,12 @@ run/main_scene="res://scenes/park.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://resources/sprites/npc/cat.png"
 boot_splash/use_filter=false
-config/icon="res://icon.svg"
+config/icon="res://resources/sounds/icon.svg"
 
 [autoload]
 
 SignalDatabase="*res://shared/signal_database.gd"
+GameSprites="*res://shared/managers/game_sprites.gd"
 TimeManager="*res://shared/managers/time_manager.gd"
 SettingsManager="*res://shared/managers/settings_manager.gd"
 SaveManager="*res://shared/managers/save_manager.gd"

@@ -7,8 +7,7 @@ extends CharacterBody2D
 @onready var point_light : PointLight2D = $PointLight2D
 
 # Emotions
-@onready var chat_bubble = $Metasprites
-@onready var chat_bubble_animation_player = $Metasprites/AnimationPlayer
+@onready var chat_bubble = $ChatBubble
 
 # Movement
 @export var control : bool = false;
@@ -35,9 +34,7 @@ func _ready():
 	toggle_outline(SettingsManager.get_value("settings","outline"))
 	
 	touch_screen_button.pressed.connect(interact)
-	animation_player.play("idle")
-	chat_bubble_animation_player.play("idle")
-	
+	animation_player.play("idle")	
 
 # loadPetDataFromSavestate
 func load_from_savestate():
@@ -59,6 +56,7 @@ func tick_update():
 	stats.time += 1
 	automatic_movement()
 	normalize_stats()
+	show_feelings()
 	
 # Manual movement
 func manual_movement():
@@ -144,11 +142,19 @@ func set_night() :
 func set_day() : 
 	point_light.hide()
 
+# Toggle the sprite outline
 func toggle_outline(value:bool):
 	if value:
 		sprite.material.set_shader_parameter("width",1)
-	else:
-		sprite.material.set_shader_parameter("width",0)
+		return
+		
+	sprite.material.set_shader_parameter("width",0)
 
+# Interact
 func interact():
-	chat_bubble.visible =! chat_bubble.visible
+	pass
+
+# Show feelings 
+func show_feelings():
+	if stats.hunger > 80:
+		chat_bubble.visible = true

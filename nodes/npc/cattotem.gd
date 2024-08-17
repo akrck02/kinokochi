@@ -2,5 +2,5 @@ extends CharacterBody2D
 
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 
-func _physics_process(_delta):
+func _ready():
 	animationPlayer.play("idle")
