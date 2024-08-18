@@ -11,4 +11,6 @@ corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
+expand_margin_left = 20.0
+expand_margin_right = 20.0
 anti_aliasing = false
