@@ -25,6 +25,5 @@ func toggle_outline():
 
 func change_volume(value:float, bus:int):
 	var buses_names=["General"]
-	print("bus "+str(bus)+" value "+str(value))
 	SettingsManager.set_value("Volume", buses_names[0], value)
 	AudioServer.set_bus_volume_db(bus,linear_to_db(value))

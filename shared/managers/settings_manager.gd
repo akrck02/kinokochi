@@ -18,7 +18,6 @@ func _ready():
 	
 	else: 
 		set_volume_bus(0,config.get_value("Volume","General"))
-	print(config.encode_to_text())
 		
 func set_default_values():
 	for section in default_settings.keys():
