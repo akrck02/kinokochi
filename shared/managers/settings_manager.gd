@@ -1,10 +1,9 @@
 extends Node
 const settings_path="user://kinokoro.esettings.cfg"
-const default_settings_path="res://resources/default.esettings.cfg"
 var config = ConfigFile.new()
 @onready var response=config.load(settings_path)
 
-var default_settings={"Volume":{"General":1, "Music":1, "Lofi":1},"Character":{"Outline":false}}
+var default_settings={"Volume":{"General":1},"Character":{"Outline":false}}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,13 +12,14 @@ func _ready():
 		config.set_value("Character","Outline", true)
 		config.save(settings_path)
 		
-	if !check_structure():
+	elif !check_structure():
 		config.clear()
 		set_default_values()
 	
 	else: 
-		pass
-		#set_volume_bus(0,config.get_value("volume","0"))
+		set_volume_bus(0,config.get_value("Volume","General"))
+	print(config.encode_to_text())
+		
 func set_default_values():
 	for section in default_settings.keys():
 		for key in default_settings[section].keys():
@@ -58,5 +58,5 @@ func get_value(section:String, key:String):
 	return config.get_value(section, key)
 
 func set_volume_bus(bus:int, value : float):
-	SettingsManager.set_value("volume","0",value)
+	SettingsManager.set_value("Volume","General",value)
 	AudioServer.set_bus_volume_db(bus,linear_to_db(value))
