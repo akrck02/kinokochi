@@ -593,32 +593,6 @@ size_flags_vertical = 4
 theme_override_icons/grabber = ExtResource("4_3h7cg")
 theme_override_icons/grabber_highlight = ExtResource("4_3h7cg")
 
-[node name="Label3" type="Label" parent="Scroll/Margin/Controls/VolumeControls"]
-layout_mode = 2
-theme = ExtResource("7_n54e2")
-theme_type_variation = &"Title3"
-text = "Lofi"
-
-[node name="LofiVolumeHSlider" type="HSlider" parent="Scroll/Margin/Controls/VolumeControls"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_icons/grabber = ExtResource("4_3h7cg")
-theme_override_icons/grabber_highlight = ExtResource("4_3h7cg")
-
-[node name="Label4" type="Label" parent="Scroll/Margin/Controls/VolumeControls"]
-layout_mode = 2
-theme = ExtResource("7_n54e2")
-theme_type_variation = &"Title3"
-text = "Music"
-
-[node name="MusicVolumeHSlider" type="HSlider" parent="Scroll/Margin/Controls/VolumeControls"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_icons/grabber = ExtResource("4_3h7cg")
-theme_override_icons/grabber_highlight = ExtResource("4_3h7cg")
-
 [node name="Label3" type="Label" parent="Scroll/Margin/Controls"]
 layout_mode = 2
 theme = ExtResource("7_n54e2")
