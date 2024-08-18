@@ -7,9 +7,9 @@ uniform float temperature = 0;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 void fragment(){
-	
+
 	vec4 input_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0);
-	
+
 	float grayscale_value = dot(input_color.rgb, vec3(0.299, 0.587, 0.114));
 	vec3 sampled_color;
 	if (temperature > 0.0){

@@ -7,10 +7,10 @@ extends CharacterBody2D
 @onready var point_light : PointLight2D = $PointLight2D
 
 # Emotions
-@onready var chat_bubble = $Metasprites
-@onready var chat_bubble_animation_player = $Metasprites/AnimationPlayer
+@onready var chat_bubble = $ChatBubble
 
 # Movement
+@export var control : bool = false;
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var ray : RayCast2D = $RayCast2D
 @onready var tween : Tween
@@ -30,10 +30,11 @@ func _ready():
 	SignalDatabase.day_started.connect(set_day)
 	SignalDatabase.outline.connect(toggle_outline)
 	
-	touch_screen_button.pressed.connect(interact)
-	animation_player.play("idle")
-	chat_bubble_animation_player.play("idle")
+	# Set outline based on config file
+	toggle_outline(SettingsManager.get_value("settings","outline"))
 	
+	touch_screen_button.pressed.connect(interact)
+	animation_player.play("idle")	
 
 # loadPetDataFromSavestate
 func load_from_savestate():
@@ -46,14 +47,61 @@ func update_sprite():
 	
 	sprite.texture = load("res://resources/sprites/pets/" + pet_name + ".png")
 
+# Handle input for manual control
+func _input(_event):
+	manual_movement()
+
 # This function will be called every tick
 func tick_update():
+	stats.time += 1
 	automatic_movement()
+	normalize_stats()
+	show_feelings()
+	
+# Manual movement
+func manual_movement():
+	
+	if not control or moving: 
+		return
+	
+	moving = true
+	var length = 40 
+	var new_position = Vector2.ZERO 
+
+	if Input.is_action_pressed("ui_left"): 
+		new_position = length * (Vector2.UP * 0.5 + Vector2.LEFT) 
+	elif Input.is_action_pressed("ui_up"): 
+		new_position = length * (Vector2.UP * 0.5 + Vector2.RIGHT) 
+	elif Input.is_action_pressed("ui_down"): 
+		new_position = length * (Vector2.DOWN * 0.5 + Vector2.LEFT)
+	elif Input.is_action_pressed("ui_right"): 
+		new_position = length * (Vector2.DOWN * 0.5 + Vector2.RIGHT)
+
+	# Check future collisions
+	ray.target_position = new_position
+	ray.force_raycast_update()
+	
+	# If a collision will happen, stop
+	if not ray.is_colliding() and new_position != Vector2.ZERO:
+		animation_player.play("walk")
+		tween = create_tween()
+		tween.tween_property(self, NodeExtensor.POSITION_PROPERTIES, position + new_position, movement_speed).set_trans(Tween.TRANS_SINE)
+		await tween.finished
+		tween.kill()
+		animation_player.play("idle")
+		
+	moving = false
+	
+func normalize_stats():
+	stats.hunger = clamp(stats.hunger,0,100)
+	stats.affection = clamp(stats.affection,0,100)
+	stats.energy =  clamp(stats.energy,0,100)
+	stats.fun =  clamp(stats.fun,0,100)
 
 # Automatic movement
 func automatic_movement():
 	
-	if moving: 
+	if control or moving: 
 		return
 	
 	moving = true
@@ -73,6 +121,9 @@ func automatic_movement():
 	
 	# If a collision will happen, stop
 	if not ray.is_colliding() and new_position != Vector2.ZERO:
+		stats.energy -= 1
+		stats.hunger += 1
+		
 		animation_player.play("walk")
 		tween = create_tween()
 		tween.tween_property(self, NodeExtensor.POSITION_PROPERTIES, position + new_position, movement_speed).set_trans(Tween.TRANS_SINE)
@@ -91,11 +142,19 @@ func set_night() :
 func set_day() : 
 	point_light.hide()
 
+# Toggle the sprite outline
 func toggle_outline(value:bool):
 	if value:
 		sprite.material.set_shader_parameter("width",1)
-	else:
-		sprite.material.set_shader_parameter("width",0)
+		return
+		
+	sprite.material.set_shader_parameter("width",0)
 
+# Interact
 func interact():
-	chat_bubble.visible =! chat_bubble.visible
+	pass
+
+# Show feelings 
+func show_feelings():
+	if stats.hunger > 80:
+		chat_bubble.visible = true

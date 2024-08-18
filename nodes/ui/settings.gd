@@ -1,19 +1,24 @@
 extends Control
 @onready var outline_check_button : Button = $Scroll/Margin/Controls/OutlineCheckButton
 @onready var exit_button : Button = $Scroll/Margin/Controls/ExitButton
+@onready var volume_h_slider = $Scroll/Margin/Controls/VolumeControls/VolumeHSlider
 
-var outline : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	outline_check_button.button_pressed=false
+	# Initialize values from settings
+	volume_h_slider.value=SettingsManager.get_value("settings", "volume")
+	outline_check_button.button_pressed=SettingsManager.get_value("settings","outline")
+	
 	outline_check_button.pressed.connect(toggle_outline)
 	exit_button.pressed.connect(exit)
+	volume_h_slider.value_changed.connect(SettingsManager.set_volume)
 
 func exit():
 	SignalDatabase.camera_movement_updated.emit(true);
 	set_visible(false)
 
 func toggle_outline():
+	var outline:bool=SettingsManager.get_value("settings", "outline")
+	SettingsManager.set_value("settings", "outline", !outline)
 	SignalDatabase.outline.emit(!outline)
-	outline=!outline
