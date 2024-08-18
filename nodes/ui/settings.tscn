@@ -592,6 +592,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_icons/grabber = ExtResource("4_3h7cg")
 theme_override_icons/grabber_highlight = ExtResource("4_3h7cg")
+max_value = 1.0
+step = 0.001
 
 [node name="Label3" type="Label" parent="Scroll/Margin/Controls"]
 layout_mode = 2
