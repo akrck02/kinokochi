@@ -1,23 +1,53 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://fk4bfu837bvc"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://fk4bfu837bvc"]
 
 [ext_resource type="Texture2D" uid="uid://dfkmx8ud2ixjl" path="res://resources/sprites/icons/catbrightnessdown.png" id="1_cbvwn"]
 [ext_resource type="FontFile" uid="uid://b3v175ls5slpe" path="res://resources/fonts/PIXELADE.TTF" id="1_i8spk"]
-[ext_resource type="StyleBox" uid="uid://cf3vx3oawdia7" path="res://materials/settings_exit_button.tres" id="2_nx8f7"]
+[ext_resource type="StyleBox" uid="uid://cn0xm81r1djb1" path="res://materials/button_pressed.tres" id="2_jbinl"]
+[ext_resource type="StyleBox" uid="uid://cf3vx3oawdia7" path="res://materials/button_normal.tres" id="2_p0pdj"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_omdkh"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3f3j7"]
+bg_color = Color(0, 0, 0, 0.12549)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.423529)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+anti_aliasing = false
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i58de"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gs6ee"]
+bg_color = Color(0, 0, 0, 0.298039)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.423529)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+anti_aliasing = false
 
 [resource]
+default_font = ExtResource("1_i8spk")
 Button/font_sizes/font_size = 50
 Button/fonts/font = ExtResource("1_i8spk")
-Button/styles/focus = ExtResource("2_nx8f7")
-Button/styles/hover = ExtResource("2_nx8f7")
-Button/styles/normal = ExtResource("2_nx8f7")
+Button/styles/focus = ExtResource("2_p0pdj")
+Button/styles/hover = SubResource("StyleBoxFlat_3f3j7")
+Button/styles/normal = ExtResource("2_jbinl")
+Button/styles/pressed = SubResource("StyleBoxFlat_gs6ee")
 CheckButton/font_sizes/font_size = 50
 CheckButton/fonts/font = ExtResource("1_i8spk")
-CheckButton/styles/normal = SubResource("StyleBoxEmpty_omdkh")
-CheckButton/styles/pressed = SubResource("StyleBoxEmpty_i58de")
+CheckButton/styles/focus = ExtResource("2_p0pdj")
+CheckButton/styles/normal = ExtResource("2_jbinl")
+CheckButton/styles/pressed = ExtResource("2_jbinl")
 HSlider/icons/grabber = ExtResource("1_cbvwn")
 HSlider/icons/grabber_highlight = ExtResource("1_cbvwn")
 Label/font_sizes/font_size = 16
