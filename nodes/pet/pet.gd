@@ -32,7 +32,7 @@ func _ready():
 	SignalDatabase.outline.connect(toggle_outline)
 	
 	# Set outline based on config file
-	toggle_outline(SettingsManager.get_value("settings","outline"))
+	toggle_outline(SettingsManager.get_value("Character","Outline"))
 	
 	touch_screen_button.pressed.connect(interact)
 	animation_player.play("idle")
