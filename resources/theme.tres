@@ -1,8 +1,12 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://fk4bfu837bvc"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://fk4bfu837bvc"]
 
 [ext_resource type="Texture2D" uid="uid://dfkmx8ud2ixjl" path="res://resources/sprites/icons/catbrightnessdown.png" id="1_cbvwn"]
 [ext_resource type="FontFile" uid="uid://b3v175ls5slpe" path="res://resources/fonts/PIXELADE.TTF" id="1_i8spk"]
 [ext_resource type="StyleBox" uid="uid://cf3vx3oawdia7" path="res://materials/settings_exit_button.tres" id="2_nx8f7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_omdkh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i58de"]
 
 [resource]
 Button/font_sizes/font_size = 50
@@ -12,6 +16,8 @@ Button/styles/hover = ExtResource("2_nx8f7")
 Button/styles/normal = ExtResource("2_nx8f7")
 CheckButton/font_sizes/font_size = 50
 CheckButton/fonts/font = ExtResource("1_i8spk")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_omdkh")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_i58de")
 HSlider/icons/grabber = ExtResource("1_cbvwn")
 HSlider/icons/grabber_highlight = ExtResource("1_cbvwn")
 Label/font_sizes/font_size = 16
