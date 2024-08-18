@@ -1,26 +1,40 @@
+
 extends Node
 
 # Engine signals
-signal scene_change_requested(scene : String) 
-signal night_started()
-signal day_started()
-signal tick_reached();
-signal notification_shown(message : String)
-signal notification_hidden()
-signal outline(value:bool)
+@warning_ignore("unused_signal") signal scene_change_requested(scene : String) 
+
+# Time signals
+@warning_ignore("unused_signal") signal night_started()
+@warning_ignore("unused_signal") signal day_started()
+@warning_ignore("unused_signal") signal tick_reached()
+
+# Touch screen signals
+@warning_ignore("unused_signal") signal screen_touch_started(id : int, position : Vector2)
+@warning_ignore("unused_signal") signal screen_touch_released(id : int, position : Vector2)
+@warning_ignore("unused_signal") signal screen_touch_double_tap(id : int, position : Vector2)
+@warning_ignore("unused_signal") signal screen_touch_pinch()
+
+@warning_ignore("unused_signal") signal screen_touch_drag_move(relative : Vector2)
+@warning_ignore("unused_signal") signal screen_touch_drag_pinch()
+
+# Visual effects
+@warning_ignore("unused_signal") signal notification_shown(message : String)
+@warning_ignore("unused_signal") signal notification_hidden()
+@warning_ignore("unused_signal") signal outline(value:bool)
 
 # Camera signals
-signal camera_movement_updated(value : bool)
-signal zoom_in(value : float)
-signal zoom_out(value : float)
+@warning_ignore("unused_signal") signal camera_movement_updated(value : bool)
+@warning_ignore("unused_signal") signal zoom_in(value : float)
+@warning_ignore("unused_signal") signal zoom_out(value : float)
 
 # Savestate signals
-signal new_game_created
-signal save_game_requested
+@warning_ignore("unused_signal") signal new_game_created
+@warning_ignore("unused_signal") signal save_game_requested
 
 # Pet signals
-signal pet_hunger_changed(value : int)
-signal pet_fun_changed(value : int)
-signal pet_affection_changed(value : int)
-signal pet_energy_changed(value : int)
-signal pet_evolved(value : int)
+@warning_ignore("unused_signal") signal pet_hunger_changed(value : int)
+@warning_ignore("unused_signal") signal pet_fun_changed(value : int)
+@warning_ignore("unused_signal") signal pet_affection_changed(value : int)
+@warning_ignore("unused_signal") signal pet_energy_changed(value : int)
+@warning_ignore("unused_signal") signal pet_evolved(value : int)

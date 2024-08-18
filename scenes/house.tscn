@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://blkbi8l5llsgb"]
+[gd_scene load_steps=8 format=3 uid="uid://blkbi8l5llsgb"]
 
 [ext_resource type="Script" path="res://scenes/house.gd" id="1_fu28v"]
 [ext_resource type="Texture2D" uid="uid://b2xq30ta6stfh" path="res://resources/sprites/tiles/home.png" id="1_g3qx4"]
 [ext_resource type="Shader" path="res://shaders/outline.gdshader" id="2_72f1b"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4n6s2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p281b"]
 shader = ExtResource("2_72f1b")
@@ -13,6 +11,33 @@ shader_parameter/width = 2.5
 shader_parameter/pattern = 1
 shader_parameter/inside = false
 shader_parameter/add_margins = true
+
+[sub_resource type="Animation" id="Animation_rg2yr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Home:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Home:material:shader_parameter/color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_4uf8u"]
 resource_name = "enter"
@@ -42,33 +67,6 @@ tracks/1/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.768627), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_rg2yr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Home:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Home:material:shader_parameter/color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hsy8a"]
 _data = {
 "RESET": SubResource("Animation_rg2yr"),
@@ -77,14 +75,6 @@ _data = {
 
 [node name="House" type="Node2D"]
 script = ExtResource("1_fu28v")
-
-[node name="HouseTouchScreenButton" type="TouchScreenButton" parent="."]
-z_index = 5
-position = Vector2(0, 59.675)
-rotation = 3.48019
-scale = Vector2(9.5, 9.5)
-skew = 0.802851
-shape = SubResource("RectangleShape2D_4n6s2")
 
 [node name="Home" type="Sprite2D" parent="."]
 z_index = 2
@@ -96,3 +86,11 @@ texture = ExtResource("1_g3qx4")
 libraries = {
 "": SubResource("AnimationLibrary_hsy8a")
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+z_index = 2
+position = Vector2(-7, 141)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-7, -30)
+polygon = PackedVector2Array(10, 16, 165, -64, 5, -134, -134, -54, 10, 16)

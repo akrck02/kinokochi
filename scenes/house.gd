@@ -1,12 +1,17 @@
 extends Node2D
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
-@onready var house_touch_screen_button : TouchScreenButton = $HouseTouchScreenButton
+@onready var area_2d : Area2D = $Area2D
 
 func _ready():
-	house_touch_screen_button.pressed.connect(enter_home)
+	area_2d.input_event.connect(_on_touch)
 
 func enter_home():
 	animation_player.play("enter")
 	await animation_player.animation_finished
 	SignalDatabase.scene_change_requested.emit("home")
+
+
+func _on_touch(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event.is_action_pressed("ui_accept"):
+		enter_home();
