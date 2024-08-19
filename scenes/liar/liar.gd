@@ -5,10 +5,8 @@ enum COLORS_ENUM{ RED,YELLOW,GREEN,BLUE}
 const PLAYERS=4
 const CARDS_PER_HAND=5
 @onready var button: Button = $Button
-@onready var player_0_grid_container: GridContainer = $Player0GridContainer
-@onready var player_1_grid_container: GridContainer = $Player1GridContainer
-@onready var player_2_grid_container: GridContainer = $Player2GridContainer
-@onready var player_3_grid_container: GridContainer = $Player3GridContainer
+@onready var cards: Node = $Cards
+@onready var control: Control = $Control
 
 const card_node=preload("res://scenes/liar/card.tscn")
 
@@ -16,7 +14,7 @@ func spawn_card():
 	var new_card:ColorRect=card_node.instantiate()
 	var label:Label=new_card.get_child(0)
 	label.text="0"
-	player_0_grid_container.add_child(new_card)
+	#player_0_grid_container.add_child(new_card)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +24,11 @@ func _ready() -> void:
 	#var player_1=Player.new(1,"User",decks[1],player_1_grid_container)
 	#var player_2=Player.new(2,"User",decks[2],player_2_grid_container)
 	#var player_3=Player.new(0,"User",decks[3],player_3_grid_container)
+	#var card=Card.new("BLUE",5)
+	#card.color_rect.position=Vector2(200,500)
+	#add_child(card.color_rect)
+	var hand=Hand.new(decks[0])
+	add_child(hand)
 	
 	pass # Replace with function body.
 
@@ -52,59 +55,73 @@ func generate_hands():
 
 ## Generates deck
 func generate_deck()->Array:
-	var cards:Array=[]
+	var output:Array=[]
 	for color in COLORS_ENUM.keys():
 		for num in range(10):
-			cards.append(Card.new(color,num))
+			output.append(Card.new(color,num))
 	
-	return cards
+	return output
 	
 class Card:
+	extends ColorRect
 	
 	var number:int;
-	var color:Color;
 	var color_name:String;
+	var label:Label;
 	
-	func _init(color:String,number:int) -> void:
-		self.number=number
-		match (color):
+	func _init(color_name:String,number:int) -> void:
+		
+		self.label=Label.new()
+		self.label.text=str(number)
+		label.size=Vector2(40,60)
+		label.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
+		label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+		label.add_theme_font_size_override("font_size",40)
+		self.add_child(label)
+		
+		
+		match (color_name):
 			"RED":
-				self.color=Color(250,59,47)
+				self.color=Color(250/255.0, 59/255.0, 47/255.0, 1)
 				self.color_name="RED"
 			"YELLOW":
-				self.color=Color(238,250,47)
+				self.color=Color(238/255.0, 250/255.0, 47/255.0, 1)
 				self.color_name="YELLOW"
 			"GREEN":
-				self.color=Color(45,250,62)
+				self.color=Color(45/255.0, 250/255.0, 62/255.0, 1)
 				self.color_name="GREEN"
 			"BLUE":
-				self.color=Color(45,179,250)
+				self.color=Color(45/255.0, 179/255.0, 250/255.0, 1)
 				self.color_name="BLUE"
 				
 				
-	
 	func _to_string() -> String:
 		return "{0} of {1}".format([number,color_name])
 		
+	func _ready() -> void:
+		self.size=Vector2(40,60)
 		
-class Deck:
+		
+class Hand:
+	extends Control
 	var cards:Array;
-	var grid_container:GridContainer;
 	
-	func _init(cards:Array, grid_container:GridContainer) -> void:
+	func _init(cards:Array) -> void:
 		self.cards=cards
-		self.grid_container=grid_container
+		self.position=Vector2(0,0)
+		var x=0
+		var y=0
 		for card in cards:
-			var new_card:ColorRect=card_node.instantiate()
-			new_card.get_child(0).text=str(card.number)
-			grid_container.add_child(new_card)
+			self.add_child(card)
+			card.set_position(Vector2(x,y))
+			x+=50
 			
 class Player:
 	var id:int;
 	var name:String
-	var deck:Deck;
+	var hand:Hand;
 	
 	func _init(id:int,name:String, cards:Array, grid_container:GridContainer) -> void:
 		self.id=id
 		self.name=name
-		self.deck=Deck.new(cards,grid_container)
+		self.hand=Hand.new(cards)
