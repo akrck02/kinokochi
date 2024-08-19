@@ -28,10 +28,6 @@ SaveManager="*res://shared/managers/save_manager.gd"
 Canvas="*res://shared/canvas.gd"
 SceneManager="*res://shared/managers/scene_manager.gd"
 
-[debug]
-
-settings/stdout/verbose_stdout=true
-
 [display]
 
 window/size/viewport_width=648

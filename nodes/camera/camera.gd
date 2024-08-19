@@ -25,7 +25,7 @@ var start_zoom
 @onready var zoom_tween : Tween
 @onready var offset_tween : Tween
 @export var movement_speed = 1.00/1.5;
-var start_distance
+var start_distance = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,7 +35,7 @@ func _ready():
 	SignalDatabase.camera_movement_updated.connect(update_can_move)
 	SignalDatabase.screen_touch_started.connect(reset_camera_move_values)
 	SignalDatabase.screen_touch_double_tap.connect(return_to_default_camera_position)
-	SignalDatabase.screen_touch_pinch.connect(zoom_camera_from_touch)
+	SignalDatabase.screen_touch_pinch.connect(set_zoom_start)
 	SignalDatabase.screen_touch_drag_move.connect(pan_camera)
 	SignalDatabase.screen_touch_drag_pinch.connect(zoom_camera_from_touch)
 	
@@ -68,8 +68,14 @@ func zoom_in(value : float):
 func zoom_out(value : float):
 	zoom = limit_zoom(zoom - Vector2(value,value));
 
+# Set zoom start
+func set_zoom_start():
+	var touch_point_positions = TouchInput.touch_points.values()
+	start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
+	start_zoom = zoom
+
 # Zoom camera from touch
-func zoom_camera_from_touch(_id : int, _position : Vector2):
+func zoom_camera_from_touch():
 	if not can_zoom:
 		return;
 	

@@ -16,6 +16,7 @@ func handle_touch(event : InputEventScreenTouch):
 		SignalDatabase.screen_touch_released.emit(event.index, event.position)
 		return;
 
+	# Touch
 	touch_points[event.index] = event.position
 	if touch_points.size() == 1 and event.double_tap: SignalDatabase.screen_touch_double_tap.emit(event.index, event.position)
 	elif touch_points.size() == 2: SignalDatabase.screen_touch_pinch.emit()
