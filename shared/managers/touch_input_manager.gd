@@ -1,4 +1,6 @@
 extends Node2D
+
+var context : Game.Context = Game.Context.Camera
 var touch_points : Dictionary = {}
 
 # Input handle

@@ -13,7 +13,14 @@ func enter_home():
 	await animation_player.animation_finished
 	SignalDatabase.scene_change_requested.emit("home")
 
+func _on_touch(viewport: Node, event: InputEvent, _shape_idx: int) -> void:	
+	var position_difference = event.position - position
+	if event is not InputEventScreenTouch:
+		return;
+	
+	handle_touch(event)
+	
 
-func _on_touch(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_released("ui_accept"):
+func handle_touch(event : InputEventScreenTouch):
+	if event.double_tap:
 		enter_home();

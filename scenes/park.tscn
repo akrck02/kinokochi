@@ -81,7 +81,6 @@ material = ExtResource("2_3t074")
 position = Vector2(4660, -521)
 velocity = Vector2(-2.04974, 0)
 pet_name = "teko"
-control = true
 metadata/_edit_group_ = true
 
 [node name="Foxy" parent="." instance=ExtResource("6_bdx4c")]
@@ -90,7 +89,6 @@ material = ExtResource("2_3t074")
 position = Vector2(4292, -530)
 velocity = Vector2(-2.04974, 0)
 pet_name = "foxy"
-control = true
 metadata/_edit_group_ = true
 
 [node name="Soriel" parent="." instance=ExtResource("6_bdx4c")]
@@ -100,7 +98,6 @@ position = Vector2(4686, -346)
 scale = Vector2(1.05405, 1.01439)
 velocity = Vector2(-2.04974, 0)
 pet_name = "soriel"
-control = true
 metadata/_edit_group_ = true
 
 [node name="Ui" parent="." instance=ExtResource("8_k82j5")]

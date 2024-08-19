@@ -19,6 +19,9 @@ var moving = false
 
 # Interactions
 @onready var touch_screen_button : TouchScreenButton = $TouchScreenButton
+@onready var area_2d : Area2D = $Area2D
+@export var pan_speed : float = 1.00/3;
+var is_being_dragged : bool  = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +32,10 @@ func _ready():
 	SignalDatabase.night_started.connect(set_night)
 	SignalDatabase.day_started.connect(set_day)
 	SignalDatabase.outline.connect(toggle_outline)
+	
+	# Interactions
+	area_2d.input_event.connect(handle_interaction)
+	SignalDatabase.screen_touch_drag_move.connect(handle_drag)
 	
 	# Set outline based on config file
 	toggle_outline(SettingsManager.get_value("settings","outline"))
@@ -47,8 +54,38 @@ func update_sprite():
 	
 	sprite.texture = load("res://resources/sprites/pets/" + pet_name + ".png")
 
+# Handle interaction
+func handle_interaction(_viewport: Node, event: InputEvent, _shape_idx: int):
+	
+	if event is not InputEventScreenTouch:
+		return;
+		
+	handle_touch(event)
+
+# Handle drag
+func handle_drag(relative : Vector2):
+	if not is_being_dragged:
+		return
+	
+	self.position += relative * pan_speed
+
+# Handle touch interaction
+func handle_touch(event : InputEventScreenTouch):
+	
+	if not event.double_tap:
+		return
+	
+	is_being_dragged = !is_being_dragged
+	
+	if is_being_dragged:
+		TouchInput.context = Game.Context.PetInteraction
+		sprite.material.set_shader_parameter("width",2)
+	else:
+		TouchInput.context = Game.Context.Camera
+		sprite.material.set_shader_parameter("width",0)
+		
 # Handle input for manual control
-func _input(_event):
+func _input(event):
 	manual_movement()
 
 # This function will be called every tick

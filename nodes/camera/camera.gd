@@ -34,7 +34,7 @@ func _ready():
 	SignalDatabase.zoom_out.connect(zoom_out)
 	SignalDatabase.camera_movement_updated.connect(update_can_move)
 	SignalDatabase.screen_touch_started.connect(reset_camera_move_values)
-	SignalDatabase.screen_touch_double_tap.connect(return_to_default_camera_position)
+	# SignalDatabase.screen_touch_double_tap.connect(return_to_default_camera_position)
 	SignalDatabase.screen_touch_pinch.connect(set_zoom_start)
 	SignalDatabase.screen_touch_drag_move.connect(pan_camera)
 	SignalDatabase.screen_touch_drag_pinch.connect(zoom_camera_from_touch)
@@ -46,7 +46,7 @@ func _ready():
 # Process operations
 func _process(_delta):
 	
-	if not can_move:
+	if not is_current_context() or not can_move:
 		return;
 	
 	if zoom != default_zoom or offset.x < -80 or offset.x > 80 or offset.y < -80 or offset.y > 80: 
@@ -58,6 +58,9 @@ func _process(_delta):
 
 # Reset camera move values to start a new move
 func reset_camera_move_values(_id : int, _position : Vector2): 
+	if not is_current_context():
+		return; 
+		 
 	start_distance = 0
 
 # Zoom in the camera
@@ -70,13 +73,16 @@ func zoom_out(value : float):
 
 # Set zoom start
 func set_zoom_start():
+	if not is_current_context():
+		return
+	
 	var touch_point_positions = TouchInput.touch_points.values()
 	start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
 	start_zoom = zoom
 
 # Zoom camera from touch
 func zoom_camera_from_touch():
-	if not can_zoom:
+	if not is_current_context() or not can_zoom:
 		return;
 	
 	var touch_point_positions = TouchInput.touch_points.values()
@@ -86,6 +92,10 @@ func zoom_camera_from_touch():
 
 # Return to default camera position 
 func return_to_default_camera_position(_id : int, _position : Vector2):
+	
+	if not is_current_context():
+		return
+	
 	offset_tween = create_tween()
 	offset_tween.tween_property(self, NodeExtensor.OFFSET_PROPERTIES, Vector2.ZERO, movement_speed).set_trans(Tween.TRANS_SINE)
 	await offset_tween.finished
@@ -98,7 +108,7 @@ func return_to_default_camera_position(_id : int, _position : Vector2):
 	
 # Pan camera
 func pan_camera(relative : Vector2):
-	if not can_pan:
+	if not is_current_context() or not can_pan:
 		return
 	
 	offset -= relative * pan_speed / zoom.x;
@@ -114,3 +124,7 @@ func limit_zoom(new_zoom : Vector2) -> Vector2:
 # Update the can move property
 func update_can_move(value : bool):
 	can_move = value
+
+# Is current context
+func is_current_context() -> bool:
+	return TouchInput.context == Game.Context.Camera;

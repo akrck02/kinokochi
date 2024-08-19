@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgd58tknkodwv"]
+[gd_scene load_steps=15 format=3 uid="uid://bgd58tknkodwv"]
 
 [ext_resource type="Script" path="res://nodes/pet/pet.gd" id="1_t2hn5"]
 [ext_resource type="Texture2D" uid="uid://bm6uy3x5dk7qw" path="res://resources/sprites/pets/tas.png" id="2_dbtwv"]
@@ -6,6 +6,10 @@
 [ext_resource type="Material" uid="uid://c0q6k8bo0nc7y" path="res://materials/outline_shader_material.tres" id="3_abgn8"]
 [ext_resource type="Texture2D" uid="uid://g84fjvgcei1i" path="res://resources/sprites/effects/light-cast.png" id="4_a1wdx"]
 [ext_resource type="PackedScene" uid="uid://uwg3nl77trw1" path="res://nodes/chat_bubble/chat_bubble.tscn" id="6_slsed"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ketbd"]
+radius = 29.0
+height = 80.0
 
 [sub_resource type="Animation" id="Animation_juwsa"]
 length = 0.001
@@ -128,15 +132,22 @@ _data = {
 "walk": SubResource("Animation_okm1f")
 }
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eaxfs"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5mgkw"]
 radius = 12.0
 height = 26.0
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_eaxfs"]
-
 [node name="Pet" type="CharacterBody2D" groups=["Persist"]]
 y_sort_enabled = true
 script = ExtResource("1_t2hn5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+show_behind_parent = true
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_ketbd")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -155,12 +166,6 @@ texture = ExtResource("3_03fhf")
 libraries = {
 "": SubResource("AnimationLibrary_d5owt")
 }
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 1
-position = Vector2(0, 9)
-shape = SubResource("CapsuleShape2D_5mgkw")
-debug_color = Color(0.611756, 0.117942, 0.116228, 0.109804)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-1, 15)
@@ -183,3 +188,9 @@ z_index = 4
 position = Vector2(-31, -46)
 scale = Vector2(63, 85)
 texture_normal = SubResource("PlaceholderTexture2D_eaxfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0, 9)
+shape = SubResource("CapsuleShape2D_5mgkw")
+debug_color = Color(0.611756, 0.117942, 0.116228, 0.109804)
