@@ -62,14 +62,14 @@ position = Vector2(4932, 79)
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("focus_node") instance=ExtResource("7_lsj0o")]
 z_index = 1
-position = Vector2(4582, -2145)
+position = Vector2(2862, -1513)
 focus_node = NodePath("../Pet")
 metadata/_edit_group_ = true
 
 [node name="Pet" parent="." instance=ExtResource("6_bdx4c")]
 z_index = 4
 material = ExtResource("2_3t074")
-position = Vector2(4564, -2113)
+position = Vector2(2844, -1481)
 velocity = Vector2(-2.04974, 0)
 control = true
 movement_speed = 0.667
@@ -137,6 +137,7 @@ autoplay = true
 
 [node name="House" parent="." instance=ExtResource("13_st7px")]
 position = Vector2(3092, -1625)
+interactable = true
 
 [node name="House2" parent="." instance=ExtResource("13_st7px")]
 position = Vector2(4916, -393)

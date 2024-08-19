@@ -1,10 +1,12 @@
 extends Node2D
 
+@export  var interactable: bool = false 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var area_2d : Area2D = $Area2D
 
 func _ready():
-	area_2d.input_event.connect(_on_touch)
+	if interactable:
+		area_2d.input_event.connect(_on_touch)
 
 func enter_home():
 	animation_player.play("enter")
@@ -13,5 +15,5 @@ func enter_home():
 
 
 func _on_touch(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_released("ui_accept"):
 		enter_home();
