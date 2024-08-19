@@ -15,7 +15,7 @@ func _ready():
 	volume_h_slider.value_changed.connect(SettingsManager.set_volume)
 
 func exit():
-	SignalDatabase.camera_movement_updated.emit(true);
+	TouchInput.context = Game.Context.Camera
 	set_visible(false)
 
 func toggle_outline():

@@ -75,8 +75,7 @@ func hide_notification():
 	notification_showing = false
 
 func toggle_settings():
-	
-	if not settings.visible:
-		SignalDatabase.camera_movement_updated.emit(false);
-	
 	settings.visible=!settings.visible
+	if settings.visible:
+		TouchInput.context = Game.Context.Settings 
+				
