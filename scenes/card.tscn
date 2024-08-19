@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://brhy0ehedl63t"]
+
+[ext_resource type="Theme" uid="uid://fk4bfu837bvc" path="res://resources/theme.tres" id="1_5epul"]
+
+[node name="Card" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 60.0
+theme = ExtResource("1_5epul")
+theme_type_variation = &"GraphFrameTitleLabel"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
