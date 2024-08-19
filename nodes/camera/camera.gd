@@ -34,7 +34,7 @@ func _ready():
 	SignalDatabase.zoom_out.connect(zoom_out)
 	SignalDatabase.camera_movement_updated.connect(update_can_move)
 	SignalDatabase.screen_touch_started.connect(reset_camera_move_values)
-	# SignalDatabase.screen_touch_double_tap.connect(return_to_default_camera_position)
+	SignalDatabase.three_finger_touch_started.connect(return_to_default_camera_position)
 	SignalDatabase.screen_touch_pinch.connect(set_zoom_start)
 	SignalDatabase.screen_touch_drag_move.connect(pan_camera)
 	SignalDatabase.screen_touch_drag_pinch.connect(zoom_camera_from_touch)
@@ -50,7 +50,7 @@ func _process(_delta):
 		return;
 	
 	if zoom != default_zoom or offset.x < -80 or offset.x > 80 or offset.y < -80 or offset.y > 80: 
-		SignalDatabase.notification_shown.emit("[center]Tap twice to center the camera")
+		SignalDatabase.notification_shown.emit("[center]Tap with 3 fingers to center the camera")
 	else: 
 		if focus_node != null:
 			position = focus_node.position
@@ -91,7 +91,7 @@ func zoom_camera_from_touch():
 	zoom = limit_zoom(start_zoom / zoom_factor)
 
 # Return to default camera position 
-func return_to_default_camera_position(_id : int, _position : Vector2):
+func return_to_default_camera_position():
 	
 	if not is_current_context():
 		return
@@ -107,7 +107,7 @@ func return_to_default_camera_position(_id : int, _position : Vector2):
 	zoom_tween.kill()
 	
 # Pan camera
-func pan_camera(relative : Vector2):
+func pan_camera(_position : Vector2, relative : Vector2):
 	if not is_current_context() or not can_pan:
 		return
 	

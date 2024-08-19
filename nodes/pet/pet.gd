@@ -43,7 +43,7 @@ func _ready():
 	touch_screen_button.pressed.connect(interact)
 	animation_player.play("idle")	
 
-# loadPetDataFromSavestate
+# load pet data from savestate
 func load_from_savestate():
 	stats = PetStats.new();
 	
@@ -63,11 +63,14 @@ func handle_interaction(_viewport: Node, event: InputEvent, _shape_idx: int):
 	handle_touch(event)
 
 # Handle drag
-func handle_drag(relative : Vector2):
+func handle_drag(position : Vector2, relative : Vector2):
 	if not is_being_dragged:
 		return
 	
-	self.position += relative * pan_speed
+
+	var position_delta = relative * pan_speed
+	print(position_delta)
+	self.position += position_delta
 
 # Handle touch interaction
 func handle_touch(event : InputEventScreenTouch):
@@ -128,7 +131,8 @@ func manual_movement():
 		animation_player.play("idle")
 		
 	moving = false
-	
+
+# Normalize stat values
 func normalize_stats():
 	stats.hunger = clamp(stats.hunger,0,100)
 	stats.affection = clamp(stats.affection,0,100)

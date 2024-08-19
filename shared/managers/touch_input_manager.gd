@@ -22,12 +22,14 @@ func handle_touch(event : InputEventScreenTouch):
 	touch_points[event.index] = event.position
 	if touch_points.size() == 1 and event.double_tap: SignalDatabase.screen_touch_double_tap.emit(event.index, event.position)
 	elif touch_points.size() == 2: SignalDatabase.screen_touch_pinch.emit()
+	elif touch_points.size() == 3: SignalDatabase.three_finger_touch_started.emit()
 	elif touch_points.size() < 2: SignalDatabase.screen_touch_started.emit(event.index, event.position)
+	
 
 # Handle drag events 
 func handle_drag(event : InputEventScreenDrag):
 	
 	touch_points[event.index] = event.position
 	match TouchInput.touch_points.size():
-		1: SignalDatabase.screen_touch_drag_move.emit(event.relative)
+		1: SignalDatabase.screen_touch_drag_move.emit(event.position, event.relative)
 		2: SignalDatabase.screen_touch_drag_pinch.emit()
