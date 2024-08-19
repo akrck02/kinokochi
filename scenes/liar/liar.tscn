@@ -1,0 +1,128 @@
+[gd_scene load_steps=3 format=3 uid="uid://cco5hu4whs57p"]
+
+[ext_resource type="Script" path="res://scenes/liar/liar.gd" id="1_h8pm3"]
+[ext_resource type="PackedScene" uid="uid://bgd58tknkodwv" path="res://nodes/pet/pet.tscn" id="2_ukflq"]
+
+[node name="Liar" type="Node2D"]
+script = ExtResource("1_h8pm3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 648.0
+offset_bottom = 1152.0
+color = Color(0.201898, 0.0504626, 0.0276973, 1)
+
+[node name="Player2" parent="." instance=ExtResource("2_ukflq")]
+position = Vector2(316, 52)
+control = true
+
+[node name="Player3" parent="." instance=ExtResource("2_ukflq")]
+position = Vector2(601, 500)
+control = true
+
+[node name="Player4" parent="." instance=ExtResource("2_ukflq")]
+position = Vector2(45, 500)
+control = true
+
+[node name="Player" parent="." instance=ExtResource("2_ukflq")]
+position = Vector2(319, 1085)
+control = true
+
+[node name="Cards" type="Node" parent="."]
+
+[node name="Player0GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 272.0
+offset_top = 937.0
+offset_right = 356.0
+offset_bottom = 997.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 6
+
+[node name="ColorRect" type="ColorRect" parent="Player0GridContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Player0GridContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "add"
+
+[node name="Player1GridContainer" type="GridContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 502.0
+offset_top = 547.0
+offset_right = 586.0
+offset_bottom = 607.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 4.71239
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 6
+
+[node name="ColorRect" type="ColorRect" parent="Player1GridContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Player1GridContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="Player2GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 358.0
+offset_top = 157.0
+offset_right = 442.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 6
+
+[node name="ColorRect" type="ColorRect" parent="Player2GridContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Player2GridContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="Player3GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 152.0
+offset_top = 475.0
+offset_right = 236.0
+offset_bottom = 535.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 6
+
+[node name="ColorRect" type="ColorRect" parent="Player3GridContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Player3GridContainer"]
+custom_minimum_size = Vector2(40, 60)
+layout_mode = 2

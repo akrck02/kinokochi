@@ -4,11 +4,28 @@ extends Node
 enum COLORS_ENUM{ RED,YELLOW,GREEN,BLUE}
 const PLAYERS=4
 const CARDS_PER_HAND=5
+@onready var button: Button = $Button
+@onready var player_0_grid_container: GridContainer = $Player0GridContainer
+@onready var player_1_grid_container: GridContainer = $Player1GridContainer
+@onready var player_2_grid_container: GridContainer = $Player2GridContainer
+@onready var player_3_grid_container: GridContainer = $Player3GridContainer
 
+const card_node=preload("res://scenes/liar/card.tscn")
 
+func spawn_card():
+	var new_card:ColorRect=card_node.instantiate()
+	var label:Label=new_card.get_child(0)
+	label.text="0"
+	player_0_grid_container.add_child(new_card)
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	button.pressed.connect(spawn_card)
 	var decks=generate_hands()
+	#var player_0=Player.new(0,"User",decks[0],player_0_grid_container)
+	#var player_1=Player.new(1,"User",decks[1],player_1_grid_container)
+	#var player_2=Player.new(2,"User",decks[2],player_2_grid_container)
+	#var player_3=Player.new(0,"User",decks[3],player_3_grid_container)
 	
 	pass # Replace with function body.
 
@@ -70,4 +87,24 @@ class Card:
 		return "{0} of {1}".format([number,color_name])
 		
 		
-		
+class Deck:
+	var cards:Array;
+	var grid_container:GridContainer;
+	
+	func _init(cards:Array, grid_container:GridContainer) -> void:
+		self.cards=cards
+		self.grid_container=grid_container
+		for card in cards:
+			var new_card:ColorRect=card_node.instantiate()
+			new_card.get_child(0).text=str(card.number)
+			grid_container.add_child(new_card)
+			
+class Player:
+	var id:int;
+	var name:String
+	var deck:Deck;
+	
+	func _init(id:int,name:String, cards:Array, grid_container:GridContainer) -> void:
+		self.id=id
+		self.name=name
+		self.deck=Deck.new(cards,grid_container)
