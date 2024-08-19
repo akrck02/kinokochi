@@ -81,6 +81,7 @@ func handle_touch(event : InputEventScreenTouch):
 	is_being_dragged = !is_being_dragged
 	
 	if is_being_dragged:
+		SignalDatabase.notification_shown.emit("[center]Move the pet dragging")
 		TouchInput.context = Game.Context.PetInteraction
 		sprite.material.set_shader_parameter("width",2)
 	else:

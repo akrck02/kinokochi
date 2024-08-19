@@ -232,7 +232,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_xjwsg")
 [node name="Info" type="RichTextLabel" parent="UiControl/MarginContainer/InfoBanner"]
 z_index = 2
 y_sort_enabled = true
-custom_minimum_size = Vector2(519, 40)
+custom_minimum_size = Vector2(519, 35)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

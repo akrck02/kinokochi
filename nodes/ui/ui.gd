@@ -57,7 +57,7 @@ func set_day_color_palette():
 # Show notification
 func show_notification(message : String):
 	
-	if notification_showing: 
+	if notification_showing and info.text == message: 
 		return
 	
 	info.text = message
