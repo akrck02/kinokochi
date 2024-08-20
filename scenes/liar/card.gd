@@ -6,16 +6,7 @@ var sprite:Sprite2D
 
 func _init(color_name:String,number:int) -> void:
 	self.number=number
-	match (color_name):
-		"RED":
-			self.color_name="RED"
-		"YELLOW":
-			self.color_name="YELLOW"
-		"GREEN":
-			self.color_name="GREEN"
-		"BLUE":
-			self.color_name="BLUE"
-	
+	self.color_name=color_name	
 func _to_string() -> String:
 	return "{0} of {1}".format([number,color_name])
 	
@@ -30,6 +21,7 @@ func show_card_sprite():
 func update_sprite():
 	if not sprite:
 		return;
-	sprite.texture=load("res://resources/sprites/cards.png")
-	#sprite.frame_coords=Vector2i(self.number,0)
+	sprite.texture=load("res://resources/sprites/cards/"+color_name+".png")
+	sprite.hframes=10
+	sprite.frame_coords=Vector2i(self.number,0)
 	
