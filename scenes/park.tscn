@@ -69,7 +69,7 @@ metadata/_edit_group_ = true
 [node name="Pet" parent="." instance=ExtResource("6_bdx4c")]
 z_index = 5
 material = ExtResource("2_3t074")
-position = Vector2(2762.6, -1480.44)
+position = Vector2(2681.69, -1403.28)
 velocity = Vector2(-2.04974, 0)
 control = true
 movement_speed = 0.667

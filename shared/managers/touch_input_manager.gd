@@ -5,7 +5,6 @@ var touch_points : Dictionary = {}
 
 # Input handle
 func _input(event):
-	
 	if event is InputEventScreenTouch: handle_touch(event);
 	if event is InputEventScreenDrag:  handle_drag(event);
 		
@@ -20,6 +19,11 @@ func handle_touch(event : InputEventScreenTouch):
 
 	# Touch
 	touch_points[event.index] = event.position
+	
+	print("Detected touch points: ")
+	print(touch_points)
+	print()
+	
 	if touch_points.size() == 1 and event.double_tap: SignalDatabase.screen_touch_double_tap.emit(event.index, event.position)
 	elif touch_points.size() == 2: SignalDatabase.screen_touch_pinch.emit()
 	elif touch_points.size() == 3: SignalDatabase.three_finger_touch_started.emit()
