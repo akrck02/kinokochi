@@ -19,8 +19,9 @@ func _ready() -> void:
 	#var card=Card.new("BLUE",5)
 	#card.color_rect.position=Vector2(200,500)
 	#add_child(card.color_rect)
-	var hand=Hand.new(decks[0])
-	add_child(hand)
+	var card=Card.new("BLUE",0)
+	add_child(card)
+	#card.show_card_sprite()
 	
 	pass # Replace with function body.
 
@@ -50,23 +51,25 @@ func generate_deck()->Array:
 	var output:Array=[]
 	for color in COLORS_ENUM.keys():
 		for num in range(10):
+			print(num)
 			output.append(Card.new(color,num))
 	
 	return output
 	
 class Hand:
-	extends Control
+	extends Node2D
 	var cards:Array;
 	
 	func _init(cards:Array) -> void:
 		self.cards=cards
-		self.position=Vector2(0,0)
+		self.position=Vector2(400,200)
 		var x=0
 		var y=0
 		for card in cards:
 			self.add_child(card)
+			
 			card.set_position(Vector2(x,y))
-			x+=50
+			x+=40
 			
 class Player:
 	var id:int;
