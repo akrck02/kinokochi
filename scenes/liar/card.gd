@@ -1,20 +1,9 @@
 class_name Card
-extends ColorRect
-
+extends Sprite2D
 var number:int;
 var color_name:String;
-var label:Label;
 
 func _init(color_name:String,number:int) -> void:
-	
-	self.label=Label.new()
-	self.label.text=str(number)
-	label.size=Vector2(40,60)
-	label.vertical_alignment=VERTICAL_ALIGNMENT_CENTER
-	label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size",40)
-	self.add_child(label)
-	
 	
 	match (color_name):
 		"RED":
