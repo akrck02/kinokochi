@@ -12,15 +12,20 @@ var deck:Deck;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	# Generate Deck
 	deck=Deck.new()
+	
+	# Create hands
 	var hands = deck.generate_hands()
 	var x=0
-	var y=0
+	var y=3
 	for hand in hands:
 		hand.move(x,y)
 		hand.show_cards()
 		add_child(hand)
 		x+=6
+		
+	# Create players
 	
 	# Add card
 	#var card=Card.new();

@@ -10,3 +10,5 @@ color = "red"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_i62cd")
 hframes = 10
+vframes = 2
+frame = 3
