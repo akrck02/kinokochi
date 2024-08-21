@@ -20,7 +20,7 @@ func _ready() -> void:
 	#card.show_card_sprite()
 
 func move(hand:Hand):
-	hand.cards[4].move(1,1)
+	hand.cards[4].move(10,4)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

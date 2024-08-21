@@ -4,7 +4,7 @@ var number:int;
 var color_name:String;
 var sprite:Sprite2D
 const movement_speed = 1.00/1.5;
-
+const length=40;
 
 func _init(color_name:String,number:int) -> void:
 	self.number=number
@@ -20,9 +20,14 @@ func show_card_sprite():
 	self.add_child(sprite)
 	update_sprite()
 	
+func cartesian_to_isometric(x:int,y:int):
+	var screen_pos=Vector2()
+	screen_pos.x=(x-y)*length
+	screen_pos.y=((x+y)/2)*length
+	return screen_pos
 	
 func move(x:int,y:int):
-	self.position=Vector2(x*40+40,y*20+20)
+	self.position=cartesian_to_isometric(x,y)
 	
 func update_sprite():
 	if not sprite:
