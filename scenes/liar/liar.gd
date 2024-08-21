@@ -1,7 +1,6 @@
 extends Node
 @onready var pet: Pet = $Pet
 
-enum COLORS_ENUM{ red,yellow,green,blue}
 const PLAYERS=4
 const CARDS_PER_HAND=5
 @onready var control: Control = $Control
@@ -12,19 +11,23 @@ const CARDS_PER_HAND=5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var deck=Deck.new()
+	print(deck.size())
+	var hand=Hand.new(deck)
+	print(deck.size())
+	
+	
 	#var hands=generate_hands()
 	#var hand=hands[0]
 	#print(hand.cards)
-	#add_child(hand)
 	#hand.show_cards()
-	var card1=Card.new("red",1)
-	add_child(card1)
-	card1.show_card_sprite()
-	button.pressed.connect(move.bind(card1))
+	#add_child(hand)
+	#button.pressed.connect(move.bind(hand))
 	
-func move(card:Card):
-	card.move(spin_box_x.value,spin_box_y.value)
-	pass
+	# Create players with their hands
+	
+func move(object:IsometricObject):
+	object.move(spin_box_x.value,spin_box_y.value)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -33,26 +36,14 @@ func _process(delta: float) -> void:
 ## Generates 4 hands of cards
 func generate_hands():
 	var hands:Array=[]
-	var deck=generate_deck()
+	var deck=Deck.new()
 	for player in PLAYERS:
 		var cards:Array=[]
 		for c in CARDS_PER_HAND:
-			var random=randi()%deck.size()
-			var card=deck.pop_at(random)
-			cards.append(card)
+			cards.append(deck.get_random_card())
 		hands.append(Hand.new(cards))
 		
 	return hands
-	
-
-## Generates deck
-func generate_deck()->Array:
-	var output:Array=[]
-	for color in COLORS_ENUM.keys():
-		for num in range(10):
-			output.append(Card.new(color,num))
-	
-	return output
 	
 class Hand:
 	extends IsometricObject
@@ -60,6 +51,7 @@ class Hand:
 	
 	
 	func _init(cards:Array) -> void:
+		cards.pop_back()
 		self.cards=cards
 		var x=0
 		var y=0
@@ -74,7 +66,7 @@ class Hand:
 			
 class Player:
 	var id:int;
-	var name:String
+	var name:String;
 	var hand:Hand;
 	
 	func _init(id:int,name:String, cards:Array) -> void:
