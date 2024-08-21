@@ -1,13 +1,18 @@
 class_name Card
 extends IsometricObject
+
 var number:int;
 var color_name:String;
-var sprite:Sprite2D
 const movement_speed = 1.00/1.5;
+@onready var sprite: Sprite2D = $Sprite2D
+@export var x:int;
+@export var y:int;
 
 func _init(color_name:String,number:int) -> void:
 	self.number=number
 	self.color_name=color_name
+	move(x,y)
+	
 func _to_string() -> String:
 	return "{0} of {1}".format([number,color_name])
 	

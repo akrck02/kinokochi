@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cumat4nnr543j"]
+
+[ext_resource type="PackedScene" uid="uid://dbwrn1ihrrvq5" path="res://scenes/liar/card.tscn" id="1_o2bpg"]
+
+[node name="Deck" type="Node2D"]
+
+[node name="Card" parent="." instance=ExtResource("1_o2bpg")]
+
+[node name="Card2" parent="." instance=ExtResource("1_o2bpg")]
+
+[node name="Card3" parent="." instance=ExtResource("1_o2bpg")]
