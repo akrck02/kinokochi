@@ -12,7 +12,6 @@ const CARDS_PER_HAND=5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var deck=Deck.new()
-	print(deck.size())
 	var hand=Hand.new(deck)
 	print(deck.size())
 	
@@ -45,25 +44,6 @@ func generate_hands():
 		
 	return hands
 	
-class Hand:
-	extends IsometricObject
-	var cards:Array;
-	
-	
-	func _init(cards:Array) -> void:
-		cards.pop_back()
-		self.cards=cards
-		var x=0
-		var y=0
-		for card in cards:
-			self.add_child(card)
-			card.move(x,0)
-			x+=1
-			
-	func show_cards():
-		for card in cards:
-			card.show_card_sprite()
-			
 class Player:
 	var id:int;
 	var name:String;
