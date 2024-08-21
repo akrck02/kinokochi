@@ -1,6 +1,8 @@
 extends Node
 class_name Deck
 
+const PLAYERS=4
+const CARDS_PER_HAND=5
 var cards:Array;
 enum COLORS_ENUM{ red,yellow,green,blue}
 
@@ -23,3 +25,14 @@ func _process(delta: float) -> void:
 func get_random_card()->Card:
 	var random=randi()%cards.size()
 	return cards.pop_at(random)
+	
+func generate_hands():
+	var hands:Array=[]
+	var deck=Deck.new()
+	for player in PLAYERS:
+		var cards:Array=[]
+		for c in CARDS_PER_HAND:
+			cards.append(deck.get_random_card())
+		hands.append(Hand.new(cards))
+		
+	return hands
