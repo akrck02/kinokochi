@@ -107,7 +107,7 @@ func return_to_default_camera_position():
 	zoom_tween.kill()
 	
 # Pan camera
-func pan_camera(_position : Vector2, relative : Vector2):
+func pan_camera(_position : Vector2, relative : Vector2, _global_position : Vector2):
 	if not is_current_context() or not can_pan:
 		return
 	

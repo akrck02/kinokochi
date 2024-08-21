@@ -24,7 +24,7 @@ func handle_touch(event : InputEventScreenTouch):
 	print(touch_points)
 	print()
 	
-	if touch_points.size() == 1 and event.double_tap: SignalDatabase.screen_touch_double_tap.emit(event.index, event.position)
+	if touch_points.size() == 1 and event.double_tap: SignalDatabase.screen_touch_double_tap.emit(event.index, event.position, )
 	elif touch_points.size() == 2: SignalDatabase.screen_touch_pinch.emit()
 	elif touch_points.size() == 3: SignalDatabase.three_finger_touch_started.emit()
 	elif touch_points.size() < 2: SignalDatabase.screen_touch_started.emit(event.index, event.position)
@@ -34,6 +34,7 @@ func handle_touch(event : InputEventScreenTouch):
 func handle_drag(event : InputEventScreenDrag):
 	
 	touch_points[event.index] = event.position
+	var global_canvas_pos = get_viewport().get_canvas_transform().affine_inverse() * event.position
 	match TouchInput.touch_points.size():
-		1: SignalDatabase.screen_touch_drag_move.emit(event.position, event.relative)
+		1: SignalDatabase.screen_touch_drag_move.emit(event.position, event.relative, global_canvas_pos)
 		2: SignalDatabase.screen_touch_drag_pinch.emit()

@@ -64,13 +64,18 @@ func handle_interaction(_viewport: Node, event: InputEvent, _shape_idx: int):
 	handle_touch(event)
 
 # Handle drag
-func handle_drag(_position : Vector2, relative : Vector2):
+func handle_drag(_new_position : Vector2, _relative : Vector2, new_global_position : Vector2):
 	
 	if TouchInput.context != Game.Context.PetInteraction or not is_being_dragged:
 		return
 	
-	position = TouchInput.touch_points[0]
+	if SceneManager.current_tilemap != null:
+		new_global_position = SceneManager.current_tilemap.get_tiled_position(new_global_position)
 	
+	drag_tween = create_tween()
+	drag_tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_global_position, .15).set_trans(Tween.TRANS_SINE)
+	
+	# global_position = new_global_position
 	
 # Handle touch interaction
 func handle_touch(event : InputEventScreenTouch):
@@ -122,7 +127,7 @@ func normalize_stats():
 # Automatic movement
 func automatic_movement():
 	
-	if control or moving: 
+	if control or moving or is_being_dragged: 
 		return
 	
 	var direction = randi() % 7

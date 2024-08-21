@@ -16,7 +16,7 @@ extends Node
 @warning_ignore("unused_signal") signal screen_touch_pinch()
 @warning_ignore("unused_signal") signal three_finger_touch_started()
 
-@warning_ignore("unused_signal") signal screen_touch_drag_move(position : Vector2, relative : Vector2)
+@warning_ignore("unused_signal") signal screen_touch_drag_move(position : Vector2, relative : Vector2, global_position : Vector2)
 @warning_ignore("unused_signal") signal screen_touch_drag_pinch()
 
 # Visual effects
