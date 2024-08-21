@@ -2,6 +2,7 @@
 extends Node2D
 class_name IsometricObject
 
+## Space between positions
 const length=40
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

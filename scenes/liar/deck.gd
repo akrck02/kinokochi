@@ -14,7 +14,10 @@ func _init() -> void:
 	self.cards=[]
 	for color in COLORS_ENUM.keys():
 		for num in range(10):
-			cards.append(Card.new(color,num))
+			var card=Card.new()
+			card.color=color
+			card.number=num
+			cards.append(card)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,6 +45,8 @@ func generate_hands()->Array:
 		var cards:Array=[]
 		for c in CARDS_PER_HAND:
 			cards.append(deck.get_random_card())
-		hands.append(Hand.new(cards))
+		var hand=Hand.new()
+		hand.cards=cards
+		hands.append(hand)
 		
 	return hands

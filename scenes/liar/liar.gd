@@ -11,20 +11,23 @@ var deck:Deck;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	deck=Deck.new()
-	var hands=deck.generate_hands()
-	add_child(hands[0])
-	hands[0].show_cards()
+	var hands = deck.generate_hands()
+	var x=0
+	var y=0
+	for hand in hands:
+		hand.move(x,y)
+		hand.show_cards()
+		add_child(hand)
+		x+=6
 	
-	
-	#var hands=generate_hands()
-	#var hand=hands[0]
-	#print(hand.cards)
-	#hand.show_cards()
-	#add_child(hand)
-	button.pressed.connect(move.bind(hands[0]))
-	
-	# Create players with their hands
+	# Add card
+	#var card=Card.new();
+	#card.color="red"
+	#card.number=6
+	#card.show_card_sprite()
+	#add_child(card)
 	
 func move(object:IsometricObject):
 	object.move(spin_box_x.value,spin_box_y.value)
