@@ -25,8 +25,15 @@ func show_card_sprite():
 	update_sprite()
 
 
-func set_facing(facing: FACING):
-	match facing:
+func update_sprite():
+	if not sprite:
+		return
+	sprite.texture = load("res://resources/sprites/cards/" + color + ".png")
+	sprite.hframes = 10
+	sprite.vframes = 2
+
+	# Set facing of card
+	match self.facing:
 		FACING.UP:
 			rotation_degrees = 0
 			sprite.frame_coords = Vector2i(self.number, 0)
@@ -39,13 +46,3 @@ func set_facing(facing: FACING):
 		FACING.RIGHT:
 			rotation_degrees = 180
 			sprite.frame_coords = Vector2i(self.number, 1)
-
-
-func update_sprite():
-	if not sprite:
-		return
-	sprite.texture = load("res://resources/sprites/cards/" + color + ".png")
-	sprite.hframes = 10
-	sprite.vframes = 2
-	sprite.frame_coords = Vector2i(self.number, 0)
-	set_facing(facing)

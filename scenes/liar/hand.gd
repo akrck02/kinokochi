@@ -19,7 +19,15 @@ func _ready() -> void:
 	var card_objects = hand.get_children()
 	for card in card_objects:
 		card.move(x, y)
-		x += 1
+		match card.facing:
+			Card.FACING.UP:
+				x += 1
+			Card.FACING.DOWN:
+				x += 1
+			Card.FACING.LEFT:
+				y += 1
+			Card.FACING.RIGHT:
+				y += 1
 	pass  # Replace with function body.
 
 
