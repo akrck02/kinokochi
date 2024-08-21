@@ -13,10 +13,11 @@ func _process(delta: float) -> void:
 	pass
 
 func _cartesian_to_isometric(x:int,y:int):
-	var screen_pos=Vector2()
-	screen_pos.x=(x-y)*length
-	screen_pos.y=((x+y)/2)*length
-	return screen_pos
+	var cartesian_pos=Vector2(x,y)
+	var isometric_pos=Vector2()
+	isometric_pos.x=(cartesian_pos.x-cartesian_pos.y)*length
+	isometric_pos.y=((cartesian_pos.x+cartesian_pos.y)/2)*length
+	return isometric_pos
 
 # Changes the object position
 func move(x:int,y:int):
