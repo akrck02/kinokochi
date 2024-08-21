@@ -5,22 +5,25 @@ enum COLORS_ENUM{ red,yellow,green,blue}
 const PLAYERS=4
 const CARDS_PER_HAND=5
 @onready var control: Control = $Control
-@onready var button: Button = $Control/Button
+@onready var spin_box_y: SpinBox = $Control/HBoxContainer/SpinBoxY
+@onready var spin_box_x: SpinBox = $Control/HBoxContainer/SpinBoxX
+@onready var button: Button = $Control/HBoxContainer/Button
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var hands=generate_hands()
-	var hand=hands[0]
-	print(hand.cards)
-	add_child(hand)
-	hand.show_cards()
-	button.pressed.connect(move.bind(hand))
-	#var card=Card.new("BLUE",5)
-	#add_child(card)
-	#card.show_card_sprite()
-
-func move(hand:Hand):
-	hand.cards[4].move(10,4)
+	#var hands=generate_hands()
+	#var hand=hands[0]
+	#print(hand.cards)
+	#add_child(hand)
+	#hand.show_cards()
+	var card1=Card.new("red",1)
+	add_child(card1)
+	card1.show_card_sprite()
+	button.pressed.connect(move.bind(card1))
+	
+func move(card:Card):
+	card.move(spin_box_x.value,spin_box_y.value)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,21 +55,17 @@ func generate_deck()->Array:
 	return output
 	
 class Hand:
-	extends Node2D
+	extends IsometricObject
 	var cards:Array;
 	
-	func move(x:int,y:int):
-		self.position=Vector2(x*40+40,y*20+20)
 	
 	func _init(cards:Array) -> void:
 		self.cards=cards
-		move(0,0)
 		var x=0
 		var y=0
 		for card in cards:
 			self.add_child(card)
-			
-			card.move(0,0)
+			card.move(x,0)
 			x+=1
 			
 	func show_cards():

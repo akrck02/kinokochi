@@ -46,28 +46,32 @@ max_zoom = 500.0
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
+offset_left = 219.0
+offset_top = -43.0
+offset_right = 259.0
+offset_bottom = -3.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Button" type="Button" parent="Control"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="SpinBoxX" type="SpinBox" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="SpinBoxY" type="SpinBox" parent="Control/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
 text = "move"
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 z_index = -2
-tile_map_data = PackedByteArray("AAAPAAQAAQAAAAAAAAAOAAQAAQAAAAAAAAAKAAQAAQAAAAAAAAANAAcAAQAAAAAAAAALAAQAAQAAAAAAAAAMAAQAAQAAAAAAAAANAAQAAQAAAAAAAAAKAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAMAAUAAQAAAAAAAAANAAUAAQAAAAAAAAAOAAUAAQAAAAAAAAAPAAUAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAACAAMAAQAAAAAAAAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAADAAAAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAPAAQAAQAAAAAAAAAOAAQAAQAAAAAAAAAKAAQAAQAAAAAAAAANAAcAAQAAAAAAAAALAAQAAQAAAAAAAAAMAAQAAQAAAAAAAAANAAQAAQAAAAAAAAAKAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAMAAUAAQAAAAAAAAANAAUAAQAAAAAAAAAOAAUAAQAAAAAAAAAPAAUAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAACAAAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAACAAMAAQAAAAAAAAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAADAAAAAQAAAAAAAAD//wAAAQAGAAAAAAD//wEAAQAGAAAAAAA=")
 tile_set = ExtResource("4_3nft3")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Card" parent="." instance=ExtResource("6_mnfdn")]
 visible = false
-position = Vector2(80, 40)
-
-[node name="Card" parent="Node2D" instance=ExtResource("6_mnfdn")]
 z_index = 4
-position = Vector2(40, 20)
-
-[node name="Card2" parent="Node2D" instance=ExtResource("6_mnfdn")]
-z_index = 4
-position = Vector2(80, 40)
+position = Vector2(42, 19)
