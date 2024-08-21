@@ -19,6 +19,6 @@ func _cartesian_to_isometric(x:int,y:int):
 	isometric_pos.y=((cartesian_pos.x+cartesian_pos.y)/2)*length
 	return isometric_pos
 
-# Changes the object position
+## Changes the object position but using isometric coordinates
 func move(x:int,y:int):
 	self.position=_cartesian_to_isometric(x,y)

@@ -1,6 +1,7 @@
 class_name Card
 extends IsometricObject
 
+
 var number:int;
 var color_name:String;
 const movement_speed = 1.00/1.5;

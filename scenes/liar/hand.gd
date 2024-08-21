@@ -1,6 +1,9 @@
 extends IsometricObject
 class_name Hand
 
+## Class that represents the list of [Card] objects that a [Player] has
+
+## List of [Card] objects
 var cards:Array;
 
 func _init(cards:Array) -> void:
@@ -22,6 +25,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+## Shows all [Card] objects in the [Hand] 
 func show_cards():
 	for card in self.cards:
 		card.show_card_sprite()

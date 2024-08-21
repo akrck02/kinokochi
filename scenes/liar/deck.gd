@@ -1,9 +1,13 @@
 extends Node
 class_name Deck
+## Class that contains the cards of the game
+
 
 const PLAYERS=4
 const CARDS_PER_HAND=5
-var cards:Array;
+## Array containing the cards
+var cards:Array; 
+
 enum COLORS_ENUM{ red,yellow,green,blue}
 
 func _init() -> void:
@@ -22,11 +26,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+## Returns a random [Card] while removing it from the [Deck]
 func get_random_card()->Card:
 	var random=randi()%cards.size()
 	return cards.pop_at(random)
-	
-func generate_hands():
+
+
+## Generates the hands of the game depending on the 
+## number of [constant PLAYERS] and [constant CARDS_PER_HAND] [br]
+## Returns an [Array] containing [Hand]
+func generate_hands()->Array:
 	var hands:Array=[]
 	var deck=Deck.new()
 	for player in PLAYERS:

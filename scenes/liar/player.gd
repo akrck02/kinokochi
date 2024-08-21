@@ -1,7 +1,10 @@
 extends Node
-
 class_name Player
+## Players of the [Liar] minigame
+
 var id:int;
+
+## List of [Card]s
 var hand:Hand;
 
 func _init(id:int,name:String, hand:Hand) -> void:
