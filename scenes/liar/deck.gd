@@ -29,6 +29,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _to_string() -> String:
+	return str(cards)
 
 ## Returns a random [Card] while removing it from the [Deck]
 func get_random_card() -> Card:
