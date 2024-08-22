@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var info_timer : Timer = $UiControl/MarginContainer/InfoBanner/Timer
 @onready var show_settings_button : Button = $UiControl/ShowSettings/Control/Button
 @onready var settings = $Settings
+@onready var ui_control : VBoxContainer = $UiControl
 
 var notification_showing = false;
 
@@ -19,18 +20,23 @@ func _ready():
 	SignalDatabase.notification_hidden.connect(hide_notification)
 	show_settings_button.pressed.connect(toggle_settings)
 	update_time()
-
+	
 func _input(_event):
 	if Input.is_action_just_released('ui_zoom_in'):
-		_on_zoom_in_button_pressed()
+		zoom_in()
 	if Input.is_action_just_released('ui_zoom_out'):
-		_on_zoom_out_button_pressed()
+		zoom_out()
+	if Input.is_action_just_pressed("ui_photo_mode"):
+		toggle_ui()
 	
-func _on_zoom_in_button_pressed():
+func zoom_in():
 	SignalDatabase.zoom_in.emit(.5)
 
-func _on_zoom_out_button_pressed():
+func zoom_out():
 	SignalDatabase.zoom_out.emit(.5)
+
+func toggle_ui():
+	ui_control.visible = !ui_control.visible
 
 func update_tick():
 	update_time()
@@ -51,7 +57,7 @@ func set_day_color_palette():
 # Show notification
 func show_notification(message : String):
 	
-	if notification_showing: 
+	if notification_showing and info.text == message: 
 		return
 	
 	info.text = message
@@ -69,8 +75,7 @@ func hide_notification():
 	notification_showing = false
 
 func toggle_settings():
-	
-	if not settings.visible:
-		SignalDatabase.camera_movement_updated.emit(false);
-	
 	settings.visible=!settings.visible
+	if settings.visible:
+		TouchInput.context = Game.Context.Settings 
+				

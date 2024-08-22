@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dfkmx8ud2ixjl" path="res://resources/sprites/icons/catbrightnessdown.png" id="1_cbvwn"]
 [ext_resource type="FontFile" uid="uid://b3v175ls5slpe" path="res://resources/fonts/PIXELADE.TTF" id="1_i8spk"]
-[ext_resource type="StyleBox" uid="uid://cn0xm81r1djb1" path="res://materials/button_pressed.tres" id="2_jbinl"]
-[ext_resource type="StyleBox" uid="uid://cf3vx3oawdia7" path="res://materials/button_normal.tres" id="2_p0pdj"]
-[ext_resource type="StyleBox" uid="uid://bagl0oxvrcjqi" path="res://materials/button_hover.tres" id="3_xul5r"]
+[ext_resource type="StyleBox" path="res://materials/button_pressed.tres" id="2_jbinl"]
+[ext_resource type="StyleBox" path="res://materials/settings_exit_button.tres" id="2_p0pdj"]
+[ext_resource type="StyleBox" path="res://materials/button_hover.tres" id="3_xul5r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gs6ee"]
 bg_color = Color(0, 0, 0, 0.298039)

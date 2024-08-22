@@ -1,30 +1,41 @@
 extends Node
 
+var current_tilemap : TileMapExtended
+
 func _ready():
 	SignalDatabase.scene_change_requested.connect(change_scene)
 
-func change_scene(name : String):
-	if !name.begins_with("res://"):
-		name = Constants.SCENE_PATH + name + ".tscn"
+# change scene with progress
+func change_scene(scene_name : String):
 	
+	# Set up the path
+	if !scene_name.begins_with("res://"):
+		scene_name = Constants.SCENE_PATH + scene_name + ".tscn"
+	
+	# Get canvas layer
 	var canvas = get_tree().get_root().get_node("/root/Canvas")
 	var current_scenes = canvas.get_children()
 	for past_scene in current_scenes:
 		past_scene.queue_free()
 		
-	# find the targeted scene
-	var error = ResourceLoader.load_threaded_request(name)
+	# Find the targeted scene
+	var error = ResourceLoader.load_threaded_request(scene_name)
 	
 	# check for errors
 	if error != OK:
 		# handle your error 
-		print("error occured while getting the scene " + name)
+		print("error occured while getting the scene " + scene_name)
 		return
 
 	var progress = [0]
 	while progress[0] < 1:
-		ResourceLoader.load_threaded_get_status(name, progress)
+		ResourceLoader.load_threaded_get_status(scene_name, progress)
 	
 	# adding scene to the root
-	var scene = ResourceLoader.load_threaded_get(name).instantiate()
+	var scene : Node = ResourceLoader.load_threaded_get(scene_name).instantiate()
 	canvas.call_deferred("add_child", scene)
+	
+	# Get tilemap if exists
+	var tilemap = scene.get_node("Tilemap")
+	if tilemap is TileMapExtended:
+		current_tilemap = tilemap
