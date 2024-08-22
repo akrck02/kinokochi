@@ -31,7 +31,7 @@ func _ready() -> void:
 	player_0.id = 0
 	player_0.set_hand(hands[0])
 	player_0.set_player_name("tas")
-	button.pressed.connect(move.bind(player_0))
+	button.pressed.connect(move.bind(player_0._hand))
 
 	# Create players
 
@@ -44,7 +44,7 @@ func _ready() -> void:
 
 
 func move(object: IsometricObject):
-	object.move(spin_box_x.value, spin_box_y.value)
+	object.move_global(spin_box_x.value, spin_box_y.value)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

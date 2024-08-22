@@ -30,7 +30,11 @@ func _cartesian_to_isometric(x: int, y: int):
 	return isometric_pos
 
 
-## Changes the object position but using isometric coordinates
-func move(x: int, y: int):
+## Changes the object global position
+func move_global(x: int, y: int):
 	#print(x,", ",y, tilemaplayer.map_to_local(Vector2(x,y)))
 	self.global_position=_cartesian_to_isometric(x,y)
+
+## Changes the object local position. The local position is the position relative to its parent.
+func move_local(x:int,y:int):
+	self.position=_cartesian_to_isometric(x,y)
