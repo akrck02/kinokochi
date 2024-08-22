@@ -232,7 +232,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_xjwsg")
 [node name="Info" type="RichTextLabel" parent="UiControl/MarginContainer/InfoBanner"]
 z_index = 2
 y_sort_enabled = true
-custom_minimum_size = Vector2(370, 40)
+custom_minimum_size = Vector2(519, 35)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -240,7 +240,7 @@ theme_override_colors/default_color = Color(1, 1, 1, 0.662745)
 theme_override_fonts/normal_font = ExtResource("3_g1lr1")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "[center]Tap twice to center the camera"
+text = "[center]Tap  with 3 fingers  to center the camera"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UiControl/MarginContainer/InfoBanner"]
 libraries = {

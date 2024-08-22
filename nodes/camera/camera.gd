@@ -4,67 +4,64 @@ extends Camera2D
 @export var focus_node : Node2D;
 var focusing : bool = false
 
-
+# Zoom params
 @export var default_zoom : Vector2 = Vector2(3,3);
 @export var min_zoom : float = 1;
 @export var max_zoom : float = 6;
+var start_zoom
 
+# Speed variables
 @export var zoom_speed : float = 0.1;
 @export var pan_speed : float = 0.1;
 @export var rotation_speed : float = 0.1;
 
+# Flags
 @export var can_move : bool = true;
 @export var can_zoom : bool = true;
 @export var can_pan : bool = true;
 @export var can_rotate : bool = false;
 
+# Movement animation
 @onready var zoom_tween : Tween
 @onready var offset_tween : Tween
 @export var movement_speed = 1.00/1.5;
-
-var touch_points : Dictionary = {}
-var start_distance
-var start_zoom
-var start_angle
-var current_angle
+var start_distance = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	SignalDatabase.zoom_in.connect(zoom_in)
 	SignalDatabase.zoom_out.connect(zoom_out)
 	SignalDatabase.camera_movement_updated.connect(update_can_move)
-	zoom = default_zoom
+	SignalDatabase.screen_touch_started.connect(reset_camera_move_values)
+	SignalDatabase.three_finger_touch_started.connect(return_to_default_camera_position)
+	SignalDatabase.screen_touch_pinch.connect(set_zoom_start)
+	SignalDatabase.screen_touch_drag_move.connect(pan_camera)
+	SignalDatabase.screen_touch_drag_pinch.connect(zoom_camera_from_touch)
 	
+	zoom = default_zoom
 	if focus_node != null: 
 		focusing = true
 
-# Input handle
-func _input(event):
-	
-	if event is InputEventScreenTouch:
-		handle_touch(event);
-		
-	if event is InputEventScreenDrag:
-		handle_drag(event);
-	
-	# if event is InputEventJoypadMotion:
-		# var val = event.< * pan_speed / zoom.x;
-		# offset = val
-		
 # Process operations
 func _process(_delta):
 	
-
-	
-	if not can_move:
+	if not is_current_context() or not can_move:
 		return;
 	
 	if zoom != default_zoom or offset.x < -80 or offset.x > 80 or offset.y < -80 or offset.y > 80: 
-		SignalDatabase.notification_shown.emit("[center]Tap twice to center the camera")
+		SignalDatabase.notification_shown.emit("[center]Tap with 3 fingers to center the camera")
 	else: 
 		if focus_node != null:
 			position = focus_node.position
 		SignalDatabase.notification_hidden.emit() 
+
+# Reset camera move values to start a new move
+func reset_camera_move_values(_data : InputData): 
+	if not is_current_context():
+		return; 
+		 
+	start_distance = 0
 
 # Zoom in the camera
 func zoom_in(value : float):
@@ -74,32 +71,29 @@ func zoom_in(value : float):
 func zoom_out(value : float):
 	zoom = limit_zoom(zoom - Vector2(value,value));
 
-# Handle touch events 
-func handle_touch(event : InputEventScreenTouch):
-
-	if not can_move: 
-		return;
+# Set zoom start
+func set_zoom_start(data: InputData):
+	if not is_current_context():
+		return
 	
-	if event.pressed:
-		touch_points[event.index] = event.position
-	else:
-		touch_points.erase(event.index)
-		
-	if touch_points.size() == 1 and event.double_tap:
-		return_to_default_camera_position()
-	elif touch_points.size() == 2:
-		zoom_camera_from_touch()
-	elif touch_points.size() < 2:
-		start_distance = 0
-
-# Zoom camera from touch
-func zoom_camera_from_touch():
-	var touch_point_positions = touch_points.values()
-	start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
+	start_distance = data.calculate_distance_between(0,1)
 	start_zoom = zoom
 
+# Zoom camera from touch
+func zoom_camera_from_touch(data: InputData):
+	if not is_current_context() or not can_zoom:
+		return;
+	
+	var current_distance = data.calculate_distance_between(0,1)
+	var zoom_factor = start_distance / current_distance
+	zoom = limit_zoom(start_zoom / zoom_factor)
+
 # Return to default camera position 
-func return_to_default_camera_position():
+func return_to_default_camera_position(_data: InputData):
+	
+	if not is_current_context():
+		return
+	
 	offset_tween = create_tween()
 	offset_tween.tween_property(self, NodeExtensor.OFFSET_PROPERTIES, Vector2.ZERO, movement_speed).set_trans(Tween.TRANS_SINE)
 	await offset_tween.finished
@@ -110,26 +104,14 @@ func return_to_default_camera_position():
 	await zoom_tween.finished
 	zoom_tween.kill()
 	
-	
-# Handle touch events 
-func handle_drag(event : InputEventScreenDrag):
-	touch_points[event.index] = event.position
-	
-	if not can_move:
+# Pan camera
+func pan_camera(data: InputData):
+	if not is_current_context() or not can_pan:
 		return
 	
-	if touch_points.size() == 1:
-		if can_pan:
-			offset -= event.relative * pan_speed / zoom.x;
+	offset -= data.relative * pan_speed / zoom.x;
 
-	elif touch_points.size() == 2:
-		var touch_point_positions = touch_points.values()
-		var current_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
-			 
-		if can_zoom:
-			var zoom_factor = start_distance / current_distance
-			zoom = limit_zoom(start_zoom / zoom_factor)
- 
+# Limit max and min zoom
 func limit_zoom(new_zoom : Vector2) -> Vector2:
 	if new_zoom.x <= min_zoom: new_zoom.x = min_zoom
 	if new_zoom.x >= max_zoom: new_zoom.x = max_zoom
@@ -137,5 +119,10 @@ func limit_zoom(new_zoom : Vector2) -> Vector2:
 	if new_zoom.y >= max_zoom: new_zoom.y = max_zoom
 	return new_zoom
 
+# Update the can move property
 func update_can_move(value : bool):
 	can_move = value
+
+# Is current context
+func is_current_context() -> bool:
+	return TouchInput.context == Game.Context.Camera;
