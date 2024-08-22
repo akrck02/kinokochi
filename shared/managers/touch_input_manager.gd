@@ -7,6 +7,7 @@ var touch_points : Dictionary = {}
 func _input(event):
 	if event is InputEventScreenTouch: handle_touch(event);
 	if event is InputEventScreenDrag:  handle_drag(event);
+	# if event is InputEventMouseMotion: print(event.global_position)
 		
 # Handle the touch events
 func handle_touch(event : InputEventScreenTouch):

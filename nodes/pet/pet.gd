@@ -1,8 +1,11 @@
 class_name Pet
 extends CharacterBody2D
 
+# Pet data
 @export var pet_name : String = "tas"
 @export var stats : PetStats
+
+# Visuals
 @onready var sprite : Sprite2D = $Sprite
 @onready var point_light : PointLight2D = $PointLight2D
 
@@ -18,11 +21,13 @@ extends CharacterBody2D
 var moving = false
 
 # Interactions
-@onready var touch_screen_button : TouchScreenButton = $TouchScreenButton
 @onready var area_2d : Area2D = $Area2D
+
+# Drag and drop
 @export var pan_speed : float = 1.00/3;
 @onready var drag_tween : Tween
 var is_being_dragged : bool  = false
+var previous_position : Vector2 = global_position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,9 +45,7 @@ func _ready():
 	
 	# Set outline based on config file
 	toggle_outline(SettingsManager.get_value("settings","outline"))
-	
-	touch_screen_button.pressed.connect(interact)
-	animation_player.play("idle")	
+	animation_player.play("idle")
 
 # load pet data from savestate
 func load_from_savestate():
@@ -66,16 +69,18 @@ func handle_interaction(_viewport: Node, event: InputEvent, _shape_idx: int):
 # Handle drag
 func handle_drag(_new_position : Vector2, _relative : Vector2, new_global_position : Vector2):
 	
-	if TouchInput.context != Game.Context.PetInteraction or not is_being_dragged:
+	if TouchInput.context != Game.Context.PetInteraction or SceneManager.current_tilemap == null or not is_being_dragged:
 		return
 	
-	if SceneManager.current_tilemap != null:
-		new_global_position = SceneManager.current_tilemap.get_tiled_position(new_global_position)
 	
+	var coords = SceneManager.current_tilemap.get_coordinates_from_position(new_global_position)
+	if not SceneManager.current_tilemap.can_object_be_placed_on_tile(coords):
+		global_position = previous_position
+	
+	new_global_position = SceneManager.current_tilemap.get_position_from_coordinates(coords)
 	drag_tween = create_tween()
 	drag_tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_global_position, .15).set_trans(Tween.TRANS_SINE)
 	
-	# global_position = new_global_position
 	
 # Handle touch interaction
 func handle_touch(event : InputEventScreenTouch):
@@ -89,9 +94,9 @@ func handle_touch(event : InputEventScreenTouch):
 		SignalDatabase.notification_shown.emit("[center]Move the pet dragging")
 		TouchInput.context = Game.Context.PetInteraction
 		sprite.material.set_shader_parameter("width",2)
+		previous_position = global_position
 	else:
 		TouchInput.context = Game.Context.Camera
-		
 		sprite.material.set_shader_parameter("width",0)
 		
 # Handle input for manual control
