@@ -1,22 +1,33 @@
-extends Node
+extends IsometricObject
 class_name Player
 ## Players of the [Liar] minigame
-
-var id:int;
-
+var id: int
+var player_name:String="teko"
 ## List of [Card]s
-var hand:Hand;
+var _hand: Hand
+@onready var pet: Pet = $Pet
 
-func _init(id:int,name:String, hand:Hand) -> void:
-	self.id=id
-	self.name=name
-	self.hand=hand
-	
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	self.move(x,y)
+	pet.pet_name=self.player_name
+	pet.control=true
+	pet.update_sprite()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func set_player_name(name:String):
+	self.player_name=name
+	pet.pet_name=name
+	pet.update_sprite()
+	
+func set_hand(hand:Hand):
+	print(x,", ",y)
+	
+	self._hand=hand
+	self._hand.move(0,0)
+	add_child(self._hand)
+	self._hand.show_cards()
