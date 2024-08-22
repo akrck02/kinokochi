@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://q1sgb5gbqrlk" path="res://resources/sounds/base_lo_fi.wav" id="12_rlywd"]
 [ext_resource type="PackedScene" uid="uid://blkbi8l5llsgb" path="res://nodes/house/house.tscn" id="13_st7px"]
 
+
 [node name="Park" type="Node2D"]
 position = Vector2(1940, 1)
 script = ExtResource("1_y5n7u")
@@ -86,13 +87,11 @@ rotation = 3.14159
 scale = Vector2(304.916, -3.88885)
 stream = ExtResource("2_pfyjy")
 volume_db = 20.0
-bus = &"Music"
 
 [node name="Vinyl" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(4476, -423)
 stream = ExtResource("11_1j504")
 autoplay = true
-bus = &"lo-fi"
 
 [node name="Lofi" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(4476, -419)

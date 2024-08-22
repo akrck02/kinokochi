@@ -1,24 +1,29 @@
 extends Control
 @onready var outline_check_button : Button = $Scroll/Margin/Controls/OutlineCheckButton
 @onready var exit_button : Button = $Scroll/Margin/Controls/ExitButton
-@onready var volume_h_slider = $Scroll/Margin/Controls/VolumeControls/VolumeHSlider
+@onready var general_volume_h_slider: HSlider = $Scroll/Margin/Controls/VolumeControls/GeneralVolumeHSlider
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Initialize values from settings
-	volume_h_slider.value=SettingsManager.get_value("settings", "volume")
-	outline_check_button.button_pressed=SettingsManager.get_value("settings","outline")
+	general_volume_h_slider.value=SettingsManager.get_value("Volume", "General")
+	outline_check_button.button_pressed=SettingsManager.get_value("Character","Outline")
 	
 	outline_check_button.pressed.connect(toggle_outline)
 	exit_button.pressed.connect(exit)
-	volume_h_slider.value_changed.connect(SettingsManager.set_volume)
+	general_volume_h_slider.value_changed.connect(change_volume.bind(0))
 
 func exit():
 	TouchInput.context = Game.Context.Camera
 	set_visible(false)
 
 func toggle_outline():
-	var outline:bool=SettingsManager.get_value("settings", "outline")
-	SettingsManager.set_value("settings", "outline", !outline)
+	var outline:bool=SettingsManager.get_value("Character", "Outline")
+	SettingsManager.set_value("Character", "Outline", !outline)
 	SignalDatabase.outline.emit(!outline)
+
+func change_volume(value:float, bus:int):
+	var buses_names=["General"]
+	SettingsManager.set_value("Volume", buses_names[0], value)
+	AudioServer.set_bus_volume_db(bus,linear_to_db(value))
