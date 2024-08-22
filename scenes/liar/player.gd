@@ -10,6 +10,7 @@ var _hand: Hand
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	self.move(x,y)
 	pet.pet_name=self.player_name
 	pet.control=true
@@ -25,9 +26,7 @@ func set_player_name(name:String):
 	pet.update_sprite()
 	
 func set_hand(hand:Hand):
-	print(x,", ",y)
-	
 	self._hand=hand
-	self._hand.move(0,0)
 	add_child(self._hand)
+	self._hand.move(0,0)
 	self._hand.show_cards()

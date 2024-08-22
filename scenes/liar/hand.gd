@@ -14,6 +14,7 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	var x = 0
 	var y = 0
 	var card_objects = hand.get_children()

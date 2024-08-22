@@ -11,6 +11,7 @@ enum FACING { UP, DOWN, LEFT, RIGHT }
 
 
 func _ready() -> void:
+	super()
 	update_sprite()
 	pass
 

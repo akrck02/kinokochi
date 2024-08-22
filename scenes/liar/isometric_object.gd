@@ -6,10 +6,13 @@ class_name IsometricObject
 const length = 40
 @export var x:int
 @export var y:int
-
+var tilemaplayer:TileMapLayer;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var scene=get_tree().current_scene
+	tilemaplayer=scene.get_node("TileMapLayer")
 	pass  # Replace with function body.
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,4 +32,5 @@ func _cartesian_to_isometric(x: int, y: int):
 
 ## Changes the object position but using isometric coordinates
 func move(x: int, y: int):
-	self.position = _cartesian_to_isometric(x, y)
+	#print(x,", ",y, tilemaplayer.map_to_local(Vector2(x,y)))
+	self.global_position=_cartesian_to_isometric(x,y)
