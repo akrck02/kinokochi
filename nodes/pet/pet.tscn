@@ -178,4 +178,4 @@ texture_scale = 1.43
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 modulate = Color(0.909804, 0.803922, 1, 0.25098)
 position = Vector2(-5.3, -3)
-polygon = PackedVector2Array(26, -18, 65, 1, 26, 21, -14, 2)
+polygon = PackedVector2Array(26.3, -16, 61.3, 1, 26.3, 19, -9.7, 1)

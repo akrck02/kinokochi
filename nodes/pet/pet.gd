@@ -42,6 +42,7 @@ func _ready():
 	# Interactions
 	area_2d.input_event.connect(handle_interaction)
 	SignalDatabase.screen_touch_drag_move.connect(handle_drag)
+	SignalDatabase.screen_touch_released.connect(handle_screen_touch_release)
 	
 	# Set outline based on config file
 	toggle_outline(SettingsManager.get_value("settings","outline"))
@@ -67,20 +68,29 @@ func handle_interaction(_viewport: Node, event: InputEvent, _shape_idx: int):
 	handle_touch(event)
 
 # Handle drag
-func handle_drag(_new_position : Vector2, _relative : Vector2, new_global_position : Vector2):
+func handle_drag(data : InputData):
 	
 	if TouchInput.context != Game.Context.PetInteraction or SceneManager.current_tilemap == null or not is_being_dragged:
 		return
 	
-	
-	var coords = SceneManager.current_tilemap.get_coordinates_from_position(new_global_position)
-	if not SceneManager.current_tilemap.can_object_be_placed_on_tile(coords):
-		global_position = previous_position
-	
-	new_global_position = SceneManager.current_tilemap.get_position_from_coordinates(coords)
+	var coords = SceneManager.current_tilemap.get_coordinates_from_position(data.get_current_global_position(self))
+	var new_position = SceneManager.current_tilemap.get_position_from_coordinates(coords)
 	drag_tween = create_tween()
-	drag_tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_global_position, .15).set_trans(Tween.TRANS_SINE)
+	drag_tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_position, .15).set_trans(Tween.TRANS_SINE)
+
+# Handle screen touch release
+func handle_screen_touch_release(data : InputData):
 	
+	if TouchInput.context != Game.Context.PetInteraction or not is_being_dragged:
+		return
+	
+	var coords = SceneManager.current_tilemap.get_coordinates_from_position(data.get_current_global_position(self))
+	if SceneManager.current_tilemap.can_object_be_placed_on_tile(self, coords):
+		return
+		
+	var new_position = SceneManager.current_tilemap.get_tiled_position(previous_position)
+	drag_tween = create_tween()
+	drag_tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_position, .15).set_trans(Tween.TRANS_SINE)
 	
 # Handle touch interaction
 func handle_touch(event : InputEventScreenTouch):

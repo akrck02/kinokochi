@@ -10,14 +10,14 @@ extends Node
 @warning_ignore("unused_signal") signal tick_reached()
 
 # Touch screen signals
-@warning_ignore("unused_signal") signal screen_touch_started(id : int, position : Vector2)
-@warning_ignore("unused_signal") signal screen_touch_released(id : int, position : Vector2)
-@warning_ignore("unused_signal") signal screen_touch_double_tap(id : int, position : Vector2)
-@warning_ignore("unused_signal") signal screen_touch_pinch()
-@warning_ignore("unused_signal") signal three_finger_touch_started()
+@warning_ignore("unused_signal") signal screen_touch_started(data : InputData)
+@warning_ignore("unused_signal") signal screen_touch_released(data : InputData)
+@warning_ignore("unused_signal") signal screen_touch_double_tap(data : InputData)
+@warning_ignore("unused_signal") signal screen_touch_pinch(data : InputData)
+@warning_ignore("unused_signal") signal three_finger_touch_started(data : InputData)
 
-@warning_ignore("unused_signal") signal screen_touch_drag_move(position : Vector2, relative : Vector2, global_position : Vector2)
-@warning_ignore("unused_signal") signal screen_touch_drag_pinch()
+@warning_ignore("unused_signal") signal screen_touch_drag_move(data : InputData)
+@warning_ignore("unused_signal") signal screen_touch_drag_pinch(data : InputData)
 
 # Visual effects
 @warning_ignore("unused_signal") signal notification_shown(message : String)

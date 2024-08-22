@@ -57,7 +57,7 @@ func _process(_delta):
 		SignalDatabase.notification_hidden.emit() 
 
 # Reset camera move values to start a new move
-func reset_camera_move_values(_id : int, _position : Vector2): 
+func reset_camera_move_values(_data : InputData): 
 	if not is_current_context():
 		return; 
 		 
@@ -72,26 +72,24 @@ func zoom_out(value : float):
 	zoom = limit_zoom(zoom - Vector2(value,value));
 
 # Set zoom start
-func set_zoom_start():
+func set_zoom_start(data: InputData):
 	if not is_current_context():
 		return
 	
-	var touch_point_positions = TouchInput.touch_points.values()
-	start_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
+	start_distance = data.calculate_distance_between(0,1)
 	start_zoom = zoom
 
 # Zoom camera from touch
-func zoom_camera_from_touch():
+func zoom_camera_from_touch(data: InputData):
 	if not is_current_context() or not can_zoom:
 		return;
 	
-	var touch_point_positions = TouchInput.touch_points.values()
-	var current_distance = touch_point_positions[0].distance_to(touch_point_positions[1])
+	var current_distance = data.calculate_distance_between(0,1)
 	var zoom_factor = start_distance / current_distance
 	zoom = limit_zoom(start_zoom / zoom_factor)
 
 # Return to default camera position 
-func return_to_default_camera_position():
+func return_to_default_camera_position(_data: InputData):
 	
 	if not is_current_context():
 		return
@@ -107,11 +105,11 @@ func return_to_default_camera_position():
 	zoom_tween.kill()
 	
 # Pan camera
-func pan_camera(_position : Vector2, relative : Vector2, _global_position : Vector2):
+func pan_camera(data: InputData):
 	if not is_current_context() or not can_pan:
 		return
 	
-	offset -= relative * pan_speed / zoom.x;
+	offset -= data.relative * pan_speed / zoom.x;
 
 # Limit max and min zoom
 func limit_zoom(new_zoom : Vector2) -> Vector2:

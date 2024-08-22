@@ -55,8 +55,10 @@ func get_position_from_coordinates(coords : Vector2) -> Vector2:
 	return layers[0].map_to_local(coords)
 
 # Get if a n object can be placed
-func can_object_be_placed_on_tile(coords : Vector2) -> bool:
-	return get_collisions_on_tile(coords).is_empty()
+func can_object_be_placed_on_tile(node : Node2D, coords : Vector2) -> bool:
+	var collisions = get_collisions_on_tile(coords)
+	collisions.erase(node.get_index())
+	return collisions.is_empty()
 
 # Get all the nodes on one tile
 func get_collisions_on_tile(coords : Vector2) -> Dictionary:
