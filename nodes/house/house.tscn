@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://blkbi8l5llsgb"]
 
-[ext_resource type="Script" path="res://scenes/house.gd" id="1_fu28v"]
+[ext_resource type="Script" path="res://nodes/house/house.gd" id="1_fu28v"]
 [ext_resource type="Texture2D" uid="uid://b2xq30ta6stfh" path="res://resources/sprites/tiles/home.png" id="1_g3qx4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p281b"]
@@ -66,13 +66,13 @@ _data = {
 "enter": SubResource("Animation_4uf8u")
 }
 
-[node name="House" type="Node2D"]
+[node name="House" type="StaticBody2D"]
 script = ExtResource("1_fu28v")
 
 [node name="Home" type="Sprite2D" parent="."]
 z_index = 2
 material = SubResource("ShaderMaterial_p281b")
-position = Vector2(0, -24)
+position = Vector2(100.794, -75.6568)
 texture = ExtResource("1_g3qx4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -80,9 +80,13 @@ libraries = {
 "": SubResource("AnimationLibrary_hsy8a")
 }
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(86.7937, 59.3432)
+polygon = PackedVector2Array(10, 16, 165, -64, 5, -134, -134, -54, 10, 16)
+
 [node name="Area2D" type="Area2D" parent="."]
 z_index = 2
-position = Vector2(-7, 141)
+position = Vector2(93.7937, 89.3432)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(-7, -30)
