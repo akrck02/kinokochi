@@ -45,7 +45,7 @@ func _ready():
 	SignalDatabase.screen_touch_released.connect(handle_screen_touch_release)
 	
 	# Set outline based on config file
-	toggle_outline(SettingsManager.get_value("settings","outline"))
+	toggle_outline(SettingsManager.get_value("Character","Outline"))
 	animation_player.play("idle")
 
 # load pet data from savestate
