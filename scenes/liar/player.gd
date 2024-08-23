@@ -28,5 +28,5 @@ func set_player_name(name:String):
 func set_hand(hand:Hand):
 	self._hand=hand
 	get_parent().add_child(self._hand)
-	self._hand.move_global(0,0)
+	self._hand.move_local(0,0)
 	self._hand.show_cards()

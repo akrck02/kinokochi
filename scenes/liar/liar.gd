@@ -30,6 +30,7 @@ func _ready() -> void:
 
 	player_0.id = 0
 	player_0.set_hand(hands[0])
+	player_0._hand.arrange_cards()
 	player_0.set_player_name("tas")
 	button.pressed.connect(move.bind(player_0._hand))
 
