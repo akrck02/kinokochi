@@ -2,8 +2,8 @@ extends Node2D
 class_name TileMapExtended
 
 @onready var layers_container = $Layers
-var detector : GridArea
 var layers : Array
+@onready var grid_area_scene = preload("res://nodes/grid_area/grid_area.tscn");
 
 # On ready 
 func _ready():
@@ -14,12 +14,6 @@ func _ready():
 		layers_container.name = "Layers"
 		add_child(layers_container)
 		
-	var scene = preload("res://nodes/grid_area/grid_area.tscn");
-	detector = scene.instantiate()
-	detector.name = "Detector"
-	detector.visible = true
-	add_child(detector)
-	
 	var children = layers_container.get_children()
 	layers = children.filter(filter_tilemap_layer)
 
@@ -62,6 +56,12 @@ func can_object_be_placed_on_tile(node : Node2D, coords : Vector2) -> bool:
 
 # Get all the nodes on one tile
 func get_collisions_on_tile(coords : Vector2) -> Dictionary:
+	
+	var detector = grid_area_scene.instantiate()
+	detector.visible = true
 	detector.global_position = get_position_from_coordinates(coords)
-	print(detector.global_position)
-	return detector.collisions
+	add_child(detector)
+	var collisions = detector.collisions
+	#remove_child(detector)	
+
+	return collisions

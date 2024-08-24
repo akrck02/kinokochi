@@ -165,6 +165,8 @@ texture_region_size = Vector2i(80, 80)
 4:7/0/z_index = 1
 4:4/0 = 0
 4:4/0/texture_origin = Vector2i(0, -20)
+0:5/0 = 0
+0:5/0/texture_origin = Vector2i(0, 12)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8iprv"]
 texture = ExtResource("3_8jlx2")

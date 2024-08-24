@@ -39,3 +39,6 @@ extends Node
 @warning_ignore("unused_signal") signal pet_affection_changed(value : int)
 @warning_ignore("unused_signal") signal pet_energy_changed(value : int)
 @warning_ignore("unused_signal") signal pet_evolved(value : int)
+
+# Dino run minigame
+@warning_ignore("unused_signal") signal dinorun_update_score

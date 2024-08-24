@@ -88,7 +88,7 @@ func handle_screen_touch_release(data : InputData):
 	if SceneManager.current_tilemap.can_object_be_placed_on_tile(self, coords):
 		return
 		
-	var new_position = SceneManager.current_tilemap.get_tiled_position(previous_position)
+	var new_position = SceneManager.current_tilemap.get_position_from_coordinates(coords)
 	drag_tween = create_tween()
 	drag_tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_position, .15).set_trans(Tween.TRANS_SINE)
 	

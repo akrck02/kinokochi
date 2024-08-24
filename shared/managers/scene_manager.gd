@@ -33,9 +33,9 @@ func change_scene(scene_name : String):
 	
 	# adding scene to the root
 	var scene : Node = ResourceLoader.load_threaded_get(scene_name).instantiate()
-	canvas.call_deferred("add_child", scene)
+	canvas.add_child(scene)
 	
 	# Get tilemap if exists
-	var tilemap = scene.get_node("Tilemap")
-	if tilemap is TileMapExtended:
+	var tilemap = scene.get_node_or_null("Tilemap")
+	if tilemap != null and tilemap is TileMapExtended:
 		current_tilemap = tilemap
