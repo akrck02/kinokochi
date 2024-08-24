@@ -1,11 +1,15 @@
 extends Node2D
 class_name DinoRunCharacter
 
+# Motion parameters
 @export var global_speed : float = 1;
+var capture_motion = true
 
+# Animations
 @onready var timer : Timer = $Timer
 @onready var animation_player = $AnimationPlayer
 
+# jump
 @onready var original_position : Vector2 = position
 @onready var tween : Tween
 @export var jump_speed = .15;
@@ -27,7 +31,7 @@ func _input(_event):
 # Handle input
 func jump(_data : InputData):
 	
-	if jumping:
+	if not capture_motion or jumping:
 		return
 
 	jumping = true
@@ -58,4 +62,4 @@ func update_score():
 	SignalDatabase.dinorun_update_score.emit()
 
 func kill():
-	print("death")
+	SignalDatabase.dinorun_finished.emit()

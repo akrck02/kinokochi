@@ -1,7 +1,7 @@
 extends Node2D
 
 # Parallax
-@export var global_speed : float = 1.5;
+@export var global_speed : float = 1.75;
 @onready var parallax : Parallax2D = $Rotation/Parallax2D;
 @onready var cloud_particles : GPUParticles2D = $CloudParticles
 
@@ -15,17 +15,29 @@ var spawned_enemies : Array = [];
 # Dino 
 @onready var dino : DinoRunCharacter = $Dino
 
-# Score
-@onready var score_label : Label = $ui/Container/MarginContainer/PanelContainer/Score
+# UI
 var score : int = 0
+@onready var run_score_container : VBoxContainer = $ui/RunScore
+@onready var top_score_label : Label = $ui/RunScore/MarginContainer/PanelContainer/Score
+@onready var results_container : VBoxContainer = $ui/Results
+@onready var results_score_label : Label = $ui/Results/PanelContainer/MarginContainer/VBoxContainer/Score/Value
+
+@onready var exit_button : Button = $ui/Results/PanelContainer/MarginContainer/VBoxContainer/Buttons/Exit
+@onready var retry_button : Button = $ui/Results/PanelContainer/MarginContainer/VBoxContainer/Buttons/Retry
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	update_speeds()
 	
+	run_score_container.visible = true
+	results_container.visible = false
+
 	SignalDatabase.dinorun_update_score.connect(update_score)
+	SignalDatabase.dinorun_finished.connect(show_results)
 	despawn_area.area_entered.connect(despawn_enemy)
+	exit_button.pressed.connect(exit)
+	retry_button.pressed.connect(retry)
 	
+	update_speeds()
 	spawn_timer.wait_time = 1
 	spawn_timer.one_shot = false
 	spawn_timer.timeout.connect(spawn_enemy)
@@ -57,8 +69,8 @@ func despawn_enemy(area : Area2D):
 # Add to score and update.
 func update_score():
 	score += 1
-	score_label.text = "%08d" % score
-	global_speed = round_to_dec(1.5 + log(score) / log(10) , 2)
+	top_score_label.text = "%08d" % score
+	global_speed = round_to_dec(1.75 + log(score) / log(10) , 2)
 	update_speeds()
 
 func round_to_dec(num, digit):
@@ -74,3 +86,22 @@ func update_speeds():
 	
 	for enemy in spawned_enemies:
 		enemy.global_speed = global_speed
+
+func show_results():
+	SignalDatabase.dinorun_update_score.disconnect(update_score)
+	spawn_timer.stop()
+	
+	for enemy in spawned_enemies:
+		enemy.queue_free()
+	
+	dino.capture_motion = false
+	
+	results_score_label.text = "%08d" % score
+	run_score_container.visible = false
+	results_container.visible = true
+
+func exit():
+	SignalDatabase.scene_change_requested.emit("park")
+	
+func retry():
+	SignalDatabase.scene_change_requested.emit("minigames/dino_run/dino_run")
