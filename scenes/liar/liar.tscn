@@ -26,15 +26,19 @@ max_zoom = 500.0
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 219.0
-offset_top = -43.0
-offset_right = 259.0
-offset_bottom = -3.0
+offset_left = -96.0
+offset_top = -169.0
+offset_right = -56.0
+offset_bottom = -129.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Button2" type="Button" parent="Control/HBoxContainer"]
+layout_mode = 2
+text = "Add card"
 
 [node name="SpinBoxX" type="SpinBox" parent="Control/HBoxContainer"]
 layout_mode = 2
@@ -60,15 +64,15 @@ x = 1
 y = 8
 
 [node name="Player1" parent="." instance=ExtResource("6_3f0sk")]
-position = Vector2(243, 163)
+position = Vector2(282, -128)
 x = 7
 
 [node name="Player2" parent="." instance=ExtResource("6_3f0sk")]
-position = Vector2(-256, -124)
+position = Vector2(241, 142)
 x = -6
 
 [node name="Player3" parent="." instance=ExtResource("6_3f0sk")]
-position = Vector2(208, -122)
+position = Vector2(-246, -142)
 y = -7
 
 [node name="TestCards" type="TileMapLayer" parent="."]
