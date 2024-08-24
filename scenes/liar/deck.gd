@@ -52,6 +52,7 @@ func generate_hands() -> Array:
 		for c in CARDS_PER_HAND:
 			var card = deck.get_random_card()
 			card.facing = facing
+			hand.facing = facing
 			hand.add_card(card)
 		hands.append(hand)
 		facing += 1

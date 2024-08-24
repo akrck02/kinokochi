@@ -7,6 +7,7 @@ class_name Hand
 ## List of [Card] objects
 var cards: Array
 var cards_array: Array[Array]
+var facing: Constants.FACING
 
 
 func _init() -> void:
@@ -52,6 +53,8 @@ func add_cards(cards: Array):
 
 ## Add a card to the array on the back
 func add_card(card: Card):
+	if card.facing != self.facing:
+		card.set_facing(self.facing)
 	card.show_card_sprite()
 	add_child(card)
 	cards.append(card)

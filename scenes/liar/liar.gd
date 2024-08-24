@@ -34,8 +34,8 @@ func _ready() -> void:
 	#x+=6
 
 	player_0.id = 0
-	player_0.set_hand(hands_down)
 	player_0.facing = Constants.FACING.DOWN
+	player_0.set_hand(hands_down)
 	player_0.set_player_name("tas")
 	player_0._hand.move_local(-2, 3)
 
@@ -65,12 +65,13 @@ func add_card():
 	var player = player_2
 	var card = Card.new()
 	print(player._hand.print_array())
+	player._hand.cards[0].set_facing(Constants.FACING.DOWN)
 
-	card.facing = player.facing
-	card.number = 3
-	card.color = "red"
-	player._hand.add_card(card)
-	player._hand.print_array()
+	#card.facing = player.facing
+	#card.number = 3
+	#card.color = "red"
+	#player._hand.add_card(card)
+	#player._hand.print_array()
 
 
 func move(object: IsometricObject):

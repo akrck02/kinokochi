@@ -25,6 +25,11 @@ func show_card_sprite():
 	update_sprite()
 
 
+func set_facing(facing: Constants.FACING):
+	self.facing = facing
+	update_sprite()
+
+
 func update_sprite():
 	if not sprite:
 		return
