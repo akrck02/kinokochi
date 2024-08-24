@@ -1,14 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c22g7l1a1tbct"]
 
 [ext_resource type="Script" path="res://scenes/liar/card.gd" id="1_iup7b"]
-[ext_resource type="Texture2D" uid="uid://g1rspwg0tfbe" path="res://resources/sprites/cards/yellow.png" id="2_i62cd"]
+[ext_resource type="Texture2D" uid="uid://go3mcwh23e08" path="res://resources/sprites/cards/white.png" id="2_vv4fo"]
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_iup7b")
 color = "red"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_i62cd")
-hframes = 10
+texture = ExtResource("2_vv4fo")
 vframes = 2
-frame = 13
+frame = 1

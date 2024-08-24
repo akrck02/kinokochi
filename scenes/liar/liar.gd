@@ -38,6 +38,7 @@ func _ready() -> void:
 	player_0.set_hand(hands_down)
 	player_0.set_player_name("tas")
 	player_0._hand.move_local(-2, 3)
+	player_0._hand.cards[0].set_reveal(true)
 
 	player_1.id = 1
 	player_1.facing = Constants.FACING.UP
@@ -64,8 +65,10 @@ func _ready() -> void:
 func add_card():
 	var player = player_2
 	var card = Card.new()
-	print(player._hand.print_array())
-	player._hand.cards[0].set_facing(Constants.FACING.DOWN)
+	card.number = 3
+	card.color = "red"
+	card.set_facing(Constants.FACING.UP)
+	player._hand.add_card(card)
 
 	#card.facing = player.facing
 	#card.number = 3

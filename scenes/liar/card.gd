@@ -7,6 +7,8 @@ var sprite: Sprite2D
 @export var color: String
 
 @export var facing: Constants.FACING
+## If the number and color is show
+var reveal: bool = false  # BUG: White cards show wrong facing in RIGHT and LEFT
 
 
 func _ready() -> void:
@@ -30,12 +32,24 @@ func set_facing(facing: Constants.FACING):
 	update_sprite()
 
 
+func set_reveal(value: bool):
+	self.reveal = value
+
+	update_sprite()
+
+
 func update_sprite():
 	if not sprite:
 		return
-	sprite.texture = load("res://resources/sprites/cards/" + color + ".png")
-	sprite.hframes = 10
-	sprite.vframes = 2
+
+	if self.reveal:
+		sprite.texture = load("res://resources/sprites/cards/" + color + ".png")
+		sprite.hframes = 10
+		sprite.vframes = 2
+	else:
+		sprite.texture = load("res://resources/sprites/cards/white.png")
+		sprite.hframes = 1
+		sprite.vframes = 2
 
 	# Set facing of card
 	match self.facing:
