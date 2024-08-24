@@ -79,13 +79,13 @@ func add_card(card: Card):
 		for j in range(5):
 			if self.cards_array[2 - i][4 - j] == null:
 				match card.facing:
-					card.FACING.UP:
+					Constants.FACING.UP:
 						card.move_local(4 - j, 2 - i)
-					card.FACING.DOWN:
+					Constants.FACING.DOWN:
 						card.move_local(4 - j, i - 2)
-					card.FACING.LEFT:
+					Constants.FACING.LEFT:
 						card.move_local(2 - i, 4 - j)
-					card.FACING.RIGHT:
+					Constants.FACING.RIGHT:
 						card.move_local(i - 2, 4 - j)
 
 				self.cards_array[2 - i][4 - j] = card

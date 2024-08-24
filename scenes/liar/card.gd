@@ -2,12 +2,11 @@ class_name Card
 extends IsometricObject
 
 const movement_speed = 1.00 / 1.5
-var sprite: Sprite2D;
+var sprite: Sprite2D
 @export var number: int
 @export var color: String
 
-enum FACING { UP, DOWN, LEFT, RIGHT }
-@export var facing: FACING
+@export var facing: Constants.FACING
 
 
 func _ready() -> void:
@@ -35,15 +34,15 @@ func update_sprite():
 
 	# Set facing of card
 	match self.facing:
-		FACING.UP:
+		Constants.FACING.UP:
 			rotation_degrees = 0
 			sprite.frame_coords = Vector2i(self.number, 0)
-		FACING.DOWN:
+		Constants.FACING.DOWN:
 			rotation_degrees = 180
 			sprite.frame_coords = Vector2i(self.number, 0)
-		FACING.LEFT:
+		Constants.FACING.LEFT:
 			rotation_degrees = 0
 			sprite.frame_coords = Vector2i(self.number, 1)
-		FACING.RIGHT:
+		Constants.FACING.RIGHT:
 			rotation_degrees = 180
 			sprite.frame_coords = Vector2i(self.number, 1)

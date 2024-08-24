@@ -24,18 +24,21 @@ const ENGINE_UTILS_SCRIPT_PATH = SHARED_PATH + "engine_utils.gd"
 const LOADER_PATH = SCENE_PATH + "loader/loader.tscn"
 const SELECTOR_SCENE_PATH = SCENE_PATH + "selector/level_selector.tscn"
 const ERROR_SCENE_NAME = SCENE_PATH + "error/error.tscn"
-const CREDITS_SCENE_NAME = SCENE_PATH +"credits/credits.tscn"
+const CREDITS_SCENE_NAME = SCENE_PATH + "credits/credits.tscn"
 
 # Nodes
 const LEVEL_BUTTON = UI_NODE_PATH + "levels/level_button.tscn"
 
 # Sprites
-const DILOGUE_FILE_TEMPLATE : String = "res://files/dialogues/$file.json"
+const DILOGUE_FILE_TEMPLATE: String = "res://files/dialogues/$file.json"
 
 # Sprite params
 const TILE_SIZE = 16
 
-# Audio 
-const AUDIO_MASTER_BUS = "Master";
-const AUDIO_MUSIC_BUS = "Music";
-const AUDIO_EFFECTS_BUS = "Effects";
+# Audio
+const AUDIO_MASTER_BUS = "Master"
+const AUDIO_MUSIC_BUS = "Music"
+const AUDIO_EFFECTS_BUS = "Effects"
+
+# Liar minigame
+enum FACING { UP, DOWN, LEFT, RIGHT }
