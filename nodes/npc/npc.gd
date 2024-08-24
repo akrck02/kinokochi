@@ -8,11 +8,14 @@ extends CharacterBody2D
 @onready var sprite : Sprite2D = $Sprite
 
 # Movement
+@export var target : Node2D = null
+@onready var navigation_agent : NavigationAgent2D = $NavigationAgent2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var ray : RayCast2D = $RayCast2D
 @onready var tween : Tween
-@export var movement_speed = 1.00/1.5;
+@export var movement_speed = 150 # 1.00/1.5;
 var moving = false
+var current_path : Array[Vector2i] = []
 
 # Interactions
 @onready var area_2d : Area2D = $Area2D
@@ -21,13 +24,10 @@ var moving = false
 func _ready():
 	load_from_savestate();
 	update_sprite()
-
-	SignalDatabase.tick_reached.connect(tick_update)
-
-	# Interactions
-	area_2d.input_event.connect(handle_interaction)
 	
-	# Set outline based on config file
+	SignalDatabase.screen_touch_double_tap.connect(move_test)
+	SignalDatabase.tick_reached.connect(tick_update)
+	area_2d.input_event.connect(handle_interaction)
 	animation_player.play("idle")
 
 # load pet data from savestate
@@ -61,17 +61,33 @@ func tick_update():
 
 # Automatic movement
 func automatic_movement():
-	
-	if moving: 
+	if current_path.is_empty():
 		return
-	
-	var direction = randi() % 7
-	move(direction)
 
+	var target_position = current_path.front()
+	global_position = global_position.move_toward(target_position, 5)
+	
+	if global_position == target_position:
+		current_path.pop_front()
+	
+#	if moving: return
+#	var direction = randi() % 7
+#	move(direction)
+
+
+func move_test(input: InputData) -> void:
+	var click_position = input.get_current_global_position(self)
+	print(click_position)
+	print(SceneManager.current_tilemap.get_coordinates_from_position(click_position))
+	
+	if SceneManager.current_tilemap.is_point_walkable(click_position):
+		current_path = SceneManager.current_tilemap.astar.get_id_path(
+			SceneManager.current_tilemap.get_coordinates_from_position(global_position),
+			SceneManager.current_tilemap.get_coordinates_from_position(click_position)
+		).slice(1)
 
 # Move the character
 func move(direction : int):
-
 	moving = true
 	var coords = SceneManager.current_tilemap.get_coordinates_from_position(global_position)
 		

@@ -7,8 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp7u"]
 size = Vector2(19, 129)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_psda2"]
-size = Vector2(43, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_55usi"]
+radius = 15.5
 
 [node name="DinoEnemy" type="CharacterBody2D"]
 script = ExtResource("1_rug5o")
@@ -37,4 +37,4 @@ shape = SubResource("RectangleShape2D_urp7u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
 position = Vector2(46.5, 30)
-shape = SubResource("RectangleShape2D_psda2")
+shape = SubResource("CircleShape2D_55usi")
