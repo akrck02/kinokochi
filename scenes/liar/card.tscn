@@ -11,4 +11,4 @@ color = "red"
 texture = ExtResource("2_i62cd")
 hframes = 10
 vframes = 2
-frame = 3
+frame = 13

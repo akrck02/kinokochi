@@ -38,9 +38,11 @@ offset_bottom = 40.0
 
 [node name="SpinBoxX" type="SpinBox" parent="Control/HBoxContainer"]
 layout_mode = 2
+min_value = -100.0
 
 [node name="SpinBoxY" type="SpinBox" parent="Control/HBoxContainer"]
 layout_mode = 2
+min_value = -100.0
 
 [node name="Button" type="Button" parent="Control/HBoxContainer"]
 layout_mode = 2
@@ -53,19 +55,20 @@ position = Vector2(40, 20)
 number = 4
 
 [node name="Player0" parent="." instance=ExtResource("6_3f0sk")]
-position = Vector2(-263, 128)
-y = 7
+position = Vector2(-283, 155)
+x = 1
+y = 8
 
 [node name="Player1" parent="." instance=ExtResource("6_3f0sk")]
-position = Vector2(261, 139)
+position = Vector2(243, 163)
 x = 7
 
 [node name="Player2" parent="." instance=ExtResource("6_3f0sk")]
-position = Vector2(-247, -197)
-x = -7
+position = Vector2(-256, -124)
+x = -6
 
 [node name="Player3" parent="." instance=ExtResource("6_3f0sk")]
-position = Vector2(217, -173)
+position = Vector2(208, -122)
 y = -7
 
 [node name="TestCards" type="TileMapLayer" parent="."]

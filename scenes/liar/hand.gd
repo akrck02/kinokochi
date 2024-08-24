@@ -56,3 +56,4 @@ func show_cards():
 	for card in self.cards:
 		card.show_card_sprite()
 		add_child(card)
+		
