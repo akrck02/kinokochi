@@ -7,8 +7,6 @@ var player_name: String = "teko"
 var _hand: Hand
 @onready var pet: Pet = $Pet
 
-var cards: Array[Array]
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,14 +26,6 @@ func set_player_name(name: String):
 	self.player_name = name
 	pet.pet_name = name
 	pet.update_sprite()
-
-
-func set_cards(cards: Array):
-	for i in range(3):
-		var row = []
-		for j in range(5):
-			row.append(null)
-		cards.append(row)
 
 
 func set_hand(hand: Hand):

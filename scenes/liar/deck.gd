@@ -29,8 +29,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+
 func _to_string() -> String:
 	return str(cards)
+
 
 ## Returns a random [Card] while removing it from the [Deck]
 func get_random_card() -> Card:
@@ -46,13 +48,11 @@ func generate_hands() -> Array:
 	var deck = Deck.new()
 	var facing = 0
 	for player in PLAYERS:
-		var cards: Array = []
+		var hand = Hand.new()
 		for c in CARDS_PER_HAND:
 			var card = deck.get_random_card()
 			card.facing = facing
-			cards.append(card)
-		var hand = Hand.new()
-		hand.cards = cards
+			hand.add_card(card)
 		hands.append(hand)
 		facing += 1
 

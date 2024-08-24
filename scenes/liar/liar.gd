@@ -31,26 +31,22 @@ func _ready() -> void:
 
 	player_0.id = 0
 	player_0.set_hand(hands[0])
-	player_0._hand.arrange_cards()
+	print(player_0._hand.print_array())
 	player_0.set_player_name("tas")
 	player_0._hand.move_local(-2, 3)
 
 	player_1.id = 1
 	player_1.set_hand(hands[1])
-	player_1._hand.arrange_cards()
 	player_1.set_player_name("foxy")
 	player_1._hand.move_local(-2, -3)
-	print(player_1._hand.print_array())
 
 	player_2.id = 2
 	player_2.set_hand(hands[2])
-	player_2._hand.arrange_cards()
 	player_2.set_player_name("teko")
 	player_2._hand.move_local(3, -2)
 
 	player_3.id = 3
 	player_3.set_hand(hands[3])
-	player_3._hand.arrange_cards()
 	player_3.set_player_name("soriel")
 	player_3._hand.move_local(-3, -2)
 
