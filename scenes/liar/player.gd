@@ -6,6 +6,7 @@ var player_name: String = "teko"
 ## List of [Card]s
 var _hand: Hand
 @onready var pet: Pet = $Pet
+var facing: Constants.FACING
 
 
 # Called when the node enters the scene tree for the first time.
