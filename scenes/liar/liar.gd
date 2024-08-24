@@ -21,6 +21,10 @@ func _ready() -> void:
 	deck = Deck.new()
 	# Create hands
 	var hands = deck.generate_hands()
+	var hands_up = hands[0]
+	var hands_down = hands[1]
+	var hands_left = hands[2]
+	var hands_right = hands[3]
 	var x = 0
 	var y = 3
 	#for hand in hands:
@@ -30,24 +34,26 @@ func _ready() -> void:
 	#x+=6
 
 	player_0.id = 0
-	player_0.set_hand(hands[0])
-	player_0.facing = Constants.FACING.UP
-	print(player_0._hand.print_array())
+	player_0.set_hand(hands_down)
+	player_0.facing = Constants.FACING.DOWN
 	player_0.set_player_name("tas")
 	player_0._hand.move_local(-2, 3)
 
 	player_1.id = 1
-	player_1.set_hand(hands[1])
+	player_1.facing = Constants.FACING.UP
+	player_1.set_hand(hands_up)
 	player_1.set_player_name("foxy")
 	player_1._hand.move_local(-2, -3)
 
 	player_2.id = 2
-	player_2.set_hand(hands[2])
+	player_2.facing = Constants.FACING.RIGHT
+	player_2.set_hand(hands_right)
 	player_2.set_player_name("teko")
 	player_2._hand.move_local(3, -2)
 
 	player_3.id = 3
-	player_3.set_hand(hands[3])
+	player_3.facing = Constants.FACING.LEFT
+	player_3.set_hand(hands_left)
 	player_3.set_player_name("soriel")
 	player_3._hand.move_local(-3, -2)
 
@@ -56,8 +62,10 @@ func _ready() -> void:
 
 
 func add_card():
-	var player = player_0
+	var player = player_2
 	var card = Card.new()
+	print(player._hand.print_array())
+
 	card.facing = player.facing
 	card.number = 3
 	card.color = "red"

@@ -34,15 +34,15 @@ func update_sprite():
 
 	# Set facing of card
 	match self.facing:
-		Constants.FACING.UP:
+		Constants.FACING.DOWN:
 			rotation_degrees = 0
 			sprite.frame_coords = Vector2i(self.number, 0)
-		Constants.FACING.DOWN:
+		Constants.FACING.UP:
 			rotation_degrees = 180
 			sprite.frame_coords = Vector2i(self.number, 0)
-		Constants.FACING.LEFT:
+		Constants.FACING.RIGHT:
 			rotation_degrees = 0
 			sprite.frame_coords = Vector2i(self.number, 1)
-		Constants.FACING.RIGHT:
+		Constants.FACING.LEFT:
 			rotation_degrees = 180
 			sprite.frame_coords = Vector2i(self.number, 1)
