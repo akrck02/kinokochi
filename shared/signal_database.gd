@@ -19,6 +19,8 @@ extends Node
 @warning_ignore("unused_signal") signal screen_touch_drag_move(data : InputData)
 @warning_ignore("unused_signal") signal screen_touch_drag_pinch(data : InputData)
 
+@warning_ignore("unused_signal") signal mouse_motion_updated(global_position : Vector2)
+
 # Visual effects
 @warning_ignore("unused_signal") signal notification_shown(message : String)
 @warning_ignore("unused_signal") signal notification_hidden()

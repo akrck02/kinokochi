@@ -125,7 +125,7 @@ _data = {
 "walk": SubResource("Animation_okm1f")
 }
 
-[node name="Pet" type="CharacterBody2D" groups=["Persist"]]
+[node name="Npc" type="CharacterBody2D" groups=["Persist"]]
 y_sort_enabled = true
 script = ExtResource("1_7m8e0")
 
@@ -167,7 +167,3 @@ target_position = Vector2(0, 40)
 modulate = Color(0.909804, 0.803922, 1, 0.25098)
 position = Vector2(-5.3, -3)
 polygon = PackedVector2Array(26.3, -16, 61.3, 1, 26.3, 19, -9.7, 1)
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-debug_enabled = true

@@ -22,12 +22,12 @@ func get_position(id : int) -> Vector2:
 	return touch_points[id]
 
 # Get the global position of the current event
-func get_current_global_position(node_reference : Node2D) -> Vector2:
-	return get_global_position(node_reference, self.index)
+func get_current_global_position(viewport : Viewport) -> Vector2:
+	return get_global_position(viewport, self.index)
 
 # Get the global position of any other event occurred at the same time
-func get_global_position(node_reference : Node2D, id : int) -> Vector2:
-	return Positions.convert_to_global_position(node_reference, touch_points[id])
+func get_global_position(viewport : Viewport, id : int) -> Vector2:
+	return Positions.convert_ui_position_to_scene_global_position(viewport, touch_points[id])
 
 # Calculate distance between the given events
 func calculate_distance_between(origin_id : int, final_id : int) -> float:

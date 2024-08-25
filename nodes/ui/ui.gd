@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@export  var site_name : String = "" 
 @onready var time_label : RichTextLabel = $UiControl/PanelContainer/MarginContainer/Banner/Time 
 @onready var filter : ColorRect = $Filter
 @onready var info : RichTextLabel = $UiControl/MarginContainer/InfoBanner/Info
@@ -8,6 +9,7 @@ extends CanvasLayer
 @onready var show_settings_button : Button = $UiControl/ShowSettings/Control/Button
 @onready var settings = $Settings
 @onready var ui_control : VBoxContainer = $UiControl
+@onready var location_label : RichTextLabel = $UiControl/PanelContainer/MarginContainer/Banner/Location
 
 var notification_showing = false;
 
@@ -19,6 +21,9 @@ func _ready():
 	SignalDatabase.notification_shown.connect(show_notification)
 	SignalDatabase.notification_hidden.connect(hide_notification)
 	show_settings_button.pressed.connect(toggle_settings)
+	
+	location_label.text = site_name
+	
 	update_time()
 	
 func _input(_event):

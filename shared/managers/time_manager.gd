@@ -1,6 +1,6 @@
 extends Node
 
-const tick_time : float = 2
+const tick_time : float = .75
 var timer : Timer
 
 # Called when the node enters the scene tree for the first time.

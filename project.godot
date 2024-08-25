@@ -21,12 +21,12 @@ config/icon="res://resources/sounds/icon.svg"
 
 SignalDatabase="*res://shared/signal_database.gd"
 TimeManager="*res://shared/managers/time_manager.gd"
+SaveManager="*res://shared/managers/save_manager.gd"
+SceneManager="*res://shared/managers/scene_manager.gd"
 TouchInput="*res://shared/managers/touch_input_manager.gd"
 GameSprites="*res://shared/managers/game_sprites_manager.gd"
 SettingsManager="*res://shared/managers/settings_manager.gd"
-SaveManager="*res://shared/managers/save_manager.gd"
 Canvas="*res://shared/canvas.gd"
-SceneManager="*res://shared/managers/scene_manager.gd"
 
 [display]
 

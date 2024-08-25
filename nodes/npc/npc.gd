@@ -9,25 +9,30 @@ extends CharacterBody2D
 
 # Movement
 @export var target : Node2D = null
-@onready var navigation_agent : NavigationAgent2D = $NavigationAgent2D
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var ray : RayCast2D = $RayCast2D
 @onready var tween : Tween
-@export var movement_speed = 150 # 1.00/1.5;
 var moving = false
 var current_path : Array[Vector2i] = []
+var coordinates
 
 # Interactions
 @onready var area_2d : Area2D = $Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_from_savestate();
-	update_sprite()
 	
+	# Signal connection
 	SignalDatabase.screen_touch_double_tap.connect(move_test)
 	SignalDatabase.tick_reached.connect(tick_update)
 	area_2d.input_event.connect(handle_interaction)
+	
+	# Setup the npc data
+	load_from_savestate();
+	update_sprite()
+	# calculate_current_coordinates()
+	
+	# Start animations
 	animation_player.play("idle")
 
 # load pet data from savestate
@@ -57,53 +62,123 @@ func handle_touch(event : InputEventScreenTouch):
 
 # This function will be called every tick
 func tick_update():
+	calculate_current_coordinates()
 	automatic_movement()
+
+# Calculate current coordinates
+func calculate_current_coordinates():
+	coordinates = SceneManager.current_tilemap.get_coordinates_from_position(global_position)
 
 # Automatic movement
 func automatic_movement():
 	if current_path.is_empty():
 		return
 
-	var target_position = current_path.front()
-	global_position = global_position.move_toward(target_position, 5)
+	var new_coordinates : Vector2i = current_path.front()
+	var target_position : Vector2i = SceneManager.current_tilemap.get_global_position_from_coordinates(new_coordinates)
 	
-	if global_position == target_position:
+	print("Going to: ")
+	print(target_position)
+	
+	move_towards_in_grid(new_coordinates)
+	
+	if global_position as Vector2i == target_position:
+		print("Arrived at: ")
+		print(target_position)
 		current_path.pop_front()
-	
-#	if moving: return
-#	var direction = randi() % 7
-#	move(direction)
+		animation_player.play("idle")
 
-
+# Test click movement
 func move_test(input: InputData) -> void:
-	var click_position = input.get_current_global_position(self)
-	print(click_position)
-	print(SceneManager.current_tilemap.get_coordinates_from_position(click_position))
+	var click_position : Vector2i = SceneManager.current_tilemap.to_local(input.get_current_global_position(get_viewport()))
+	var local_position  : Vector2i = SceneManager.current_tilemap.to_local(global_position)
+	var current_coordinates  : Vector2i = SceneManager.current_tilemap.get_coordinates_from_position(local_position)
+	var new_coordinates  : Vector2i = SceneManager.current_tilemap.get_coordinates_from_position(click_position)
+	var is_walkable : bool = SceneManager.current_tilemap.is_coordinate_walkable(new_coordinates)
 	
-	if SceneManager.current_tilemap.is_point_walkable(click_position):
-		current_path = SceneManager.current_tilemap.astar.get_id_path(
-			SceneManager.current_tilemap.get_coordinates_from_position(global_position),
-			SceneManager.current_tilemap.get_coordinates_from_position(click_position)
-		).slice(1)
+	print()
+	print("#####################################")
+	print("Click on local:")
+	print(click_position)
+	print("----------------------------------------")
+	
+	print("NPC coordinates:")
+	print(current_coordinates)
+	print()
+	print("----------------------------------------")
+	
+	print("Click on coordinates:")
+	print(new_coordinates)
+	print()
+	print("----------------------------------------")
+	
+	print("Coordinates are walkable:")
+	print(is_walkable)
+	print()
+	print("----------------------------------------")
+	
+	print("Local position:")
+	print(local_position)
+	print("----------------------------------------")
+	
+	if is_walkable:
+		current_path = SceneManager.current_tilemap.astar.get_id_path(current_coordinates, new_coordinates).slice(1)
+	
+	print("Current path")
+	print(current_path)
+	print("----------------------------------------")
+
+# Move towards coordinates in grid
+func move_towards_in_grid(new_coordinates : Vector2i):
+	
+	if animation_player.current_animation != "walk":
+		animation_player.play("walk")
+	
+	moving = true
+	var direction = calculate_next_direction(new_coordinates)
+	move(direction)
+	moving = false
+
+
+# Calculate next direction
+func calculate_next_direction(new_coordinates : Vector2i) -> MoveEnums.Direction:
+	
+	if new_coordinates.x > coordinates.x:
+		return MoveEnums.Direction.Right
+	elif new_coordinates.x < coordinates.x: 
+		return MoveEnums.Direction.Left
+	elif new_coordinates.y > coordinates.y: 
+		return MoveEnums.Direction.Up
+	elif new_coordinates.y < coordinates.y: 
+		return MoveEnums.Direction.Down
+
+	return MoveEnums.Direction.None
+
 
 # Move the character
-func move(direction : int):
-	moving = true
-	var coords = SceneManager.current_tilemap.get_coordinates_from_position(global_position)
-		
+func move(direction : MoveEnums.Direction):
+	
 	match direction:
-		1: coords.x -= 1   # Left
-		2: coords.x += 1 # Right
-		3: coords.y -= 1  # Down
-		4: coords.y += 1   # Up		
+		MoveEnums.Direction.Left: 
+			coordinates.x -= 1
+			sprite.flip_h = false
+		MoveEnums.Direction.Right: 
+			coordinates.x += 1
+			sprite.flip_h = true
+		MoveEnums.Direction.Down: 
+			coordinates.y -= 1 
+			sprite.flip_h = true
+		MoveEnums.Direction.Up: 
+			coordinates.y += 1   
+			sprite.flip_h = false
 	
-	if SceneManager.current_tilemap.can_object_be_placed_on_tile(self, coords):
-		return
-	
-	var new_position = SceneManager.current_tilemap.get_position_from_coordinates(coords)
+	# if SceneManager.current_tilemap.can_object_be_placed_on_tile(self, coords):
+		# return
+
+	var new_position = SceneManager.current_tilemap.get_position_from_coordinates(coordinates)
 	tween = create_tween()
-	tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_position, .15).set_trans(Tween.TRANS_SINE)
-	moving = false
+	tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_position, 1.00/1.5).set_trans(Tween.TRANS_SINE)
+	await tween.finished	
 
 # Interact
 func interact():

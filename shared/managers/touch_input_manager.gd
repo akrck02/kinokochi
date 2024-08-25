@@ -5,8 +5,9 @@ var touch_points : Dictionary = {}
 
 # Input handle
 func _input(event):
-	if event is InputEventScreenTouch: handle_touch(event);
-	if event is InputEventScreenDrag:  handle_drag(event);
+	if event is InputEventScreenTouch: handle_touch(event)
+	if event is InputEventScreenDrag:  handle_drag(event)
+	if event is InputEventMouseMotion: handle_mouse_motion(event)
 
 # Handle the touch events
 func handle_touch(event : InputEventScreenTouch):
@@ -54,3 +55,7 @@ func handle_drag(event : InputEventScreenDrag):
 		2:  
 			data.type = InputEnums.Type.DragPinch
 			SignalDatabase.screen_touch_drag_pinch.emit(data)
+
+# Handle mouse motion
+func handle_mouse_motion(event : InputEventMouseMotion):
+	SignalDatabase.mouse_motion_updated.emit(event.global_position)

@@ -39,14 +39,16 @@ func setup_astar():
 	
 	var base_layer = layers[0]
 	var tilemap_size = base_layer.get_used_rect().end - base_layer.get_used_rect().position
-	map_rectangle = Rect2i(Vector2i.ZERO, tilemap_size)
+	map_rectangle = Rect2i(base_layer.get_used_rect().position, tilemap_size)
 	var tile_size = base_layer.tile_set.tile_size
 	
 	astar.region = map_rectangle
 	astar.cell_size = tile_size
+	astar.jumping_enabled = true
+	astar.cell_shape = AStarGrid2D.CELL_SHAPE_ISOMETRIC_RIGHT
 	astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
-	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER	
+	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar.update()
 		
 	for coord_x in tilemap_size.x:
@@ -66,14 +68,10 @@ func has_tile_navigation_wall(coordinates : Vector2i) -> bool:
 		
 	return false
 
-# Get if point is walkable
-func is_point_walkable(origin : Vector2) -> bool:
-	var point = get_coordinates_from_position(origin)
-	if map_rectangle.has_point(point):
-		if not astar.is_point_solid(point):
-			return true
-	return false
-	
+# Get if coordinates is walkable
+func is_coordinate_walkable(coordinates : Vector2i) -> bool:
+	return map_rectangle.has_point(coordinates) and not astar.is_point_solid(coordinates)
+
 # Filter tilemap layer
 func filter_tilemap_layer(node : Node) -> bool:
 	return node is TileMapLayer
@@ -86,17 +84,17 @@ func get_tiled_position(origin : Vector2) -> Vector2:
 		return origin
 	
 	return layers[0].map_to_local(get_coordinates_from_position(origin))
-	
-# Get coordinates from position
-func get_coordinates_from_position(origin : Vector2) -> Vector2:
+
+# Get coordinates from local position
+func get_coordinates_from_position(local_origin : Vector2) -> Vector2i:
 	
 	if layers.is_empty():
 		push_warning("tile layer not asigned")
 		return Vector2.ZERO
 	
-	return layers[0].local_to_map(origin)
+	return layers[0].local_to_map(local_origin)
 
-# Get position from coordinates
+# Get local position from coordinates
 func get_position_from_coordinates(coords : Vector2) -> Vector2:
 	
 	if layers.is_empty():
@@ -104,6 +102,10 @@ func get_position_from_coordinates(coords : Vector2) -> Vector2:
 		return Vector2.ZERO
 	
 	return layers[0].map_to_local(coords)
+
+# Get global position from coordinates
+func get_global_position_from_coordinates(coords : Vector2) -> Vector2:
+	return self.to_global(get_position_from_coordinates(coords))
 
 # Get if a n object can be placed
 func can_object_be_placed_on_tile(node : Node2D, coords : Vector2) -> bool:

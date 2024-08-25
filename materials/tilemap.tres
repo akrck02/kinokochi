@@ -243,8 +243,9 @@ texture_region_size = Vector2i(80, 80)
 texture = ExtResource("3_8jlx2")
 texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 10)
-0:0/0/modulate = Color(0, 0.0588235, 1, 1)
+0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/modulate = Color(0, 0, 0, 0.12549)
+0:0/0/custom_data_0 = "wall"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4lhov"]
 texture = ExtResource("4_4lwey")
