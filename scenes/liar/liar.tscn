@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/liar/liar.gd" id="1_h8pm3"]
 [ext_resource type="TileSet" uid="uid://b1vppjetxm2w8" path="res://materials/tilemap.tres" id="4_3nft3"]
 [ext_resource type="PackedScene" uid="uid://cba3m5gci8old" path="res://nodes/ui/ui.tscn" id="5_5ljkx"]
-[ext_resource type="PackedScene" path="res://scenes/liar/player.tscn" id="6_3f0sk"]
+[ext_resource type="PackedScene" uid="uid://bhi2gelqnmo12" path="res://scenes/liar/player.tscn" id="6_3f0sk"]
 [ext_resource type="PackedScene" uid="uid://c22g7l1a1tbct" path="res://scenes/liar/card.tscn" id="6_mnfdn"]
 [ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/camera/camera.tscn" id="6_v1bv8"]
 [ext_resource type="PackedScene" uid="uid://d24f6jscr5rhj" path="res://scenes/liar/stack.tscn" id="7_bjnwe"]
@@ -72,6 +72,10 @@ offset_bottom = 227.0
 layout_mode = 2
 text = "Play"
 
+[node name="SpinBox" type="SpinBox" parent="Control2/HBoxContainer"]
+layout_mode = 2
+max_value = 9.0
+
 [node name="LiarButton" type="Button" parent="Control2/HBoxContainer"]
 layout_mode = 2
 text = "Liar!"
@@ -88,11 +92,11 @@ x = 1
 y = 8
 
 [node name="Player1" parent="." instance=ExtResource("6_3f0sk")]
-position = Vector2(219, -128)
+position = Vector2(230, 134)
 x = 7
 
 [node name="Player2" parent="." instance=ExtResource("6_3f0sk")]
-position = Vector2(239, 163)
+position = Vector2(219, -120)
 x = -6
 
 [node name="Player3" parent="." instance=ExtResource("6_3f0sk")]

@@ -22,6 +22,7 @@ var selectable:bool=false
 
 func _ready() -> void:
 	area_2d.input_event.connect(handle_interaction)
+	name=str(color)+" "+str(number)
 	update_sprite()
 	pass
 

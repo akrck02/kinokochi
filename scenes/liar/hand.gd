@@ -8,9 +8,9 @@ class_name Hand
 var cards: Array
 var cards_array: Array[Array]
 var facing: Constants.FACING
-
+var reveal: bool = false
 ## If user can select cards
-var selectable:bool=false;
+var selectable: bool = false
 
 
 func _init() -> void:
@@ -47,8 +47,9 @@ func print_array():
 	for i in self.cards_array:
 		print(i)
 	print("\n")
-	
-func set_reveal(value:bool):
+
+
+func set_reveal(value: bool):
 	for card in cards:
 		card.set_reveal(value)
 
@@ -57,34 +58,41 @@ func add_cards(cards: Array):
 	for card in cards:
 		add_card(card)
 
-func set_user(value:int):
+
+func set_user(value: int):
 	for card in cards:
-		card.user=value
-		
-func set_selectable(value:bool):
-	self.selectable=value
+		card.user = value
+
+
+func set_selectable(value: bool):
+	self.selectable = value
 	for card in cards:
 		card.set_selectable(value)
-		
+
+
 ## Unselect all cards in hand
 func unselect():
 	for card in cards:
 		card.unselect()
-		
-func get_selected_cards()->Array:
-	var output=[]
+
+
+func get_selected_cards() -> Array:
+	var output = []
 	for card in cards:
 		if card.selected:
 			output.append(card)
-			
+
 	return output
+
 
 ## Add a card to the array on the back
 func add_card(card: Card):
 	if card.facing != self.facing:
 		card.set_facing(self.facing)
 	card.show_card_sprite()
-	add_child(card)
+	card.visible = true
+	card.set_reveal(self.reveal)
+	add_child(card, true)
 	cards.append(card)
 	for i in range(3):
 		for j in range(5):
