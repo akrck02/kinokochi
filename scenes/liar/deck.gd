@@ -3,7 +3,7 @@ class_name Deck
 ## Class that contains the cards of the game
 
 const PLAYERS = 4
-const CARDS_PER_HAND = 5
+const CARDS_PER_HAND = 10
 ## Array containing the cards
 var cards: Array
 enum COLORS_ENUM { red, yellow, green, blue }

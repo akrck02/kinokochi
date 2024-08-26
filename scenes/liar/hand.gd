@@ -54,6 +54,9 @@ func add_cards(cards: Array):
 	for card in cards:
 		add_card(card)
 
+func set_user(value:int):
+	for card in cards:
+		card.user=value
 
 ## Add a card to the array on the back
 func add_card(card: Card):

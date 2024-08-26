@@ -12,8 +12,8 @@ const movement_speed = 1.00 / 1.5
 
 ## If the number and color is show
 var reveal: bool = false 
-var user:int=-1;
-
+var user:int=-1
+var selected:bool=false
 
 func _ready() -> void:
 	area_2d.input_event.connect(handle_interaction)
@@ -26,20 +26,33 @@ func _to_string() -> String:
 
 
 func handle_interaction(viewport: Node, event: InputEvent, shape_idx: int):
-	if event is not InputEventScreenTouch:
+	if event is not InputEventScreenTouch and event.is_pressed()==false:
 		return;
-		
-	if user==0:
-		animation_player.play("idle")
-		
-	print(event)
-
-func show_card_sprite():
-	#self.sprite = Sprite2D.new()
-	#self.add_child(sprite)
 	
+	if user!=0:
+		return
+		
+	selected=!selected
+	
+	if selected:
+		animation_player.play("idle")
+		set_outline(true)
+	else:
+		animation_player.play("RESET")
+		set_outline(false)
+		
+func show_card_sprite():
 	update_sprite()
 
+func set_outline(value:int):
+	
+	if value:
+		sprite_2d.material=load("res://materials/outline_shader_material.tres")
+		sprite_2d.material.set_shader_parameter("width",3)
+		return
+	
+	sprite_2d.material=null
+	
 
 func set_facing(facing: Constants.FACING):
 	self.facing = facing
@@ -55,7 +68,6 @@ func set_reveal(value: bool):
 func update_sprite():
 	
 	if not sprite_2d:
-		print("no sprite")
 		return
 	
 	sprite_2d.frame=0
@@ -67,7 +79,6 @@ func update_sprite():
 		sprite_2d.vframes = 2
 		frame_cords_x=self.number
 	else:
-		print(self)
 		sprite_2d.texture = load("res://resources/sprites/cards/white.png")
 		sprite_2d.hframes = 1
 		sprite_2d.vframes = 2

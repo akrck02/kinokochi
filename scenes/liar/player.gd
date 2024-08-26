@@ -16,6 +16,8 @@ func _ready() -> void:
 	pet.control = true
 	pet.update_sprite()
 
+func _to_string() -> String:
+	return "{0} {1}".format([id, player_name])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
