@@ -31,7 +31,13 @@ func get_selected_cards():
 			output.append(card)
 			
 	return output
-	
+
+## Gets a set of cards, with the same number if [param lie] is [code]false[/code]
+func get_random_cards(lie:bool):
+	if lie:
+		
+		pass
+	pass
 
 func remove_cards(cards:Array):
 	for card in cards:

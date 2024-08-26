@@ -15,23 +15,19 @@ const CARDS_PER_HAND = 5
 @onready var play_button: Button = $Control2/HBoxContainer/PlayButton
 @onready var liar_button: Button = $Control2/HBoxContainer/LiarButton
 @onready var stack: Stack = $Stack
-var deck: Deck
 var turn:int=0;
 var game_finished:bool=false
 var timer=Timer.new()
 var timer_ended:int=true
-var players:Array=[player_0, player_1, player_2, player_3]
+var players:Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	players=[player_0, player_1, player_2, player_3]
 	
-	
-	
-	# Generate Deck
-	deck = Deck.new()
 	# Create hands
-	var hands = deck.generate_hands()
+	var hands = stack.generate_hands()
 	var hands_up = hands[0]
 	var hands_down = hands[1]
 	var hands_left = hands[2]
@@ -40,14 +36,6 @@ func _ready() -> void:
 	var y = 3
 	
 	
-	# Set id
-	
-	# Set facing
-	
-	# Set name
-	
-	# Set hand location
-
 	player_0.id = 0
 	player_0.facing = Constants.FACING.DOWN
 	player_0.set_hand(hands_down)
@@ -114,9 +102,10 @@ func tick_update() -> void:
 	if timer_ended:
 		
 		print("Turno de {0}".format([turn]))
-		
+		var previous_player_index=((-1 % 4) + 4) % 4
+		var previous_player= players[previous_player_index]
+		print(previous_player)
 		if turn==0:
-			print("Cards selectable")
 			player_0._hand.set_selectable(true)
 			play_button.disabled=false
 			liar_button.disabled=false
@@ -131,6 +120,20 @@ func tick_update() -> void:
 			
 			# Liar or play
 			var random=randi() % 10 + 1
+			
+			if random<3: # Liar
+				#var previous_player= players[(turn - 1) % 4]
+				#print(previous_player)
+				var latest_played_cards=stack.latest_added_cards
+				pass
+			else: # Play
+				var lie=randi() % 10+1
+				if stack.cards.size()==0: # Start play
+					# Get random num
+					
+					pass
+				else:
+					pass
 			
 		
 		# Set turn between 0 and 3
