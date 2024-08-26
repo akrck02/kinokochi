@@ -11,7 +11,6 @@ var facing: Constants.FACING
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	super()
 	#self.move_global(x,y)
 	pet.pet_name = self.player_name
 	pet.control = true

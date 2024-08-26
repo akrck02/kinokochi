@@ -22,7 +22,7 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	super()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,6 +44,10 @@ func print_array():
 	for i in self.cards_array:
 		print(i)
 	print("\n")
+	
+func set_reveal(value:bool):
+	for card in cards:
+		card.set_reveal(value)
 
 
 func add_cards(cards: Array):

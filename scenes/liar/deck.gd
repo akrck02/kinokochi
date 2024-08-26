@@ -6,15 +6,16 @@ const PLAYERS = 4
 const CARDS_PER_HAND = 5
 ## Array containing the cards
 var cards: Array
-
 enum COLORS_ENUM { red, yellow, green, blue }
 
+
+var card_scene=preload("res://scenes/liar/card.tscn")
 
 func _init() -> void:
 	self.cards = []
 	for color in COLORS_ENUM.keys():
 		for num in range(10):
-			var card = Card.new()
+			var card=card_scene.instantiate()
 			card.color = color
 			card.number = num
 			cards.append(card)

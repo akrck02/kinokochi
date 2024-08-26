@@ -27,18 +27,16 @@ func _ready() -> void:
 	var hands_right = hands[3]
 	var x = 0
 	var y = 3
-	#for hand in hands:
-	#hand.move(x,y)
-	#hand.show_cards()
-	#add_child(hand)
-	#x+=6
+	
 
 	player_0.id = 0
 	player_0.facing = Constants.FACING.DOWN
 	player_0.set_hand(hands_down)
 	player_0.set_player_name("tas")
 	player_0._hand.move_local(-2, 3)
-	player_0._hand.cards[0].set_reveal(true)
+	player_0._hand.set_reveal(true)
+	player_0._hand.cards[0].user=0
+	
 
 	player_1.id = 1
 	player_1.facing = Constants.FACING.UP
