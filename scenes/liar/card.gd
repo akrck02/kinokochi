@@ -41,11 +41,15 @@ func set_reveal(value: bool):
 func update_sprite():
 	if not sprite:
 		return
+		
+	sprite.frame=0
+	var frame_cords_x=0
 
 	if self.reveal:
 		sprite.texture = load("res://resources/sprites/cards/" + color + ".png")
 		sprite.hframes = 10
 		sprite.vframes = 2
+		frame_cords_x=self.number
 	else:
 		sprite.texture = load("res://resources/sprites/cards/white.png")
 		sprite.hframes = 1
@@ -55,13 +59,13 @@ func update_sprite():
 	match self.facing:
 		Constants.FACING.DOWN:
 			rotation_degrees = 0
-			sprite.frame_coords = Vector2i(self.number, 0)
+			sprite.frame_coords = Vector2i(frame_cords_x, 0)
 		Constants.FACING.UP:
 			rotation_degrees = 180
-			sprite.frame_coords = Vector2i(self.number, 0)
+			sprite.frame_coords = Vector2i(frame_cords_x, 0)
 		Constants.FACING.RIGHT:
 			rotation_degrees = 0
-			sprite.frame_coords = Vector2i(self.number, 1)
+			sprite.frame_coords = Vector2i(frame_cords_x, 1)
 		Constants.FACING.LEFT:
 			rotation_degrees = 180
-			sprite.frame_coords = Vector2i(self.number, 1)
+			sprite.frame_coords = Vector2i(frame_cords_x, 1)
