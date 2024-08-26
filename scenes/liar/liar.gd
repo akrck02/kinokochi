@@ -81,7 +81,7 @@ func _ready() -> void:
 		print(player)
 		
 		
-	#SignalDatabase.tick_reached.connect(tick_update)
+	SignalDatabase.tick_reached.connect(tick_update)
 	
 	timer.wait_time=5
 	timer.timeout.connect(_on_timer_timeout)
@@ -99,15 +99,21 @@ func add_card():
 func move(object: IsometricObject):
 	object.move_global(spin_box_x.value, spin_box_y.value)
 
-func _process(delta: float) -> void:
+func tick_update() -> void:
 	if timer_ended:
 		
 		print("Turno de {0}".format([turn]))
 		
-		if turn==3:
-			turn=0
+		if turn==0:
+			print("Cards selectable")
+			player_0._hand.set_selectable(true)
 		else:
-			turn+=1
+			player_0._hand.set_selectable(false)
+			# Unselect selected cards
+			player_0._hand.unselect()
+		
+		# Set turn between 0 and 3
+		turn = (turn + 1) % 4
 		self.timer_ended=false
 		self.timer.start()
 	

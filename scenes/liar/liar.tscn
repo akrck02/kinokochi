@@ -52,6 +52,29 @@ min_value = -100.0
 layout_mode = 2
 text = "move"
 
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -1.0
+offset_right = 36.0
+offset_bottom = 39.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control2"]
+layout_mode = 0
+offset_left = -212.0
+offset_top = 187.0
+offset_right = -125.0
+offset_bottom = 227.0
+
+[node name="PlayButton" type="Button" parent="Control2/HBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="LiarButton" type="Button" parent="Control2/HBoxContainer"]
+layout_mode = 2
+text = "Liar!"
+
 [node name="Card" parent="." instance=ExtResource("6_mnfdn")]
 visible = false
 z_index = 4

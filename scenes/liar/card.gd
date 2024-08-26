@@ -10,10 +10,15 @@ const movement_speed = 1.00 / 1.5
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-## If the number and color is show
-var reveal: bool = false 
+## If the number and color is shown
+var reveal: bool = false
 var user:int=-1
+
+## If card is selected
 var selected:bool=false
+
+## If user can select this card
+var selectable:bool=false
 
 func _ready() -> void:
 	area_2d.input_event.connect(handle_interaction)
@@ -34,20 +39,26 @@ func handle_interaction(viewport: Node, event: InputEvent, shape_idx: int):
 		
 	selected=!selected
 	
-	if selected:
-		animation_player.play("idle")
-		set_outline(true)
+	if selected and selectable:
+		select()
 	else:
-		animation_player.play("RESET")
-		set_outline(false)
+		unselect()
+		
+func select():
+	animation_player.play("idle")
+	set_outline(true)
+	
+func unselect():
+	animation_player.play("RESET")
+	set_outline(false)
 		
 func show_card_sprite():
 	update_sprite()
 
-func set_outline(value:int):
+func set_outline(value:bool):
 	
 	if value:
-		sprite_2d.material=load("res://materials/outline_shader_material.tres")
+		sprite_2d.material=load("res://materials/card_selected_material.tres")
 		sprite_2d.material.set_shader_parameter("width",3)
 		return
 	
@@ -64,6 +75,8 @@ func set_reveal(value: bool):
 
 	update_sprite()
 
+func set_selectable(value: bool):
+	self.selectable=value
 
 func update_sprite():
 	

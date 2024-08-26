@@ -9,6 +9,9 @@ var cards: Array
 var cards_array: Array[Array]
 var facing: Constants.FACING
 
+## If user can select cards
+var selectable:bool=false;
+
 
 func _init() -> void:
 	# Initialize 5x3 array
@@ -57,7 +60,16 @@ func add_cards(cards: Array):
 func set_user(value:int):
 	for card in cards:
 		card.user=value
-
+		
+func set_selectable(value:bool):
+	self.selectable=value
+	for card in cards:
+		card.set_selectable(value)
+		
+## Unselect all cards in hand
+func unselect():
+	for card in cards:
+		card.unselect()
 ## Add a card to the array on the back
 func add_card(card: Card):
 	if card.facing != self.facing:
