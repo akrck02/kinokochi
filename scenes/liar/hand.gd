@@ -70,6 +70,15 @@ func set_selectable(value:bool):
 func unselect():
 	for card in cards:
 		card.unselect()
+		
+func get_selected_cards()->Array:
+	var output=[]
+	for card in cards:
+		if card.selected:
+			output.append(card)
+			
+	return output
+
 ## Add a card to the array on the back
 func add_card(card: Card):
 	if card.facing != self.facing:

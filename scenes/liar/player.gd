@@ -24,13 +24,41 @@ func _process(delta: float) -> void:
 	pass
 
 
+func get_selected_cards():
+	var output=[]
+	for card in _hand.cards:
+		if card.selected:
+			output.append(card)
+			
+	return output
+	
+
+func remove_cards(cards:Array):
+	for card in cards:
+		remove_card(card)
+
+func remove_card(card:Card):
+	_hand.cards.remove_at(_hand.cards.find(card))
+	_hand.cards_array.remove_at(_hand.cards_array.find(card))
+	card.hide()
+	card.move_global(0,0)
+	card.unselect()
+	
+func add_card(card:Card):
+	_hand.add_card(card)
+
 func set_player_name(name: String):
 	self.player_name = name
 	pet.pet_name = name
 	pet.update_sprite()
 
+func set_reveal_cards(value:bool):
+	for card in _hand.cards:
+		card.set_reveal(value)
+	
 
 func set_hand(hand: Hand):
+	hand.set_user(id)
 	self._hand = hand
 	get_parent().add_child(self._hand)
 	self._hand.move_local(0, 0)

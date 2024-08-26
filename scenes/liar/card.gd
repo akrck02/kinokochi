@@ -78,6 +78,7 @@ func set_reveal(value: bool):
 func set_selectable(value: bool):
 	self.selectable=value
 
+
 func update_sprite():
 	
 	if not sprite_2d:
