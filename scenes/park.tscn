@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://cfe218fpwkj7d"]
+[gd_scene load_steps=13 format=4 uid="uid://cfe218fpwkj7d"]
 
 [ext_resource type="Script" path="res://scenes/park.gd" id="1_y5n7u"]
 [ext_resource type="Script" path="res://nodes/tilemap/tilemap_extended.gd" id="2_bew46"]
-[ext_resource type="AudioStream" uid="uid://bj5cyy3j13yqm" path="res://resources/sounds/park.mp3" id="2_pfyjy"]
 [ext_resource type="PackedScene" uid="uid://ur810d3ygdls" path="res://nodes/sign/sign.tscn" id="4_cl8bi"]
 [ext_resource type="TileSet" uid="uid://b1vppjetxm2w8" path="res://materials/tilemap.tres" id="4_fxkog"]
 [ext_resource type="PackedScene" uid="uid://bb0q2fy8l6iaj" path="res://nodes/npc/cattotem.tscn" id="5_cwnpp"]
@@ -10,9 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/camera/camera.tscn" id="7_lsj0o"]
 [ext_resource type="PackedScene" uid="uid://cba3m5gci8old" path="res://nodes/ui/ui.tscn" id="8_k82j5"]
 [ext_resource type="Texture2D" uid="uid://bwn2pdkkdt3qh" path="res://resources/sprites/image.png" id="10_j4gf4"]
-[ext_resource type="AudioStream" uid="uid://br4eg5rk55r3" path="res://resources/sounds/vinyl.mp3" id="11_1j504"]
 [ext_resource type="PackedScene" uid="uid://rw88feax5dwj" path="res://nodes/npc/turtle.tscn" id="11_ind7k"]
-[ext_resource type="AudioStream" uid="uid://q1sgb5gbqrlk" path="res://resources/sounds/base_lo_fi.wav" id="12_rlywd"]
 [ext_resource type="PackedScene" uid="uid://blkbi8l5llsgb" path="res://nodes/house/house.tscn" id="13_st7px"]
 [ext_resource type="PackedScene" uid="uid://xtpk8a7u1agl" path="res://nodes/npc/npc.tscn" id="14_3eab4"]
 
@@ -79,13 +76,11 @@ texture = ExtResource("10_j4gf4")
 position = Vector2(4476, -419)
 rotation = 3.14159
 scale = Vector2(304.916, -3.88885)
-stream = ExtResource("2_pfyjy")
 volume_db = 20.0
 bus = &"Music"
 
 [node name="Vinyl" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(4476, -423)
-stream = ExtResource("11_1j504")
 autoplay = true
 bus = &"lo-fi"
 
@@ -93,7 +88,6 @@ bus = &"lo-fi"
 position = Vector2(4476, -419)
 rotation = 3.14159
 scale = Vector2(304.916, -3.88885)
-stream = ExtResource("12_rlywd")
 volume_db = -40.0
 autoplay = true
 
@@ -175,20 +169,17 @@ position = Vector2(6748, 159)
 [node name="House8" parent="Houses" instance=ExtResource("13_st7px")]
 position = Vector2(6732, -113)
 
-[node name="Teko" parent="." node_paths=PackedStringArray("target") instance=ExtResource("14_3eab4")]
+[node name="Teko" parent="." instance=ExtResource("14_3eab4")]
 z_index = 1
 position = Vector2(4419.19, -418.009)
 pet_name = "teko"
-target = NodePath("../Pet")
 
-[node name="Soriel" parent="." node_paths=PackedStringArray("target") instance=ExtResource("14_3eab4")]
+[node name="Soriel" parent="." instance=ExtResource("14_3eab4")]
 z_index = 1
 position = Vector2(4579.58, -539.141)
 pet_name = "soriel"
-target = NodePath("../Pet")
 
-[node name="Foxy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("14_3eab4")]
+[node name="Foxy" parent="." instance=ExtResource("14_3eab4")]
 z_index = 1
 position = Vector2(4658.95, -418.403)
 pet_name = "foxy"
-target = NodePath("../Pet")

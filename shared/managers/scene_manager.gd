@@ -6,7 +6,7 @@ var current_camera : Camera2D
 func _ready():
 	SignalDatabase.scene_change_requested.connect(change_scene)
 
-# Change scene with progress
+## Change scene with progress
 func change_scene(scene_name : String):
 	
 	# Set up the path
@@ -38,7 +38,7 @@ func change_scene(scene_name : String):
 	
 	get_compulsory_nodes(scene)
 	
-# Get compulsory nodes
+## Get compulsory nodes
 func get_compulsory_nodes(scene : Node):
 	
 	# Get tilemap if exists

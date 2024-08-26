@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://xtpk8a7u1agl"]
+[gd_scene load_steps=11 format=3 uid="uid://xtpk8a7u1agl"]
 
 [ext_resource type="Script" path="res://nodes/npc/npc.gd" id="1_7m8e0"]
 [ext_resource type="Material" uid="uid://c0q6k8bo0nc7y" path="res://materials/outline_shader_material.tres" id="2_jyriw"]
 [ext_resource type="Texture2D" uid="uid://bm6uy3x5dk7qw" path="res://resources/sprites/pets/tas.png" id="3_hlgbg"]
 [ext_resource type="Texture2D" uid="uid://dtnrq3qm6emc" path="res://resources/sprites/effects/shadow.png" id="4_qutbh"]
+[ext_resource type="PackedScene" uid="uid://b2bwygr8gqpqx" path="res://nodes/grid_navigation_agent/navigation_agent_2d.tscn" id="5_emhhb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ketbd"]
 radius = 29.0
@@ -130,7 +131,7 @@ y_sort_enabled = true
 script = ExtResource("1_7m8e0")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(20.7, -32)
+position = Vector2(0, -30)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -142,14 +143,14 @@ debug_color = Color(0, 0.6, 0.701961, 0.101961)
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = ExtResource("2_jyriw")
-position = Vector2(-15.3, -72)
+position = Vector2(-36, -70)
 texture = ExtResource("3_hlgbg")
 centered = false
 hframes = 3
 
 [node name="Shadow" type="Sprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(20.7, -13)
+position = Vector2(0, -11)
 scale = Vector2(0.531457, 0.606667)
 texture = ExtResource("4_qutbh")
 
@@ -159,11 +160,13 @@ libraries = {
 }
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(21.7, -12)
+position = Vector2(1, -10)
 scale = Vector2(1.4, 1.4)
 target_position = Vector2(0, 40)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 modulate = Color(0.909804, 0.803922, 1, 0.25098)
-position = Vector2(-5.3, -3)
+position = Vector2(-26, -1)
 polygon = PackedVector2Array(26.3, -16, 61.3, 1, 26.3, 19, -9.7, 1)
+
+[node name="GridNavigationAgent2D" parent="." instance=ExtResource("5_emhhb")]

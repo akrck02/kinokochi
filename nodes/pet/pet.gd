@@ -73,7 +73,7 @@ func handle_drag(data : InputData):
 	if TouchInput.context != Game.Context.PetInteraction or SceneManager.current_tilemap == null or not is_being_dragged:
 		return
 	
-	var coords = SceneManager.current_tilemap.get_coordinates_from_position(data.get_current_global_position(self))
+	var coords = SceneManager.current_tilemap.get_coordinates_from_position(data.get_current_global_position(get_viewport()))
 	var new_position = SceneManager.current_tilemap.get_position_from_coordinates(coords)
 	drag_tween = create_tween()
 	drag_tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_position, .15).set_trans(Tween.TRANS_SINE)
@@ -84,7 +84,7 @@ func handle_screen_touch_release(data : InputData):
 	if TouchInput.context != Game.Context.PetInteraction or not is_being_dragged:
 		return
 	
-	var coords = SceneManager.current_tilemap.get_coordinates_from_position(data.get_current_global_position(self))
+	var coords = SceneManager.current_tilemap.get_coordinates_from_position(data.get_current_global_position(get_viewport()))
 	if SceneManager.current_tilemap.can_object_be_placed_on_tile(self, coords):
 		return
 		
