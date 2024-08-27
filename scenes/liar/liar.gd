@@ -20,10 +20,9 @@ const TURN_TIME = 120
 @onready var stack: Stack = $Stack
 var turn: int = 0
 var game_finished: bool = false
-var timer = Timer.new()
-var timer_ended: int = true
+var timer_turn = Timer.new()
+var timer_turn_ended: int = true
 var players: Array
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -73,9 +72,9 @@ func _ready() -> void:
 	play_button.pressed.connect(on_play_button)
 	liar_button.pressed.connect(on_liar_button)
 
-	timer.wait_time = TURN_TIME
-	timer.timeout.connect(_on_timer_timeout)
-	add_child(timer)
+	timer_turn.wait_time = TURN_TIME
+	timer_turn.timeout.connect(_on_timer_timeout)
+	add_child(timer_turn)
 
 
 func add_card():
@@ -95,8 +94,8 @@ func on_play_button():
 	stack.add_cards(selected_cards)
 	player_0.latest_statement = spin_box.value
 	print(player_0.latest_statement)
-	timer.stop()
-	timer_ended = true
+	timer_turn.stop()
+	timer_turn_ended = true
 
 
 func on_liar_button():
@@ -108,16 +107,17 @@ func move(object: IsometricObject):
 
 
 func tick_update() -> void:
-	if timer_ended:
+	if timer_turn_ended:
 		print("Turno de {0}".format([players[turn]]))
 		var previous_player_index = (turn - 1) % 4
-		var previous_player = players[previous_player_index]
-		var actual_player = players[turn]
-		print("previous player ", previous_player)
+		var previous_player:Player = players[previous_player_index]
+		var actual_player:Player = players[turn]
 		if actual_player.id == 0:
 			player_0._hand.set_selectable(true)
 			play_button.disabled = false
 			liar_button.disabled = false
+			self.timer_turn_ended = false
+			self.timer_turn.start()
 		else:
 			player_0._hand.set_selectable(false)
 			# Unselect selected cards
@@ -129,34 +129,46 @@ func tick_update() -> void:
 
 			# Liar or play
 			var random = randi() % 10 + 1
-			random = 0
+			random = 4
 
 			if random < 3:  # Liar
+				print("Player ",actual_player, " chose Liar")
 				var latest_statement = previous_player.latest_statement
 
 				if stack.latest_statement_true(latest_statement):
 					print("Era verdad")
-					print(actual_player)
 					actual_player.add_cards(stack.pop_latest_added_cards())
 
 				else:
 					print("Era mentira")
 					previous_player.add_cards(stack.pop_latest_added_cards())
 
-				pass
 			else:  # Play
+				print("Player ",actual_player, " chose Play")
+				
 				var lie = randi() % 10 + 1
-				if stack.cards.size() == 0:  # Start play
-					pass
+				lie=0
+				
+				if lie<3:
+					print("Player ",actual_player, " chose Lie")
+					
+					var test=actual_player.lie()
+					stack.add_cards(test)
+					
 				else:
-					pass
+					print("Player ",actual_player, " chose Truth")
+					
+				timer_turn.stop()
+				timer_turn_ended = true
+				pass
 
+
+			self.timer_turn.start(3)
+			self.timer_turn_ended = false
+		print("----\n")
 		# Set turn between 0 and 3
-		self.timer_ended = false
-		self.timer.start()
-		print("----")
 		turn = (turn + 1) % players.size()
 
 
 func _on_timer_timeout():
-	self.timer_ended = true
+	self.timer_turn_ended = true

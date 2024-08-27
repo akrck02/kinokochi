@@ -32,8 +32,44 @@ func add_cards(cards: Array):
 		
 		add_card(card)
 
+## Gets a random number of random cards
+## Returns [Array] of [Card]
+func lie()->Array:
+	var output=[]
+	var max=3
+	
+	if _hand.cards.size()<3:
+		max=_hand.cards.size()
+		
+	# Number of cards to play
+	var num_cards=randi_range(1,max)
+	
+	# TODO: Remove numbers that are discarded from game
+	latest_statement=randi_range(0,9)
+	
+	for i in num_cards:
+		var random_card
+		output.append(pop_random_card())
+		
+	return output
+	
+## Gets a random number from Player's cards and returns all the cards with the same number
+## Returns [Array] of [Card]
+func truth()->Array:
+	var output=[]
+	var random_card=pop_random_card()
+	latest_statement=random_card.number
+	output.append(random_card)
+	for card in _hand.cards:
+		if card.number==random_card.number:
+			output.append(card)
+			remove_card(card)
+	
+	return output
 
-func get_selected_cards():
+
+## Gets Cards with selected [code]true[/code]
+func get_selected_cards()->Array:
 	var output = []
 	for card in _hand.cards:
 		if card.selected:
@@ -41,19 +77,25 @@ func get_selected_cards():
 
 	return output
 
-
-func get_random_card():
+## Gets a random card
+func pop_random_card()->Card:
 	var random = randi() % _hand.cards.size()
-	return _hand.cards.pop_at(random)
+	var random_card=_hand.cards[random]
+	
+	remove_card(random_card)
+	
+	return random_card
 
 
-func remove_cards(cards: Array):
+## Removes given [Card]s from [Hand]
+func remove_cards(cards: Array)->void:
 	
 	for card in cards:
 		remove_card(card)
 
 
-func remove_card(card: Card):
+## Removes given [Card] from [Hand]
+func remove_card(card: Card)->void:
 	_hand.cards.remove_at(_hand.cards.find(card))
 	_hand.cards_array.remove_at(_hand.cards_array.find(card))
 	#card.hide()

@@ -1,6 +1,6 @@
 ## Class that contains methods to move in a isometric map
-extends Node2D
 class_name IsometricObject
+extends Node2D 
 
 ## Space between positions
 const length = 40
