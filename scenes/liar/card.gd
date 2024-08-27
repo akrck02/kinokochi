@@ -38,9 +38,12 @@ func handle_interaction(viewport: Node, event: InputEvent, shape_idx: int):
 	if user!=0:
 		return
 		
+	if not selectable:
+		return
+		
 	selected=!selected
 	
-	if selected and selectable:
+	if selected:
 		select()
 	else:
 		unselect()
