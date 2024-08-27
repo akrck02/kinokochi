@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/liar/liar.gd" id="1_h8pm3"]
 [ext_resource type="TileSet" uid="uid://b1vppjetxm2w8" path="res://materials/tilemap.tres" id="4_3nft3"]
 [ext_resource type="PackedScene" uid="uid://cba3m5gci8old" path="res://nodes/ui/ui.tscn" id="5_5ljkx"]
-[ext_resource type="PackedScene" uid="uid://bhi2gelqnmo12" path="res://scenes/liar/player.tscn" id="6_3f0sk"]
+[ext_resource type="PackedScene" path="res://scenes/liar/player.tscn" id="6_3f0sk"]
 [ext_resource type="PackedScene" uid="uid://c22g7l1a1tbct" path="res://scenes/liar/card.tscn" id="6_mnfdn"]
 [ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/camera/camera.tscn" id="6_v1bv8"]
 [ext_resource type="PackedScene" uid="uid://d24f6jscr5rhj" path="res://scenes/liar/stack.tscn" id="7_bjnwe"]

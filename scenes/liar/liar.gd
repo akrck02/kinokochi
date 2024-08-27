@@ -125,6 +125,7 @@ func tick_update() -> void:
 
 			play_button.disabled = true
 			liar_button.disabled = true
+			
 
 			# Liar or play
 			var random = randi() % 10 + 1
@@ -135,6 +136,7 @@ func tick_update() -> void:
 
 				if stack.latest_statement_true(latest_statement):
 					print("Era verdad")
+					print(actual_player)
 					actual_player.add_cards(stack.pop_latest_added_cards())
 
 				else:

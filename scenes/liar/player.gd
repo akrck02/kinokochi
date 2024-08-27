@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 
 func add_cards(cards: Array):
 	for card in cards:
+		
 		add_card(card)
 
 
@@ -47,6 +48,7 @@ func get_random_card():
 
 
 func remove_cards(cards: Array):
+	
 	for card in cards:
 		remove_card(card)
 
@@ -54,7 +56,8 @@ func remove_cards(cards: Array):
 func remove_card(card: Card):
 	_hand.cards.remove_at(_hand.cards.find(card))
 	_hand.cards_array.remove_at(_hand.cards_array.find(card))
-	card.hide()
+	#card.hide()
+	_hand.remove_child(card)
 	card.move_global(0, 0)
 	card.unselect()
 

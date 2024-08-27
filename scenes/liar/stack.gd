@@ -37,13 +37,15 @@ func latest_statement_true(latest_statement: int) -> bool:
 
 func add_card(card: Card):
 	cards.append(card)
+	card.move_global(0,0)
+	add_child(card)
 	if cards.size() > 1:
 		update_sprite()
 
 
 func add_cards(cards: Array):
 	latest_added_cards = []
-	latest_added_cards = cards
+	latest_added_cards=cards
 	for card in cards:
 		add_card(card)
 
@@ -65,6 +67,9 @@ func update_sprite():
 
 func pop_latest_added_cards():
 	var cards = latest_added_cards
+	for card in cards:
+		remove_child(card)
+	print_tree()
 	latest_added_cards = []
 	return cards
 
