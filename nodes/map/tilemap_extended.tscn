@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://btpnbqyqm5k62"]
+
+[ext_resource type="Script" path="res://nodes/map/tilemap_extended.gd" id="1_jgtos"]
+
+[node name="Tilemap" type="Node2D"]
+script = ExtResource("1_jgtos")
+
+[node name="Layers" type="Node2D" parent="."]
+y_sort_enabled = true

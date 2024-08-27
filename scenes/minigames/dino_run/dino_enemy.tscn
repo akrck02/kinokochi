@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://2iwnsnmc35bj"]
 
-[ext_resource type="Texture2D" uid="uid://bitnbo65hrdej" path="res://resources/sprites/npc/gomi.png" id="1_aloht"]
+[ext_resource type="Texture2D" uid="uid://bitnbo65hrdej" path="res://resources/sprites/animals/gomi.png" id="1_aloht"]
 [ext_resource type="Script" path="res://scenes/minigames/dino_run/dino_enemy.gd" id="1_rug5o"]
 [ext_resource type="Texture2D" uid="uid://tb8i71wek8v5" path="res://resources/sprites/tiles/landscape.png" id="3_uy5ff"]
 

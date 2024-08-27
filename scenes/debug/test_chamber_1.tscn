@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=4 uid="uid://bj8nab01n4ntb"]
+[gd_scene load_steps=8 format=4 uid="uid://bj8nab01n4ntb"]
 
-[ext_resource type="Script" path="res://nodes/tilemap/tilemap_extended.gd" id="1_uid3b"]
+[ext_resource type="Script" path="res://nodes/map/tilemap_extended.gd" id="1_uid3b"]
 [ext_resource type="TileSet" uid="uid://b1vppjetxm2w8" path="res://materials/tilemap.tres" id="2_6r4np"]
-[ext_resource type="PackedScene" uid="uid://xtpk8a7u1agl" path="res://nodes/npc/npc.tscn" id="3_wv1re"]
-[ext_resource type="Script" path="res://nodes/tilemap/tilemap_layer_extended.gd" id="4_o5auv"]
+[ext_resource type="PackedScene" uid="uid://xtpk8a7u1agl" path="res://nodes/characters/npc/npc.tscn" id="3_wv1re"]
+[ext_resource type="Script" path="res://nodes/map/tilemap_layer_extended.gd" id="4_o5auv"]
 [ext_resource type="PackedScene" uid="uid://cba3m5gci8old" path="res://nodes/ui/ui.tscn" id="4_p5xpf"]
-[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/camera/camera.tscn" id="5_gymh8"]
+[ext_resource type="PackedScene" uid="uid://cgnui67yn25qr" path="res://nodes/characters/npc/animals/wandering_animal.tscn" id="5_24v8e"]
+[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/ui/camera/camera.tscn" id="5_gymh8"]
 
 [node name="TestChamber1" type="Node2D"]
 
@@ -25,40 +26,14 @@ tile_map_data = PackedByteArray("AAApABQAAAAEAAEAAAApABMAAAAEAAEAAAApABIAAAAEAAE
 tile_set = ExtResource("2_6r4np")
 script = ExtResource("4_o5auv")
 
+[node name="WanderingAnimal" parent="Tilemap/Layers/Walls" instance=ExtResource("5_24v8e")]
+z_index = 1
+position = Vector2(799.336, 934.964)
+
 [node name="Teko" parent="Tilemap/Layers/Walls" instance=ExtResource("3_wv1re")]
 z_index = 1
 y_sort_enabled = false
 position = Vector2(788.263, 731.52)
-pet_name = "teko"
-
-[node name="Teko2" parent="Tilemap/Layers/Walls" instance=ExtResource("3_wv1re")]
-z_index = 1
-y_sort_enabled = false
-position = Vector2(1801.47, 612.599)
-pet_name = "teko"
-
-[node name="Teko3" parent="Tilemap/Layers/Walls" instance=ExtResource("3_wv1re")]
-z_index = 1
-y_sort_enabled = false
-position = Vector2(1703.95, 987.2)
-pet_name = "teko"
-
-[node name="Teko4" parent="Tilemap/Layers/Walls" instance=ExtResource("3_wv1re")]
-z_index = 1
-y_sort_enabled = false
-position = Vector2(1299.24, 1519.05)
-pet_name = "teko"
-
-[node name="Teko5" parent="Tilemap/Layers/Walls" instance=ExtResource("3_wv1re")]
-z_index = 1
-y_sort_enabled = false
-position = Vector2(2644.76, 1302.92)
-pet_name = "teko"
-
-[node name="Teko6" parent="Tilemap/Layers/Walls" instance=ExtResource("3_wv1re")]
-z_index = 1
-y_sort_enabled = false
-position = Vector2(271.559, 1118.57)
 pet_name = "teko"
 
 [node name="Ground" type="TileMapLayer" parent="Tilemap/Layers" node_paths=PackedStringArray("obstacles_layer")]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/minigames/dino_run/dino_run.gd" id="1_s0npo"]
 [ext_resource type="Texture2D" uid="uid://0clhfb7r062v" path="res://resources/sprites/decorative/cloud.png" id="2_16725"]
-[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/camera/camera.tscn" id="2_iu5yp"]
+[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/ui/camera/camera.tscn" id="2_iu5yp"]
 [ext_resource type="Theme" uid="uid://fk4bfu837bvc" path="res://resources/theme.tres" id="2_t0afc"]
 [ext_resource type="PackedScene" uid="uid://db2acwdainnwl" path="res://scenes/minigames/dino_run/dino_character.tscn" id="3_avw1s"]
 [ext_resource type="Texture2D" uid="uid://cvkn1bl60lu4a" path="res://resources/background/parallax.png" id="4_e2oyv"]

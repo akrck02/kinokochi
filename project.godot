@@ -13,9 +13,8 @@ config_version=5
 config/name="Kinokoro"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/image="res://resources/sprites/npc/cat.png"
+boot_splash/image="res://resources/sprites/animals/cat.png"
 boot_splash/use_filter=false
-config/icon="res://resources/sounds/icon.svg"
 
 [autoload]
 
@@ -24,6 +23,7 @@ TimeManager="*res://shared/managers/time_manager.gd"
 SaveManager="*res://shared/managers/save_manager.gd"
 SceneManager="*res://shared/managers/scene_manager.gd"
 TouchInput="*res://shared/managers/touch_input_manager.gd"
+TilemapManager="*res://shared/managers/tilemap_manager.gd"
 GameSprites="*res://shared/managers/game_sprites_manager.gd"
 SettingsManager="*res://shared/managers/settings_manager.gd"
 Canvas="*res://shared/canvas.gd"
@@ -35,6 +35,19 @@ window/size/viewport_height=1152
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
+
+[file_customization]
+
+folder_colors={
+"res://bin/": "gray",
+"res://dist/": "gray",
+"res://materials/": "pink",
+"res://nodes/": "red",
+"res://resources/": "teal",
+"res://scenes/": "blue",
+"res://shaders/": "purple",
+"res://shared/": "yellow"
+}
 
 [global_group]
 

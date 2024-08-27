@@ -34,9 +34,10 @@ func change_scene(scene_name : String):
 	
 	# adding scene to the root
 	var scene : Node = ResourceLoader.load_threaded_get(scene_name).instantiate()
-	canvas.add_child(scene)
 	
 	get_compulsory_nodes(scene)
+	canvas.add_child(scene)
+	
 	
 ## Get compulsory nodes
 func get_compulsory_nodes(scene : Node):
