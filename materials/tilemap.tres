@@ -113,10 +113,10 @@ agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_j4v3h"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_vcguq"]
-vertices = PackedVector2Array(40, 0, 0, 20, -40, 0, 0, -20)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_r2y1r"]
+vertices = PackedVector2Array(20.0156, -9.99219, 20.0859, 12, -20, 11.9531, -19.9609, -10.0234)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -20, -40, 0, 0, 20, 40, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-19.9589, -10.0205, -19.9979, 11.9545, 20.0863, 11.9987, 20.012, -9.99401)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4lgp2"]
@@ -261,7 +261,7 @@ texture_region_size = Vector2i(80, 80)
 4:3/0 = 0
 4:3/0/texture_origin = Vector2i(0, 10)
 4:3/0/z_index = 1
-4:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_vcguq")
+4:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_r2y1r")
 2:7/0 = 0
 2:7/0/texture_origin = Vector2i(0, 10)
 2:7/0/z_index = 1

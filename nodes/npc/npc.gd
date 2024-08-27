@@ -104,8 +104,8 @@ func move_test(input: InputData) -> void:
 		SceneManager.current_tilemap.remove_child(path_line)
 		
 	path_line = Line2D.new()
-	path_line.default_color =  Color(1, 1, 1, .5)
-	path_line.width = 40
+	path_line.default_color =  Color(1, 0, 0, .5)
+	path_line.width = 1
 	path_line.z_index = 2
 	path_line.antialiased = true
 	path_line.joint_mode = Line2D.LINE_JOINT_BEVEL

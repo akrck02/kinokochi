@@ -6,7 +6,7 @@ cutoff_hz = 100.0
 
 [resource]
 bus/0/volume_db = 4.03575
-bus/1/name = &"lo-fi"
+bus/1/name = &"SoundEffects"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false

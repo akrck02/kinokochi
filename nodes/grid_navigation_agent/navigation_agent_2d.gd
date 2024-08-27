@@ -1,8 +1,6 @@
 extends NavigationAgent2D
 class_name  GridNavigationAgent2D
 
-@export var diagonal_movement_allowed : bool = false
-
 ## Get the navigation path on grid
 func get_grid_navigation_path(tilemap : TileMapExtended, destiny_coordinates : Vector2) -> Array[Vector2i]:
 	
@@ -17,27 +15,23 @@ func get_grid_navigation_path(tilemap : TileMapExtended, destiny_coordinates : V
 	var current_navigation_path : Array[Vector2i] = []
 	for path_position in current_path:
 		current_navigation_path.append(tilemap.get_coordinates_from_position(path_position))
-	
-	if not diagonal_movement_allowed:
-		current_navigation_path = get_path_without_diagonals(current_navigation_path)
 
-	return current_navigation_path;
+	return remove_successive_steps_with_same_coordinates(current_navigation_path);
 
-## Get the path without diagonal directions
-func get_path_without_diagonals(current_navigation_path :  Array[Vector2i]) -> Array[Vector2i]:
+## Remove the steps with the same 
+func remove_successive_steps_with_same_coordinates(current_navigation_path : Array[Vector2i]) -> Array[Vector2i]:
 	
-	var new_path : Array[Vector2i] = []
-	var i : int = 0
+	if current_navigation_path.is_empty():
+		return current_navigation_path
 	
-	for coordinates in current_navigation_path:
-		
-		if i == current_navigation_path.size() - 1:
-			new_path.append(current_navigation_path[i])
-			return new_path
-		
-		var next = current_navigation_path[i + 1]
-		new_path.append(current_navigation_path[i])
-		
-		i += 1
+	var new_path : Array[Vector2i] = [current_navigation_path[0]]
+	var last_coordinates : Vector2i = current_navigation_path[0]
+	current_navigation_path.pop_front()
 	
+	for current_coordinates in current_navigation_path:
+
+		if last_coordinates != current_coordinates:
+			new_path.append(current_coordinates)
+			last_coordinates = current_coordinates
+
 	return new_path
