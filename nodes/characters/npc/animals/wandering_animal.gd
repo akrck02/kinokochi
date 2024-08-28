@@ -10,8 +10,10 @@ func _ready():
 	follow_area.body_entered.connect(start_follow)
 	follow_area.body_exited.connect(stop_follow)
 
+
 func _physics_process(_delta: float):
 	navigation.set_tilemap(SceneManager.current_tilemap)
+
 
 ## Start following
 func start_follow(node : Node2D):

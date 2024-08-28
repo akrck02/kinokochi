@@ -6,5 +6,4 @@ class_name WanderState
 
 ## Logic for the entrance of the state
 func enter(): 
-	navigation.debug = true
 	animation.play("idle")

@@ -82,7 +82,6 @@ bus = &"Music"
 [node name="Vinyl" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(4476, -423)
 autoplay = true
-bus = &"lo-fi"
 
 [node name="Lofi" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(4476, -419)

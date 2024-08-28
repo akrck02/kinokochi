@@ -22,6 +22,7 @@ func _ready():
 	# Signal connection
 	SignalDatabase.screen_touch_double_tap.connect(move_test)
 	SignalDatabase.tick_reached.connect(tick_process)
+	SignalDatabase.outline.connect(toggle_outline)
 	interaction.input_event.connect(handle_interaction)
 	navigation.finished.connect(idle)
 	navigation.requested.connect(move_towards_in_grid)
@@ -30,6 +31,9 @@ func _ready():
 	load_from_savestate();
 	update_sprite()
 	idle()
+	
+	# Set outline based on config file
+	toggle_outline(SettingsManager.get_value("Character","Outline"))
 
 func _process(_delta: float):
 	navigation.set_tilemap(SceneManager.current_tilemap)
@@ -111,3 +115,11 @@ func move_towards_in_grid(new_coordinates : Vector2i):
 ## Interact
 func interact():
 	pass
+
+## Toggle outline
+func toggle_outline(value:bool):
+	if value:
+		sprite.material.set_shader_parameter("width",1)
+		return
+		
+	sprite.material.set_shader_parameter("width",0)

@@ -73,8 +73,9 @@ script = ExtResource("3_q82n3")
 animation = NodePath("../../Visuals/AnimationPlayer")
 navigation = NodePath("../../Navigation")
 
-[node name="FollowState" type="Node" parent="StatesNode" node_paths=PackedStringArray("animation", "navigation")]
+[node name="FollowState" type="Node" parent="StatesNode" node_paths=PackedStringArray("body", "animation", "navigation")]
 script = ExtResource("5_5fjn1")
+body = NodePath("../..")
 animation = NodePath("../../Visuals/AnimationPlayer")
 navigation = NodePath("../../Navigation")
 
@@ -92,3 +93,4 @@ debug_color = Color(0.754069, 0.457241, 0, 0.0313726)
 
 [node name="Navigation" parent="." instance=ExtResource("6_honqo")]
 position = Vector2(10, -17)
+color = Color(2.88785e-06, 0.605109, 0.710264, 1)
