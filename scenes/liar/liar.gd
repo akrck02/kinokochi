@@ -24,6 +24,8 @@ const TURN_TIME = 120
 var turn: int = 0
 var game_finished: bool = false
 var players: Array
+var previous_player:Player 
+var actual_player:Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -76,77 +78,87 @@ func on_play_button():
 	player_0.remove_cards(selected_cards)
 	stack.add_cards(selected_cards)
 	player_0.latest_statement = spin_box.value
-	print(player_0.latest_statement)
 	timer.stop()
 
 
 func on_liar_button():
+	liar()
+	timer.stop()
+
+## Executed when player uses Liar!
+func liar()->void:
+	print("Player ",actual_player, " chose Liar")
+	var latest_statement = previous_player.latest_statement
+	print("Latest Statement: ",latest_statement)
+
+	if stack.latest_statement_true(latest_statement):
+		print("Era verdad")
+		actual_player.add_cards(stack.pop_cards())
+
+	else:
+		print("Era mentira")
+		previous_player.add_cards(stack.pop_cards())
+		
+		# If the player discovers a lie, starts the next round
+		turn= (turn-1)%NUM_PLAYERS
+		
+		
+## Executed when player uses Play
+func play()->void:
+	print("Player ",actual_player, " chose Play")
+				
+	var lie = randi_range(0,9)
+	
+	if lie<3:
+		print("Player ",actual_player, " chose Lie")
+		
+		var test=actual_player.lie()
+		stack.add_cards(test)
+		
+	else:
+		print("Player ",actual_player, " chose Truth")
+		var test=actual_player.truth()
+		stack.add_cards(test)
+		
+	timer.stop()
 	pass
-
-
+	
 
 func tick_update() -> void:
-	if timer.turn_ended:
-		print("Turno de {0}".format([players[turn]]))
-		var previous_player_index = (turn - 1) % 4
-		var previous_player:Player = players[previous_player_index]
-		var actual_player:Player = players[turn]
-		if actual_player.id == 0:
-			player_0._hand.set_selectable(true)
-			play_button.disabled = false
-			liar_button.disabled = false
-			print("a")
-			timer.start(player_0,60)
-		else:
-			player_0._hand.set_selectable(false)
-			# Unselect selected cards
-			player_0._hand.unselect()
+	if not timer.turn_ended:
+		return
+	
+	print("Turno de {0}".format([players[turn]]))
+	var previous_player_index = (turn - 1) % 4
+	previous_player = players[previous_player_index]
+	actual_player = players[turn]
+	
+	
+	if actual_player.id == 0:
+		player_0._hand.set_selectable(true)
+		play_button.disabled = false
+		liar_button.disabled = false
+		timer.start(player_0,60)
+	else:
+		player_0._hand.set_selectable(false)
+		# Unselect selected cards
+		player_0._hand.unselect()
 
-			play_button.disabled = true
-			liar_button.disabled = true
-			
+		play_button.disabled = true
+		liar_button.disabled = true
+		
+		# Liar or play
+		var play_or_liar = randf_range(0,9)
 
-			# Liar or play
-			var random = randi() % 10 + 1
-
-			if random < 3:  # Liar
-				print("Player ",actual_player, " chose Liar")
-				var latest_statement = previous_player.latest_statement
-				print("Latest Statement: ",latest_statement)
-
-				if stack.latest_statement_true(latest_statement):
-					print("Era verdad")
-					actual_player.add_cards(stack.pop_cards())
-
-				else:
-					print("Era mentira")
-					previous_player.add_cards(stack.pop_cards())
-					
-					# If the player discovers a lie, starts the next round
-					turn= (turn-1)%NUM_PLAYERS
-
-			else:  # Play
-				print("Player ",actual_player, " chose Play")
+		if play_or_liar < 3: 
+			liar()
+		else:  
+			play()
 				
-				var lie = randi() % 10 + 1
-				lie=0
-				
-				if lie<3:
-					print("Player ",actual_player, " chose Lie")
-					
-					var test=actual_player.lie()
-					stack.add_cards(test)
-					
-				else:
-					print("Player ",actual_player, " chose Truth")
-					var test=actual_player.truth()
-					stack.add_cards(test)
-					
-				timer.stop()
-				pass
+		timer.stop()
 
 
-			timer.start(players[(turn + 1) %NUM_PLAYERS],5)
-		print("----\n")
-		# Set turn between 0 and 3
-		turn = (turn + 1) %NUM_PLAYERS
+		timer.start(players[(turn + 1) %NUM_PLAYERS],5)
+	print("----\n")
+	# Set turn between 0 and 3
+	turn = (turn + 1) %NUM_PLAYERS
