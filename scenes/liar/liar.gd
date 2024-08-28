@@ -70,12 +70,10 @@ func _ready() -> void:
 	SignalDatabase.tick_reached.connect(tick_update)
 	play_button.pressed.connect(on_play_button)
 	liar_button.pressed.connect(on_liar_button)
-	
-	
 
 func on_play_button():
-	var selected_cards = player_0.get_selected_cards()
-	player_0.remove_cards(selected_cards)
+	var selected_cards = player_0.pop_selected_cards()
+	print(selected_cards)
 	stack.add_cards(selected_cards)
 	player_0.latest_statement = spin_box.value
 	timer.stop()
@@ -101,8 +99,9 @@ func liar()->void:
 		
 		# If the player discovers a lie, starts the next round
 		turn= (turn-1)%NUM_PLAYERS
-		
-		
+
+
+
 ## Executed when player uses Play
 func play()->void:
 	print("Player ",actual_player, " chose Play")
@@ -121,7 +120,6 @@ func play()->void:
 		stack.add_cards(test)
 		
 	timer.stop()
-	pass
 	
 
 func tick_update() -> void:
@@ -156,7 +154,6 @@ func tick_update() -> void:
 			play()
 				
 		timer.stop()
-
 
 		timer.start(players[(turn + 1) %NUM_PLAYERS],5)
 	print("----\n")

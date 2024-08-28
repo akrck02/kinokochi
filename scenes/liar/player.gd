@@ -22,10 +22,6 @@ func _to_string() -> String:
 	return "{0} {1}".format([id, player_name])
 
 
-func add_cards(cards: Array):
-	for card in cards:
-		
-		add_card(card)
 
 ## Gets a random number of random cards
 ## Returns [Array] of [Card]
@@ -63,13 +59,13 @@ func truth()->Array:
 	return output
 
 
-## Gets Cards with selected [code]true[/code]
-func get_selected_cards()->Array:
+## Removes and returns Cards with selected [code]true[/code]
+func pop_selected_cards()->Array:
 	var output = []
 	for card in _hand.cards:
 		if card.selected:
+			remove_card(card)
 			output.append(card)
-
 	return output
 
 ## Gets a random card
@@ -81,27 +77,28 @@ func pop_random_card()->Card:
 	
 	return random_card
 
-
-## Removes given [Card]s from [Hand]
-func remove_cards(cards: Array)->void:
-	
-	for card in cards:
-		remove_card(card)
-
-
 ## Removes given [Card] from [Hand]
 func remove_card(card: Card)->void:
 	_hand.cards.remove_at(_hand.cards.find(card))
 	_hand.cards_array.remove_at(_hand.cards_array.find(card))
-	card.hide()
 	_hand.remove_child(card)
+	card.set_reveal(false)
 	card.move_global(0, 0)
 	card.unselect()
 
+## Removes given [Card]s from [Hand]
+func remove_cards(cards: Array)->void:
+	for card in cards:
+		remove_card(card)
 
 func add_card(card: Card):
+	card.user=self.id
 	_hand.add_card(card)
 
+
+func add_cards(cards: Array):
+	for card in cards:
+		add_card(card)
 
 func set_player_name(name: String):
 	self.player_name = name
@@ -110,6 +107,7 @@ func set_player_name(name: String):
 
 
 func set_reveal_cards(value: bool):
+	_hand.reveal=value
 	for card in _hand.cards:
 		card.set_reveal(value)
 

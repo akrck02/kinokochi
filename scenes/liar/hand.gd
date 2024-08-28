@@ -20,45 +20,18 @@ func _init() -> void:
 		for j in range(5):
 			row.append(null)
 		cards_array.append(row)
-	pass
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-
 
 func _to_string() -> String:
 	return str(cards)
-
 
 ## Shows all [Card] objects in the [Hand]
 func show_cards():
 	for card in self.cards:
 		card.show_card_sprite()
 
-
-func print_array():
-	for i in self.cards_array:
-		print(i)
-	print("\n")
-
-
-func set_reveal(value: bool):
-	for card in cards:
-		card.set_reveal(value)
-
-
-func add_cards(cards: Array):
-	for card in cards:
-		add_card(card)
-
-
 func set_user(value: int):
 	for card in cards:
 		card.user = value
-
 
 func set_selectable(value: bool):
 	self.selectable = value
@@ -84,10 +57,10 @@ func get_selected_cards() -> Array:
 ## Add a card to the array on the back
 func add_card(card: Card):
 	if card.facing != self.facing:
-		print(4)
 		card.set_facing(self.facing)
+	card.set_reveal(reveal)
 	card.show_card_sprite()
-	card.set_reveal(self.reveal)
+	
 	add_child(card, true)
 	card.visible = true
 	cards.append(card)
