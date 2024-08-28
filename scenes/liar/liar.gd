@@ -61,8 +61,6 @@ func _ready() -> void:
 	player_3.set_player_name("soriel")
 	player_3._hand.move_local(-3, -2)
 
-	button.pressed.connect(move.bind(player_1._hand))
-	button_2.pressed.connect(add_card)
 
 	play_button.disabled = true
 	liar_button.disabled = true
@@ -72,16 +70,6 @@ func _ready() -> void:
 	liar_button.pressed.connect(on_liar_button)
 	
 	
-func add_card():
-	var card_scene = preload("res://scenes/liar/card.tscn")
-	var player = player_2
-	var card = card_scene.instantiate()
-
-	card.number = 3
-	card.color = "red"
-	card.set_facing(Constants.FACING.UP)
-	player.add_card(card)
-
 
 func on_play_button():
 	var selected_cards = player_0.get_selected_cards()
@@ -95,9 +83,6 @@ func on_play_button():
 func on_liar_button():
 	pass
 
-
-func move(object: IsometricObject):
-	object.move_global(spin_box_x.value, spin_box_y.value)
 
 
 func tick_update() -> void:

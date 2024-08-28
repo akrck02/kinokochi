@@ -41,6 +41,7 @@ HSlider/icons/grabber = ExtResource("1_cbvwn")
 HSlider/icons/grabber_highlight = ExtResource("1_cbvwn")
 Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_i8spk")
+LineEdit/font_sizes/font_size = 28
 RichTextLabel/font_sizes/normal_font_size = 40
 RichTextLabel/fonts/normal_font = ExtResource("1_i8spk")
 Title1/base_type = &"Label"
