@@ -50,11 +50,6 @@ func add_cards(cards: Array):
 		add_card(card)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func update_sprite():
 	if not sprite_2d:
 		return
@@ -72,6 +67,15 @@ func pop_latest_added_cards():
 	print_tree()
 	latest_added_cards = []
 	return cards
+	
+	
+func pop_cards():
+	for card in cards:
+		remove_child(card)
+	
+	var output=cards
+	cards=[]
+	return output
 
 
 func _to_string() -> String:

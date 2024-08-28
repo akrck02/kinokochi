@@ -10,18 +10,13 @@ var tilemaplayer: TileMapLayer
 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _cartesian_to_isometric(x: int, y: int):
 	var cartesian_pos = Vector2(x, y)
 	var isometric_pos = Vector2()
 	isometric_pos.x = (cartesian_pos.x - cartesian_pos.y) * length
 	isometric_pos.y = ((cartesian_pos.x + cartesian_pos.y) / 2) * length
-	self.x = isometric_pos.x
-	self.y = isometric_pos.y
+	x = isometric_pos.x
+	y = isometric_pos.y
 	return isometric_pos
 
 

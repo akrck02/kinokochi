@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvhg7a5q5tmws"]
+
+[ext_resource type="Script" path="res://scenes/liar/timer.gd" id="1_ml4c4"]
+
+[node name="Timer" type="CanvasLayer"]
+script = ExtResource("1_ml4c4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -91.0
+offset_right = 90.0
+grow_vertical = 0
+theme_type_variation = &"Title1"
+text = "120"

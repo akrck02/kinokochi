@@ -31,7 +31,7 @@ func _to_string() -> String:
 	return "{0} {1}".format([color, number])
 
 
-func handle_interaction(viewport: Node, event: InputEvent, shape_idx: int):
+func handle_interaction(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is not InputEventScreenTouch and event.is_pressed()==false:
 		return;
 	
