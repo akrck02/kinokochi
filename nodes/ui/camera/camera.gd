@@ -30,6 +30,8 @@ var start_distance = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
+	SceneManager.camera = self
+	
 	SignalDatabase.zoom_in.connect(zoom_in)
 	SignalDatabase.zoom_out.connect(zoom_out)
 	SignalDatabase.camera_movement_updated.connect(update_can_move)

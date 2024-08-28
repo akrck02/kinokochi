@@ -15,6 +15,7 @@ run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://resources/sprites/animals/cat.png"
 boot_splash/use_filter=false
+config/icon="res://android_icon.png"
 
 [autoload]
 
@@ -54,6 +55,7 @@ folder_colors={
 Persist=""
 dino_run_score_area=""
 dino_run_death_area=""
+followable=""
 
 [input]
 

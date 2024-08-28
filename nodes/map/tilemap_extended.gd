@@ -49,6 +49,15 @@ func get_coordinates_from_position(local_origin : Vector2) -> Vector2i:
 	
 	return layers[0].local_to_map(local_origin)
 
+## Get coordinates from global position
+func get_coordinates_from_global_position(global_origin : Vector2) -> Vector2i:
+	
+	if layers.is_empty():
+		push_warning("tile layer not asigned")
+		return Vector2.ZERO
+	
+	return layers[0].local_to_map(to_local(global_origin))
+
 ## Get local position from coordinates
 func get_position_from_coordinates(coords : Vector2) -> Vector2:
 	

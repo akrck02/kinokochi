@@ -127,7 +127,7 @@ _data = {
 "walk": SubResource("Animation_okm1f")
 }
 
-[node name="Npc" type="CharacterBody2D" groups=["Persist"]]
+[node name="Npc" type="CharacterBody2D" groups=["Persist", "followable"]]
 y_sort_enabled = true
 script = ExtResource("1_7m8e0")
 
@@ -172,4 +172,5 @@ libraries = {
 "": SubResource("AnimationLibrary_d5owt")
 }
 
-[node name="States" parent="." instance=ExtResource("6_14cy2")]
+[node name="States" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("6_14cy2")]
+actor = NodePath("..")

@@ -36,7 +36,7 @@ func _ready():
 	toggle_outline(SettingsManager.get_value("Character","Outline"))
 
 func _process(_delta: float):
-	navigation.set_tilemap(SceneManager.current_tilemap)
+	navigation.set_tilemap(SceneManager.tilemap)
 	
 
 ## load pet data from savestate

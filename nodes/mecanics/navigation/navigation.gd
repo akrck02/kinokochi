@@ -19,9 +19,6 @@ var path_line : Line2D = null
 # Standard procedural animation
 @onready var tween : Tween
 
-func _ready() -> void:
-	print_tree()
-
 ## Set up the tilemap
 func set_tilemap(new_tilemap : TileMapExtended):
 	tilemap = new_tilemap
@@ -53,12 +50,13 @@ func calculate_path_to(destiny_coordinates : Vector2i):
 	_remove_debug_line()
 	navigation_path = navigation_agent.get_grid_navigation_path(tilemap, destiny_coordinates) 
 	_draw_debug_line()
-	return navigation_path
+
 
 ## Request step to the next path coordinates
 func step():
 
 	if navigation_agent.is_navigation_finished() or navigation_path.is_empty():
+		_remove_debug_line()
 		finished.emit()
 		return
 	
@@ -89,6 +87,7 @@ func _draw_debug_line():
 
 	tilemap.add_child(path_line)
 
+
 ## Remove the debug line from the tilemap (only in debug mode)
 func _remove_debug_line():
 	
@@ -96,6 +95,7 @@ func _remove_debug_line():
 		return 
 	
 	tilemap.remove_child(path_line)
+	path_line = null
 
 
 ## Snap the parent to grid
@@ -104,9 +104,16 @@ func snap_to_grid():
 	if get_parent().global_position != snap_position:
 		get_parent().global_position = snap_position
 
+
 ## Tween node between coordinates
 func step_node_to(node : Node2D, new_coordinates : Vector2i):
 	var speed = 1.00/1.5
 	tween = create_tween()
-	tween.tween_property(node, NodeExtensor.GLOBAL_POSITION_PROPERTIES, tilemap.get_position_from_coordinates(new_coordinates), speed).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(node, NodeExtensor.GLOBAL_POSITION_PROPERTIES, tilemap.get_global_position_from_coordinates(new_coordinates), speed).set_trans(Tween.TRANS_SINE)
 	await tween.finished
+
+
+## Clear navigation data
+func clear():
+	navigation_path = []
+	_remove_debug_line()
