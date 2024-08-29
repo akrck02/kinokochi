@@ -1,19 +1,23 @@
 extends Node2D
 class_name StatesNode
 
-@export
-var actor : CharacterBody2D
+## Runtime guard
+@onready var runtime_guard : RuntimeGuard = RuntimeGuard.for_node(name)
 
-@export 
-var initial_state : State
+# Dependancy injection
+@export var actor : CharacterBody2D
+@export var initial_state : State
+
+# State management
 var current_state : State
 var states : Dictionary = {}
 
 ## Logic to be executed when node is ready
 func _ready():
-	
-	if not actor:
-		push_error("actor not set for state, this will lead to errors")
+	runtime_guard.register_parameter("actor",actor)
+	if not runtime_guard.calculate_if_runtime_must_be_enabled():
+		Nodes.stop_node_logic_process(self)
+		return
 	
 	_connect_signals()
 	_register_states()
@@ -24,11 +28,10 @@ func _ready():
 func _connect_signals():
 	SignalDatabase.tick_reached.connect(_tick_process)
 
-
 ## Register child states as usable states
 func _register_states():
 	for child in get_children():
-		if child is State:
+		if child is State and (child as State).runtime_guard.is_runtime_enabled():
 			states[child.name.to_lower()] = child
 			child.actor = actor
 			child.enter_requested.connect(transition)

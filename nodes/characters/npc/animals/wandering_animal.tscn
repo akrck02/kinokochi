@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgnui67yn25qr"]
+[gd_scene load_steps=13 format=3 uid="uid://cgnui67yn25qr"]
 
 [ext_resource type="Script" path="res://nodes/characters/npc/animals/wandering_animal.gd" id="1_ncdur"]
 [ext_resource type="Texture2D" uid="uid://by6rrw7l8k88f" path="res://resources/sprites/animals/chicken.png" id="1_nvfyc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://nodes/mecanics/states/follow/follow_state.gd" id="5_5fjn1"]
 [ext_resource type="Script" path="res://nodes/mecanics/states/idle/idle_state.gd" id="6_h0a66"]
 [ext_resource type="PackedScene" uid="uid://btpvicx32t5f" path="res://nodes/mecanics/navigation/navigation.tscn" id="6_honqo"]
+[ext_resource type="PackedScene" uid="uid://b8kgse64epm5s" path="res://nodes/mecanics/movement/movement.tscn" id="8_fo35g"]
 
 [sub_resource type="Animation" id="Animation_16rx2"]
 length = 0.001
@@ -70,10 +71,11 @@ script = ExtResource("2_155ih")
 actor = NodePath("..")
 initial_state = NodePath("WanderState")
 
-[node name="WanderState" type="Node" parent="StatesNode" node_paths=PackedStringArray("animation", "navigation")]
+[node name="WanderState" type="Node" parent="StatesNode" node_paths=PackedStringArray("animation", "navigation", "movement")]
 script = ExtResource("3_q82n3")
 animation = NodePath("../../Visuals/AnimationPlayer")
 navigation = NodePath("../../Navigation")
+movement = NodePath("../../Movement")
 
 [node name="FollowState" type="Node" parent="StatesNode" node_paths=PackedStringArray("animation", "navigation", "visual_area")]
 script = ExtResource("5_5fjn1")
@@ -98,5 +100,6 @@ debug_color = Color(0.754069, 0.457241, 0, 0.0313726)
 
 [node name="Navigation" parent="." instance=ExtResource("6_honqo")]
 position = Vector2(10, -17)
-debug = true
-color = Color(2.88785e-06, 0.605109, 0.710264, 1)
+
+[node name="Movement" parent="." instance=ExtResource("8_fo35g")]
+position = Vector2(2, -18)

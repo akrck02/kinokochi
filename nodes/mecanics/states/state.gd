@@ -7,7 +7,14 @@ class_name State
 ## Condition to enter the state 
 @warning_ignore("unused_signal") signal exit_requested(current_state : State)
 
+## Runtime guard
+@onready var runtime_guard : RuntimeGuard = RuntimeGuard.for_node(name)
+
+## The actor of the state
 var actor : CharacterBody2D
+
+## if this state is enabled
+var enabled : bool = true
 
 ## Logic to be executed before the state enters
 func enter(): pass

@@ -1,6 +1,7 @@
 extends NavigationAgent2D
 class_name  GridNavigationAgent2D
 
+
 ## Get the navigation path on grid
 func get_grid_navigation_path(tilemap : TileMapExtended, destiny_coordinates : Vector2) -> Array[Vector2i]:
 	
@@ -16,10 +17,11 @@ func get_grid_navigation_path(tilemap : TileMapExtended, destiny_coordinates : V
 	for path_position in current_path:
 		current_navigation_path.append(tilemap.get_coordinates_from_position(path_position))
 
-	return remove_successive_steps_with_same_coordinates(current_navigation_path);
+	return _remove_successive_steps_with_same_coordinates(current_navigation_path);
+
 
 ## Remove the steps with the same 
-func remove_successive_steps_with_same_coordinates(current_navigation_path : Array[Vector2i]) -> Array[Vector2i]:
+func _remove_successive_steps_with_same_coordinates(current_navigation_path : Array[Vector2i]) -> Array[Vector2i]:
 	
 	if current_navigation_path.is_empty():
 		return current_navigation_path

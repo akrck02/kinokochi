@@ -3,13 +3,15 @@ extends Node2D
 var context : Game.Context = Game.Context.Camera
 var touch_points : Dictionary = {}
 
-# Input handle
+
+## Input handle
 func _input(event):
 	if event is InputEventScreenTouch: handle_touch(event)
 	if event is InputEventScreenDrag:  handle_drag(event)
 	if event is InputEventMouseMotion: handle_mouse_motion(event)
 
-# Handle the touch events
+
+## Touch events handle
 func handle_touch(event : InputEventScreenTouch):
 	
 	# Unregister touch events on releas
@@ -40,7 +42,7 @@ func handle_touch(event : InputEventScreenTouch):
 		SignalDatabase.three_finger_touch_started.emit(data)
 
 
-# Handle drag events 
+## Drag events handle 
 func handle_drag(event : InputEventScreenDrag):
 	
 	touch_points[event.index] =  event.position
@@ -56,6 +58,7 @@ func handle_drag(event : InputEventScreenDrag):
 			data.type = InputEnums.Type.DragPinch
 			SignalDatabase.screen_touch_drag_pinch.emit(data)
 
-# Handle mouse motion
+
+## Mouse motion handle
 func handle_mouse_motion(event : InputEventMouseMotion):
 	SignalDatabase.mouse_motion_updated.emit(event.global_position)

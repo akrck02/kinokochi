@@ -1,8 +1,5 @@
 extends Node
 
-var tilemap : TileMapExtended
-var camera : Camera2D
-
 func _ready():
 	SignalDatabase.scene_change_requested.connect(change_scene)
 

@@ -10,8 +10,10 @@
 
 [node name="TestChamber1" type="Node2D"]
 
-[node name="Ui" parent="." instance=ExtResource("4_p5xpf")]
+[node name="Ui" parent="." node_paths=PackedStringArray("camera", "tilemap") instance=ExtResource("4_p5xpf")]
 site_name = "Test chamber #1"
+camera = NodePath("../Camera2D")
+tilemap = NodePath("../Tilemap")
 
 [node name="Tilemap" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -26,14 +28,16 @@ tile_map_data = PackedByteArray("AAApABQAAAAEAAEAAAApABMAAAAEAAEAAAApABIAAAAEAAE
 tile_set = ExtResource("2_6r4np")
 script = ExtResource("4_o5auv")
 
-[node name="WanderingAnimal" parent="Tilemap/Layers/Walls" instance=ExtResource("5_24v8e")]
+[node name="WanderingAnimal" parent="Tilemap/Layers/Walls" node_paths=PackedStringArray("tilemap") instance=ExtResource("5_24v8e")]
 z_index = 1
 position = Vector2(517.114, 2260.4)
+tilemap = NodePath("../../..")
 
-[node name="Teko" parent="Tilemap/Layers/Walls" instance=ExtResource("3_wv1re")]
+[node name="Teko" parent="Tilemap/Layers/Walls" node_paths=PackedStringArray("tilemap") instance=ExtResource("3_wv1re")]
 z_index = 1
 y_sort_enabled = false
 position = Vector2(29.5033, 1591.1)
+tilemap = NodePath("../../..")
 pet_name = "teko"
 
 [node name="Ground" type="TileMapLayer" parent="Tilemap/Layers" node_paths=PackedStringArray("obstacles_layer")]

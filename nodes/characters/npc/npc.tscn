@@ -147,8 +147,6 @@ position = Vector2(-26, -1)
 polygon = PackedVector2Array(26.3, -16, 61.3, 1, 26.3, 19, -9.7, 1)
 
 [node name="Navigation" parent="." instance=ExtResource("5_qd26c")]
-debug = true
-color = Color(0.699276, 0.000129472, 0.612416, 1)
 
 [node name="Visuals" type="Node2D" parent="."]
 

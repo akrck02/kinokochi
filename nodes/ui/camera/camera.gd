@@ -30,8 +30,6 @@ var start_distance = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	SceneManager.camera = self
-	
 	SignalDatabase.zoom_in.connect(zoom_in)
 	SignalDatabase.zoom_out.connect(zoom_out)
 	SignalDatabase.camera_movement_updated.connect(update_can_move)
@@ -97,12 +95,12 @@ func return_to_default_camera_position(_data: InputData):
 		return
 	
 	offset_tween = create_tween()
-	offset_tween.tween_property(self, NodeExtensor.OFFSET_PROPERTIES, Vector2.ZERO, movement_speed).set_trans(Tween.TRANS_SINE)
+	offset_tween.tween_property(self, NodeProperties.Offset, Vector2.ZERO, movement_speed).set_trans(Tween.TRANS_SINE)
 	await offset_tween.finished
 	offset_tween.kill()
 	
 	zoom_tween = create_tween()
-	zoom_tween.tween_property(self, NodeExtensor.ZOOM_PROPERTIES, default_zoom, movement_speed).set_trans(Tween.TRANS_SINE)
+	zoom_tween.tween_property(self, NodeProperties.Zoom, default_zoom, movement_speed).set_trans(Tween.TRANS_SINE)
 	await zoom_tween.finished
 	zoom_tween.kill()
 	

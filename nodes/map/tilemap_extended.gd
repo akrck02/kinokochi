@@ -32,7 +32,7 @@ func filter_tilemap_layer_extended(node : Node) -> bool:
 	return node is TileMapLayerExtended
 
 ## Get the position inside de grid
-func get_tiled_position(origin : Vector2) -> Vector2:
+func snap_position(origin : Vector2) -> Vector2:
 	
 	if layers.is_empty():
 		push_warning("tile layer not asigned")

@@ -20,14 +20,13 @@ config/icon="res://android_icon.png"
 [autoload]
 
 SignalDatabase="*res://shared/signal_database.gd"
-TimeManager="*res://shared/managers/time_manager.gd"
-SaveManager="*res://shared/managers/save_manager.gd"
-SceneManager="*res://shared/managers/scene_manager.gd"
-TouchInput="*res://shared/managers/touch_input_manager.gd"
-TilemapManager="*res://shared/managers/tilemap_manager.gd"
-GameSprites="*res://shared/managers/game_sprites_manager.gd"
-SettingsManager="*res://shared/managers/settings_manager.gd"
-Canvas="*res://shared/canvas.gd"
+GameSprites="*res://shared/managers/game_sprites.gd"
+TimeManager="*res://shared/managers/time.gd"
+SaveManager="*res://shared/managers/save.gd"
+SettingsManager="*res://shared/managers/settings.gd"
+TouchInput="*res://shared/managers/touch_input.gd"
+Canvas="*res://shared/managers/canvas.gd"
+SceneManager="*res://shared/managers/scene.gd"
 
 [display]
 

@@ -1,6 +1,12 @@
 class_name Npc
 extends CharacterBody2D
 
+## Runtime guard
+@onready var runtime_guard : RuntimeGuard = RuntimeGuard.for_node(name)
+
+# Dependency injection
+@export var tilemap : TileMapExtended 
+
 # Pet data
 @export var pet_name : String = "tas"
 
@@ -11,6 +17,7 @@ extends CharacterBody2D
 # Movement
 @onready var animation_player : AnimationPlayer = $Visuals/AnimationPlayer
 
+# Navigation
 @onready var navigation : NavigationNode = $Navigation
 
 # Interactions
@@ -19,13 +26,17 @@ extends CharacterBody2D
 ## Called when the node enters the scene tree for the first time.
 func _ready():
 	
+	runtime_guard.register_parameter("tilemap", tilemap)
+	if not runtime_guard.calculate_if_runtime_must_be_enabled():
+		Nodes.stop_node_logic_process(self)
+		return
+	
+	
 	# Signal connection
 	SignalDatabase.screen_touch_double_tap.connect(move_test)
 	SignalDatabase.tick_reached.connect(tick_process)
 	SignalDatabase.outline.connect(toggle_outline)
 	interaction.input_event.connect(handle_interaction)
-	navigation.finished.connect(idle)
-	navigation.requested.connect(move_towards_in_grid)
 	
 	# Setup the npc data
 	load_from_savestate();
@@ -34,10 +45,6 @@ func _ready():
 	
 	# Set outline based on config file
 	toggle_outline(SettingsManager.get_value("Character","Outline"))
-
-func _process(_delta: float):
-	navigation.set_tilemap(SceneManager.tilemap)
-	
 
 ## load pet data from savestate
 func load_from_savestate():
@@ -70,7 +77,8 @@ func handle_touch(event : InputEventScreenTouch):
 
 ## This function will be called every tick
 func tick_process():
-	navigation.step()
+	pass
+	# navigation.step()
 
 
 ## Set idle state
