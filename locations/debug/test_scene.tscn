@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://broodhxefn8xq"]
+
+[ext_resource type="PackedScene" uid="uid://cgnui67yn25qr" path="res://nodes/entities/animals/wandering_animal.tscn" id="1_nkmxc"]
+[ext_resource type="Script" path="res://nodes/map/tilemap_extended.gd" id="2_hvkpp"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="WanderingAnimal" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("1_nkmxc")]
+position = Vector2(270, 368)
+tilemap = NodePath("../TileMapExtended")
+
+[node name="TileMapExtended" type="Node2D" parent="."]
+script = ExtResource("2_hvkpp")

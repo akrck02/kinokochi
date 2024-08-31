@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Kinokoro"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://locations/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/image="res://resources/sprites/animals/cat.png"
+boot_splash/image="res://nodes/entities/animals/cat/sprites/cat.png"
 boot_splash/use_filter=false
 config/icon="res://android_icon.png"
 
@@ -41,10 +41,10 @@ window/handheld/orientation=1
 folder_colors={
 "res://bin/": "gray",
 "res://dist/": "gray",
+"res://locations/": "blue",
 "res://materials/": "pink",
 "res://nodes/": "red",
 "res://resources/": "teal",
-"res://scenes/": "blue",
 "res://shaders/": "purple",
 "res://shared/": "yellow"
 }

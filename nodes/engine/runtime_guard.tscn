@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpvm80n3yjq13"]
-
-[ext_resource type="Script" path="res://nodes/engine/runtime_guard.gd" id="1_1tplk"]
-
-[node name="RuntimeGuard" type="Node"]
-script = ExtResource("1_1tplk")

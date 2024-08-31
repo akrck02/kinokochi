@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://blkbi8l5llsgb"]
 
 [ext_resource type="Script" path="res://nodes/world/house/house.gd" id="1_fu28v"]
-[ext_resource type="Texture2D" uid="uid://b2xq30ta6stfh" path="res://resources/sprites/tiles/home.png" id="1_g3qx4"]
+[ext_resource type="Texture2D" uid="uid://b2xq30ta6stfh" path="res://nodes/world/house/sprites/home.png" id="1_g3qx4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p281b"]
 
