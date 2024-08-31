@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=32 format=3 uid="uid://b1vppjetxm2w8"]
 
-[ext_resource type="Texture2D" uid="uid://tb8i71wek8v5" path="res://resources/sprites/tiles/landscape.png" id="1_hyi3b"]
-[ext_resource type="Texture2D" uid="uid://cl3mohrpcyefy" path="res://resources/sprites/tiles/wireframe.png" id="3_8jlx2"]
-[ext_resource type="Texture2D" uid="uid://cju2ut5tpvmq0" path="res://resources/sprites/food.png" id="4_4lwey"]
-[ext_resource type="Texture2D" uid="uid://bmy41nvrnw3fy" path="res://nodes/world/house/sprites/carpet.png" id="5_ur8nf"]
+[ext_resource type="Texture2D" uid="uid://tb8i71wek8v5" path="res://entities/tilemap/sprites/landscape.png" id="1_hyi3b"]
+[ext_resource type="Texture2D" uid="uid://cl3mohrpcyefy" path="res://entities/tilemap/sprites/wireframe.png" id="3_8jlx2"]
+[ext_resource type="Texture2D" path="res://resources/sprites/food.png" id="4_4lwey"]
+[ext_resource type="Texture2D" uid="uid://bmy41nvrnw3fy" path="res://locations/interior/home/sprites/carpet.png" id="5_ur8nf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uj62h"]
 vertices = PackedVector2Array(40, 0, 0, 20, -40, 0, 0, -20)

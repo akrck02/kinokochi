@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://kp1yd8nn5axy"]
 
 [ext_resource type="Script" path="res://locations/main.gd" id="1_4qxkm"]
-[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/HUD/ui/camera/camera.tscn" id="1_hj474"]
+[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://ui/camera/camera.tscn" id="1_hj474"]
 [ext_resource type="FontFile" uid="uid://b3v175ls5slpe" path="res://resources/fonts/PIXELADE.TTF" id="2_h7n5s"]
-[ext_resource type="PackedScene" uid="uid://bb0q2fy8l6iaj" path="res://nodes/entities/animals/cat/cattotem.tscn" id="3_qo1n0"]
+[ext_resource type="PackedScene" uid="uid://bb0q2fy8l6iaj" path="res://entities/animals/nodes/cat/cattotem.tscn" id="3_qo1n0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2qwr"]
 bg_color = Color(0.133333, 0.133333, 0.133333, 1)

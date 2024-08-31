@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtyxyvrqoawsd"]
 
 [ext_resource type="TileSet" uid="uid://b1vppjetxm2w8" path="res://materials/map/tilemap.tres" id="1_desu5"]
-[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/HUD/ui/camera/camera.tscn" id="2_kxnbt"]
+[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://ui/camera/camera.tscn" id="2_kxnbt"]
 
 [node name="Minigolf" type="Node2D"]
 

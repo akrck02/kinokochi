@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dcxqdnt5poa8p"]
 
-[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://nodes/HUD/ui/camera/camera.tscn" id="1_2cb34"]
+[ext_resource type="PackedScene" uid="uid://dtqvovtctndtl" path="res://ui/camera/camera.tscn" id="1_2cb34"]
 [ext_resource type="Script" path="res://locations/interior/home/home.gd" id="1_xide2"]
 [ext_resource type="TileSet" uid="uid://b1vppjetxm2w8" path="res://materials/map/tilemap.tres" id="2_n4ypd"]
 

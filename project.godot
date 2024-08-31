@@ -13,13 +13,13 @@ config_version=5
 config/name="Kinokoro"
 run/main_scene="res://locations/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/image="res://nodes/entities/animals/cat/sprites/cat.png"
+boot_splash/image="res://entities/animals/nodes/cat/sprites/cat.png"
 boot_splash/use_filter=false
 config/icon="res://android_icon.png"
 
 [autoload]
 
-SignalDatabase="*res://shared/signal_database.gd"
+SignalDatabase="*res://shared/engine/signal_database.gd"
 GameSprites="*res://shared/managers/game_sprites.gd"
 TimeManager="*res://shared/managers/time.gd"
 SaveManager="*res://shared/managers/save.gd"
@@ -41,12 +41,13 @@ window/handheld/orientation=1
 folder_colors={
 "res://bin/": "gray",
 "res://dist/": "gray",
+"res://entities/": "red",
 "res://locations/": "blue",
 "res://materials/": "pink",
-"res://nodes/": "red",
 "res://resources/": "teal",
 "res://shaders/": "purple",
-"res://shared/": "yellow"
+"res://shared/": "yellow",
+"res://ui/": "orange"
 }
 
 [global_group]
