@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://csy5nja40cw3j"]
 
 [ext_resource type="Script" path="res://ui/hud/debug/debug_ui.gd" id="1_2466k"]
-[ext_resource type="Theme" uid="uid://fk4bfu837bvc" path="res://resources/theme.tres" id="2_imxut"]
+[ext_resource type="Theme" uid="uid://fk4bfu837bvc" path="res://materials/ui/theme.tres" id="2_imxut"]
 
 [node name="DebugUi" type="Control"]
 layout_mode = 3

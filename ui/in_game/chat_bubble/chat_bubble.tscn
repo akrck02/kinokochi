@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d2xim7t14gsxh" path="res://ui/in_game/in_game_icons.png" id="1_lt55w"]
 [ext_resource type="Script" path="res://ui/in_game/chat_bubble/chat_bubble.gd" id="2_swino"]
+[ext_resource type="Texture2D" uid="uid://clmp0yvvfpwc2" path="res://entities/items/nodes/food/sprites/food.png" id="3_0e0vp"]
 
 [sub_resource type="Animation" id="Animation_kdhrc"]
 length = 0.001
@@ -41,9 +42,6 @@ _data = {
 "idle": SubResource("Animation_3ui2r")
 }
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xxg82"]
-load_path = "res://.godot/imported/food.png-25a339f97dd3f968832439f6378cdac7.ctex"
-
 [node name="ChatBubble" type="Sprite2D"]
 visible = false
 z_index = 2
@@ -62,6 +60,6 @@ libraries = {
 z_index = 2
 position = Vector2(-1.53846, -20)
 scale = Vector2(0.47426, 0.454013)
-texture = SubResource("CompressedTexture2D_xxg82")
+texture = ExtResource("3_0e0vp")
 hframes = 5
 frame = 3

@@ -9,5 +9,5 @@ func _input(_event):
 # Start the game
 func start_game():
 	started = true
-	SignalDatabase.scene_change_requested.emit("debug/test_chamber_1")
+	SignalDatabase.scene_change_requested.emit(Paths.get_debug_scene("test").get_scene())
 	queue_free()

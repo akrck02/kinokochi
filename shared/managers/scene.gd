@@ -8,7 +8,7 @@ func change_scene(scene_name : String):
 	
 	# Set up the path
 	if !scene_name.begins_with("res://"):
-		scene_name = Constants.LOCATION_PATH + scene_name + ".tscn"
+		return
 	
 	# Get canvas layer
 	var canvas = get_tree().get_root().get_node("/root/Canvas")

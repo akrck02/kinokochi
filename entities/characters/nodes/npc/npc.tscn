@@ -4,8 +4,8 @@
 [ext_resource type="Material" uid="uid://c0q6k8bo0nc7y" path="res://materials/general/outline_shader_material.tres" id="2_jyriw"]
 [ext_resource type="Texture2D" uid="uid://bm6uy3x5dk7qw" path="res://entities/characters/nodes/pet/sprites/tas.png" id="3_hlgbg"]
 [ext_resource type="Texture2D" uid="uid://dtnrq3qm6emc" path="res://entities/characters/sprites/shadow.png" id="4_qutbh"]
-[ext_resource type="PackedScene" uid="uid://btpvicx32t5f" path="res://entities/mecanics/navigation/navigation.tscn" id="5_qd26c"]
-[ext_resource type="PackedScene" uid="uid://dbciupg0y5qog" path="res://entities/mecanics/states/state_machine.tscn" id="6_14cy2"]
+[ext_resource type="PackedScene" uid="uid://btpvicx32t5f" path="res://shared/mecanics/navigation/navigation.tscn" id="5_qd26c"]
+[ext_resource type="PackedScene" uid="uid://dbciupg0y5qog" path="res://shared/mecanics/states/state_machine.tscn" id="6_14cy2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ketbd"]
 radius = 29.0

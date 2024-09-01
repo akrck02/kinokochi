@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfkmx8ud2ixjl" path="res://ui/hud/settings/sprites/catbrightnessdown.png" id="4_3h7cg"]
 [ext_resource type="Texture2D" uid="uid://c87mrixip7htg" path="res://ui/hud/settings/sprites/pet-outlined.png" id="5_be1ay"]
 [ext_resource type="Texture2D" uid="uid://b1n37rjuumdkj" path="res://ui/hud/settings/sprites/pet.png" id="6_1mncs"]
-[ext_resource type="Theme" uid="uid://fk4bfu837bvc" path="res://resources/theme.tres" id="7_n54e2"]
+[ext_resource type="Theme" uid="uid://fk4bfu837bvc" path="res://materials/ui/theme.tres" id="7_n54e2"]
 
 [sub_resource type="Image" id="Image_6nvm0"]
 data = {

@@ -1,9 +1,9 @@
 extends Node2D
 
 # Spritesheets
-var food_sprite_sheet : Spritesheet = Spritesheet.from("res://resources/sprites/food.png",5,1);
-var cat_sprite_sheet : Spritesheet = Spritesheet.from("res://resources/sprites/npc/cat.png",1,1);
-var turtle_sprite_sheet : Spritesheet = Spritesheet.from("res://resources/sprites/npc/gomi.png",1,1);
+var food_sprite_sheet : Spritesheet = Spritesheet.from(Paths.get_item("food").get_sprite("food.png"),5,1);
+var cat_sprite_sheet : Spritesheet = Spritesheet.from(Paths.get_animal("cat").get_sprite("cat.png"),1,1);
+var turtle_sprite_sheet : Spritesheet = Spritesheet.from(Paths.get_animal("turtle").get_sprite("turtle.png"),1,1);
 
 # Sprite
 var cake_red_velvet = GameSprite.from(food_sprite_sheet,0,0)
