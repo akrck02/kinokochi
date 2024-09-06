@@ -27,6 +27,7 @@ SettingsManager="*res://shared/managers/settings.gd"
 TouchInput="*res://shared/managers/touch_input.gd"
 Canvas="*res://shared/managers/canvas.gd"
 SceneManager="*res://shared/managers/scene.gd"
+TilemapManager="*res://shared/managers/tilemap_manager.gd"
 
 [display]
 
