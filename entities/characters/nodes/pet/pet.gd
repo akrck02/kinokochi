@@ -22,12 +22,7 @@ var moving = false
 
 # Interactions
 @onready var area_2d : Area2D = $Area2D
-
-# Drag and drop
-@export var pan_speed : float = 1.00/3;
-@onready var drag_tween : Tween
-var is_being_dragged : bool  = false
-var previous_position : Vector2 = global_position
+var interaction_active : bool  = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,8 +36,6 @@ func _ready():
 	
 	# Interactions
 	area_2d.input_event.connect(handle_interaction)
-	SignalDatabase.screen_touch_drag_move.connect(handle_drag)
-	SignalDatabase.screen_touch_released.connect(handle_screen_touch_release)
 	
 	# Set outline based on config file
 	toggle_outline(SettingsManager.get_value("Character","Outline"))
@@ -56,8 +49,7 @@ func load_from_savestate():
 func update_sprite():
 	if not sprite:
 		return;
-	
-	sprite.texture = load("res://resources/sprites/pets/" + pet_name + ".png")
+	sprite.texture = load(Paths.get_character("pet").get_sprite("%s.png" % pet_name))
 
 # Handle interaction
 func handle_interaction(_viewport: Node, event: InputEvent, _shape_idx: int):
@@ -67,44 +59,18 @@ func handle_interaction(_viewport: Node, event: InputEvent, _shape_idx: int):
 		
 	handle_touch(event)
 
-# Handle drag
-func handle_drag(data : InputData):
-	
-	if TouchInput.context != Game.Context.PetInteraction or SceneManager.current_tilemap == null or not is_being_dragged:
-		return
-	
-	var coords = SceneManager.current_tilemap.get_coordinates_from_position(data.get_current_global_position(get_viewport()))
-	var new_position = SceneManager.current_tilemap.get_position_from_coordinates(coords)
-	drag_tween = create_tween()
-	drag_tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_position, .15).set_trans(Tween.TRANS_SINE)
-
-# Handle screen touch release
-func handle_screen_touch_release(data : InputData):
-	
-	if TouchInput.context != Game.Context.PetInteraction or not is_being_dragged:
-		return
-	
-	var coords = SceneManager.current_tilemap.get_coordinates_from_position(data.get_current_global_position(get_viewport()))
-	if SceneManager.current_tilemap.can_object_be_placed_on_tile(self, coords):
-		return
-		
-	var new_position = SceneManager.current_tilemap.get_position_from_coordinates(coords)
-	drag_tween = create_tween()
-	drag_tween.tween_property(self, NodeExtensor.GLOBAL_POSITION_PROPERTIES, new_position, .15).set_trans(Tween.TRANS_SINE)
-	
 # Handle touch interaction
 func handle_touch(event : InputEventScreenTouch):
 	
 	if not event.double_tap:
 		return
 	
-	is_being_dragged = !is_being_dragged
+	interaction_active = !interaction_active
 	
-	if is_being_dragged:
+	if interaction_active:
 		SignalDatabase.notification_shown.emit("[center]Move the pet dragging")
 		TouchInput.context = Game.Context.PetInteraction
 		sprite.material.set_shader_parameter("width",2)
-		previous_position = global_position
 	else:
 		TouchInput.context = Game.Context.Camera
 		sprite.material.set_shader_parameter("width",0)
@@ -142,7 +108,7 @@ func normalize_stats():
 # Automatic movement
 func automatic_movement():
 	
-	if control or moving or is_being_dragged: 
+	if control or moving or interaction_active: 
 		return
 	
 	var direction = randi() % 7
@@ -172,7 +138,7 @@ func move(direction : int):
 		
 		animation_player.play("walk")
 		tween = create_tween()
-		tween.tween_property(self, NodeExtensor.POSITION_PROPERTIES, position + new_position, movement_speed).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(self, NodeProperties.Position, position + new_position, movement_speed).set_trans(Tween.TRANS_SINE)
 		await tween.finished
 		tween.kill()
 		animation_player.play("idle")

@@ -1,30 +1,24 @@
 extends Node
 
 ## Registered tilemaps
-var tilemaps : Dictionary = {}
+@onready var tilemap : TileMapExtended = _create_fallback_tilemap()
 
+## Create a fallback tilemap
+func _create_fallback_tilemap() -> TileMapExtended:
+	
+	var fallback_layer = TileMapLayerExtended.new()
+	fallback_layer.tile_set = preload('res://materials/map/tilemap.tres')
 
-## Register tilemap
-func register(name : String, reset : bool) -> void:
-	tilemaps[name] = {}
+	var fallback = TileMapExtended.new()
+	fallback.layers.append(fallback_layer)
+	return fallback
 
 
 ## Get coordinates from global position
-func get_coordinates_from_position(origin : Vector2) -> Vector2i:
-	return Vector2i.ZERO
+func get_coordinates_from_global_position(global_position : Vector2i) -> Vector2i:
+	return tilemap.get_coordinates_from_global_position(global_position)
 
 
-## Get local position from coordinates
-func get_position_from_coordinates(coordinates : Vector2) -> Vector2:
-	return Vector2.ZERO
-
-
-## Get if an object can be placed
-func is_free(coordinates : Vector2) -> bool:
-	return true
-
-
-## Get all the nodes on one tile
-## FIXME collisions are faster than the light (?) NOT BEING DETECTED
-func get_collisions_on_tile(coordinates : Vector2) -> Dictionary:
-	return {}
+## Get global position from coordinates
+func get_global_position_from_coordinates(coordinates : Vector2i) -> Vector2i:
+	return tilemap.get_global_position_from_coordinates(coordinates)

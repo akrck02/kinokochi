@@ -15,11 +15,12 @@ func enter():
 
 ## Move along the path
 func tick():
-	var new_coordinates = navigation.next(navigation_data)
-	if new_coordinates == null:
+	var new_data : GridNavigationData = navigation.next(navigation_data)
+	if new_data == null:
 		return
 	
-	movement.step_node_to(actor, new_coordinates)
+	navigation_data = new_data
+	movement.step_node_to(actor, navigation_data.next_coordinates)
 
 
 ## Calculate next route

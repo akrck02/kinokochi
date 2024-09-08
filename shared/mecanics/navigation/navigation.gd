@@ -1,45 +1,30 @@
 extends Node2D
 class_name NavigationNode
 
-
-# Dependency injection
-@export var tilemap : TileMapExtended
-
 ## Standard grid navigation agent
 @onready var navigation_agent : GridNavigationAgent2D = $GridNavigationAgent2D
 
-## Dependency injection
-var dependencies : DependencyDatabase = DependencyDatabase.for_node("Navigation")
 
 ## Calculate current coordinates
 func calculate_current_coordinates() -> GridNavigationData:
-
-	dependencies.add("tilemap", tilemap)
-	if not dependencies.check():
-		return null
-	
+		
 	var data = GridNavigationData.new()
-	data.current_coordinates = tilemap.get_coordinates_from_position(tilemap.to_local(global_position))
+	data.current_coordinates = TilemapManager.get_coordinates_from_global_position(global_position)
 	return data
 
 
 ## Calculate the navigation path 
 func calculate_path_to(destiny_coordinates : Vector2i) -> GridNavigationData:
-	
-	dependencies.add("tilemap", tilemap)
-	if not dependencies.check():
-		return null
-	
+
 	var data = calculate_current_coordinates()
-	data.path = navigation_agent.get_grid_navigation_path(tilemap, destiny_coordinates) 
+	data.path = await navigation_agent.get_grid_navigation_path(destiny_coordinates) 
 	return data
 
 
 ## Request step to the next path coordinates
 func next(data : GridNavigationData) -> GridNavigationData:
 
-	dependencies.add("tilemap", tilemap)
-	if not dependencies.check() or not data or data.path.is_empty() or navigation_agent.is_navigation_finished():
+	if not data or data.path.is_empty() or navigation_agent.is_navigation_finished():
 		return data
 	
 	var next_coordinates = data.path.front()
@@ -51,8 +36,7 @@ func next(data : GridNavigationData) -> GridNavigationData:
 ## Create a line woth the path
 func get_debug_path_line(data : GridNavigationData, color : Color) -> Line2D:
 	
-	dependencies.add("tilemap", tilemap)
-	if not dependencies.check() or not tilemap or not data or not color:
+	if not data or not color:
 		return null
 		
 	var path_line = Line2D.new()

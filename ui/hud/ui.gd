@@ -3,7 +3,6 @@ extends CanvasLayer
 # Dependency injection
 @export var site_name : String = "" 
 @export var camera : Camera2D
-@export var tilemap : TileMapExtended
 
 # Ui general
 @onready var ui_control : VBoxContainer = $UiControl
@@ -32,14 +31,12 @@ var dependencies : DependencyDatabase = DependencyDatabase.for_node("Ui")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	dependencies.add("camera", camera)
-	dependencies.add("tilemap", tilemap)
 	
 	if not dependencies.check():
 		Nodes.stop_node_logic_process(self)
 		return
 
 	debug_ui.camera = camera
-	debug_ui.tilemap = tilemap
 	
 	_connect_signals()
 	_update_time()

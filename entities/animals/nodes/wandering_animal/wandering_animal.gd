@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-# Dependancy injection
-@export var tilemap : TileMapExtended  
-
 # State management
 @onready var states : StateMachine = $States
 
@@ -17,9 +14,6 @@ var dependencies : DependencyDatabase = DependencyDatabase.for_node("WanderingAn
 ## Initial logic of the node
 func _ready():
 	
-	dependencies.add("tilemap", tilemap)
 	if not dependencies.check():
 		Nodes.stop_node_logic_process(self)
 		return
-	
-	navigation.tilemap = tilemap

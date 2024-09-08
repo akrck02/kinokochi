@@ -1,8 +1,8 @@
-
 extends Node
 
 # Engine signals
 @warning_ignore("unused_signal") signal scene_change_requested(scene : String) 
+@warning_ignore("unused_signal") signal tilemap_changed(tilemap : TileMapExtended)
 
 # Time signals
 @warning_ignore("unused_signal") signal night_started()
@@ -34,13 +34,6 @@ extends Node
 # Savestate signals
 @warning_ignore("unused_signal") signal new_game_created
 @warning_ignore("unused_signal") signal save_game_requested
-
-# Pet signals
-@warning_ignore("unused_signal") signal pet_hunger_changed(value : int)
-@warning_ignore("unused_signal") signal pet_fun_changed(value : int)
-@warning_ignore("unused_signal") signal pet_affection_changed(value : int)
-@warning_ignore("unused_signal") signal pet_energy_changed(value : int)
-@warning_ignore("unused_signal") signal pet_evolved(value : int)
 
 # Dino run minigame
 @warning_ignore("unused_signal") signal dinorun_update_score

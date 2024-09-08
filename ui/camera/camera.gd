@@ -65,11 +65,20 @@ func reset_camera_move_values(_data : InputData):
 
 # Zoom in the camera
 func zoom_in(value : float):
-	zoom = limit_zoom(zoom + Vector2(value,value));
+	
+	var new_zoom = limit_zoom(zoom + Vector2(value,value))
+	zoom_tween = create_tween()
+	zoom_tween.tween_property(self, NodeProperties.Zoom, new_zoom, .1).set_trans(Tween.TRANS_LINEAR)
+	await zoom_tween.finished
+	zoom_tween.kill()
 
 # Zoom out the camera
 func zoom_out(value : float):
-	zoom = limit_zoom(zoom - Vector2(value,value));
+	var new_zoom = limit_zoom(zoom - Vector2(value,value))
+	zoom_tween = create_tween()
+	zoom_tween.tween_property(self, NodeProperties.Zoom, new_zoom, .1).set_trans(Tween.TRANS_LINEAR)
+	await zoom_tween.finished
+	zoom_tween.kill()
 
 # Set zoom start
 func set_zoom_start(data: InputData):

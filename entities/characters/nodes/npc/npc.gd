@@ -26,7 +26,6 @@ extends CharacterBody2D
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	dependencies.add("tilemap", tilemap)
 	if not dependencies.check():
 		Nodes.stop_node_logic_process(self)
 		return
@@ -54,7 +53,7 @@ func update_sprite() -> void:
 	if not sprite:
 		return;
 	
-	sprite.texture = load("res://resources/sprites/pets/" + pet_name + ".png")
+	sprite.texture =  load(Paths.get_character("npc").get_sprite("%s.png" % pet_name))
 
 
 ## This function will be called every tick
@@ -70,7 +69,7 @@ func idle() -> void:
 
 ## Test click movement
 func move_test(input: InputData) -> void:
-	var click_coordinates : Vector2i = SceneManager.current_tilemap.get_coordinates_from_position(input.get_current_global_position(get_viewport()))
+	var click_coordinates : Vector2i = TilemapManager.get_coordinates_from_global_position(input.get_current_global_position(get_viewport()))
 	navigation.calculate_path_to(click_coordinates)
 
 
