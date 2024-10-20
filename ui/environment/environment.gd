@@ -1,6 +1,6 @@
 extends Control
 
-@export var type : Environments.Type = Environments.Type.Leafs
+@export var type : Environments.Type = Environments.Type.None
 
 @onready var leafParticles : GPUParticles2D = $LeafParticles
 @onready var rainParticles : GPUParticles2D = $RainParticles
@@ -11,16 +11,16 @@ func _ready() -> void:
 	_select_environment(type)
 
 ## Select an environment
-func _select_environment(type : Environments.Type):
+func _select_environment(new_type : Environments.Type):
 	_reset_environments()
 	
-	match type:
+	match new_type:
 		Environments.Type.Leafs:
 			leafParticles.emitting = true;
 		Environments.Type.Rain:
-			rainParticles.emitting = true;
+			rainParticles.emitting = true
 	
 ## Reset the current environment
 func _reset_environments():
-	leafParticles.emitting = false;
-	rainParticles.emitting = false;
+	rainParticles.emitting = false
+	leafParticles.emitting = false

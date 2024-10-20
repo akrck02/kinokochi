@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://bkxydu410llqn"]
+[gd_scene load_steps=8 format=4 uid="uid://bkxydu410llqn"]
 
 [ext_resource type="Script" path="res://ui/hud/settings/settings.gd" id="1_6woeb"]
 [ext_resource type="Texture2D" uid="uid://dfkmx8ud2ixjl" path="res://ui/hud/settings/sprites/catbrightnessdown.png" id="4_3h7cg"]
-[ext_resource type="Texture2D" uid="uid://c87mrixip7htg" path="res://ui/hud/settings/sprites/pet-outlined.png" id="5_be1ay"]
-[ext_resource type="Texture2D" uid="uid://b1n37rjuumdkj" path="res://ui/hud/settings/sprites/pet.png" id="6_1mncs"]
 [ext_resource type="Theme" uid="uid://fk4bfu837bvc" path="res://materials/ui/theme.tres" id="7_n54e2"]
 
 [sub_resource type="Image" id="Image_6nvm0"]
@@ -594,19 +592,6 @@ theme_override_icons/grabber = ExtResource("4_3h7cg")
 theme_override_icons/grabber_highlight = ExtResource("4_3h7cg")
 max_value = 1.0
 step = 0.001
-
-[node name="Label3" type="Label" parent="Scroll/Margin/Controls"]
-layout_mode = 2
-theme = ExtResource("7_n54e2")
-theme_type_variation = &"Title2"
-text = "Character"
-
-[node name="OutlineCheckButton" type="CheckButton" parent="Scroll/Margin/Controls"]
-layout_mode = 2
-theme = ExtResource("7_n54e2")
-theme_override_icons/checked = ExtResource("5_be1ay")
-theme_override_icons/unchecked = ExtResource("6_1mncs")
-text = "Character Outline"
 
 [node name="ExitButton" type="Button" parent="Scroll/Margin/Controls"]
 z_index = 3

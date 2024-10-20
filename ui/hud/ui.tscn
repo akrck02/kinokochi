@@ -94,6 +94,13 @@ _data = {
 [node name="Ui" type="CanvasLayer"]
 script = ExtResource("1_yktcp")
 
+[node name="Environment" parent="." instance=ExtResource("8_5xy2s")]
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 7.0
+offset_bottom = 2.0
+type = 2
+
 [node name="Filter" type="ColorRect" parent="."]
 material = ExtResource("4_y8ln0")
 anchors_preset = -1
@@ -259,9 +266,3 @@ y_sort_enabled = true
 [node name="DebugUi" parent="." instance=ExtResource("7_udyie")]
 offset_left = 2.0
 offset_right = 2.0
-
-[node name="Environment" parent="." instance=ExtResource("8_5xy2s")]
-offset_left = 7.0
-offset_top = 2.0
-offset_right = 7.0
-offset_bottom = 2.0
