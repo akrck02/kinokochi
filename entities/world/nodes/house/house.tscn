@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://blkbi8l5llsgb"]
 
-[ext_resource type="Script" path="res://entities/world/nodes/house/nodes/house.gd" id="1_fu28v"]
+[ext_resource type="Script" path="res://entities/world/nodes/house/house.gd" id="1_fu28v"]
 [ext_resource type="Texture2D" uid="uid://b2xq30ta6stfh" path="res://entities/world/nodes/house/sprites/home.png" id="1_g3qx4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p281b"]
@@ -70,7 +70,6 @@ _data = {
 script = ExtResource("1_fu28v")
 
 [node name="Home" type="Sprite2D" parent="."]
-z_index = 2
 material = SubResource("ShaderMaterial_p281b")
 position = Vector2(100.794, -75.6568)
 texture = ExtResource("1_g3qx4")

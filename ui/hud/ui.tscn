@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cba3m5gci8old"]
+[gd_scene load_steps=21 format=3 uid="uid://cba3m5gci8old"]
 
 [ext_resource type="Script" path="res://ui/hud/ui.gd" id="1_yktcp"]
 [ext_resource type="Texture2D" uid="uid://cqutuq0jrsqbu" path="res://ui/hud/settings/sprites/park.svg" id="2_wwa4d"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bkxydu410llqn" path="res://ui/hud/settings/settings.tscn" id="6_1eey1"]
 [ext_resource type="Texture2D" uid="uid://dptxys2tpqwm1" path="res://ui/hud/settings/sprites/icons.png" id="7_acr4x"]
 [ext_resource type="PackedScene" uid="uid://csy5nja40cw3j" path="res://ui/hud/debug/debug_ui.tscn" id="7_udyie"]
+[ext_resource type="PackedScene" uid="uid://dxji80jjayie" path="res://ui/environment/environment.tscn" id="8_5xy2s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnnow"]
 bg_color = Color(0, 0, 0, 0.788235)
@@ -258,3 +259,9 @@ y_sort_enabled = true
 [node name="DebugUi" parent="." instance=ExtResource("7_udyie")]
 offset_left = 2.0
 offset_right = 2.0
+
+[node name="Environment" parent="." instance=ExtResource("8_5xy2s")]
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 7.0
+offset_bottom = 2.0

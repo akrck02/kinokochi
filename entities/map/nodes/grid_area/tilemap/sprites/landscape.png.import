@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl3mohrpcyefy"
-path="res://.godot/imported/wireframe.png-2c1edb42827275aacad609c3990093d3.ctex"
+uid="uid://c032lcegudlcv"
+path="res://.godot/imported/landscape.png-fd11aa1bd4bcb600b5d58bdd54dc07d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/map/nodes/tilemap/sprites/wireframe.png"
-dest_files=["res://.godot/imported/wireframe.png-2c1edb42827275aacad609c3990093d3.ctex"]
+source_file="res://entities/map/nodes/grid_area/tilemap/sprites/landscape.png"
+dest_files=["res://.godot/imported/landscape.png-fd11aa1bd4bcb600b5d58bdd54dc07d3.ctex"]
 
 [params]
 

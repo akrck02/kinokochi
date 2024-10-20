@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://2iwnsnmc35bj"]
+[gd_scene load_steps=5 format=3 uid="uid://2iwnsnmc35bj"]
 
 [ext_resource type="Texture2D" uid="uid://bitnbo65hrdej" path="res://entities/animals/nodes/turtle/sprites/gomi.png" id="1_aloht"]
-[ext_resource type="Script" path="res://locations/minigames/nodes/dino_run/nodes/enemy/dino_enemy.gd" id="1_rug5o"]
-[ext_resource type="Texture2D" uid="uid://tb8i71wek8v5" path="res://entities/map/nodes/tilemap/sprites/landscape.png" id="3_uy5ff"]
+[ext_resource type="Script" path="res://locations/minigames/nodes/dino_run/nodes/enemy/enemy.gd" id="1_rug5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_urp7u"]
 size = Vector2(19, 129)
@@ -17,15 +16,6 @@ script = ExtResource("1_rug5o")
 position = Vector2(45, 31)
 scale = Vector2(1.46206, 1.39708)
 texture = ExtResource("1_aloht")
-
-[node name="Landscape" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(39, 38)
-scale = Vector2(2.0125, 1.975)
-texture = ExtResource("3_uy5ff")
-hframes = 5
-vframes = 12
-frame = 15
 
 [node name="ScoreArea" type="Area2D" parent="." groups=["dino_run_score_area"]]
 

@@ -2,14 +2,12 @@ extends Node2D
 class_name TileMapExtended
 
 @onready var layers_container = $Layers
-@onready var grid_area_scene = preload("res://entities/map/nodes/grid_area/nodes/grid_area.tscn");
-var layers : Array[TileMapLayerExtended]
+var layers : Array[TileMapLayer]
 
 ## On ready 
 func _ready():
 	_setup_layer_container()
 	_setup_layers()
-
 
 ## Create a layer container if not present
 func _setup_layer_container():
@@ -26,13 +24,13 @@ func _setup_layer_container():
 func _setup_layers():
 	var children = layers_container.get_children()
 	for node in children:
-		if node is TileMapLayerExtended:
-			layers.append(node as TileMapLayerExtended)
+		if node is TileMapLayer:
+			layers.append(node as TileMapLayer)
 
 
 ## Filter tilemap layer
-func filter_tilemap_layer_extended(node : Node) -> bool:
-	return node is TileMapLayerExtended
+func filter_tilemap_layer(node : Node) -> bool:
+	return node is TileMapLayer
 
 
 ## Get the position inside de grid

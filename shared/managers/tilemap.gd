@@ -6,7 +6,7 @@ extends Node
 ## Create a fallback tilemap
 func _create_fallback_tilemap() -> TileMapExtended:
 	
-	var fallback_layer = TileMapLayerExtended.new()
+	var fallback_layer = TileMapLayer.new()
 	fallback_layer.tile_set = preload('res://materials/map/tilemap.tres')
 
 	var fallback = TileMapExtended.new()

@@ -9,7 +9,7 @@ extends Node2D
 @onready var spawn_area : Area2D = $SpawnArea
 @onready var despawn_area : Area2D = $DespawnArea
 @onready var spawn_timer : Timer = $SpawnTimer
-@onready var dino_enemy_scene = preload("res://scenes/minigames/dino_run/dino_enemy.tscn");
+@onready var dino_enemy_scene = preload("res://locations/minigames/nodes/dino_run/nodes/enemy/enemy.tscn");
 var spawned_enemies : Array = [];
 
 # Dino 
@@ -101,7 +101,7 @@ func show_results():
 	results_container.visible = true
 
 func exit():
-	SignalDatabase.scene_change_requested.emit("park")
+	SignalDatabase.scene_change_requested.emit(Paths.get_world().get_scene())
 	
 func retry():
-	SignalDatabase.scene_change_requested.emit("minigames/dino_run/dino_run")
+	SignalDatabase.scene_change_requested.emit(Paths.get_minigame("dino_run").get_scene())

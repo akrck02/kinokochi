@@ -132,7 +132,7 @@ y_sort_enabled = true
 script = ExtResource("1_t2hn5")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(20.7, -32)
+position = Vector2(-1, -30)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -144,14 +144,14 @@ debug_color = Color(0, 0.6, 0.701961, 0.101961)
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = ExtResource("3_abgn8")
-position = Vector2(-15.3, -72)
+position = Vector2(-37, -70)
 texture = ExtResource("2_dbtwv")
 centered = false
 hframes = 3
 
 [node name="Shadow" type="Sprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(20.7, -13)
+position = Vector2(-1, -11)
 scale = Vector2(0.531457, 0.606667)
 texture = ExtResource("3_03fhf")
 
@@ -161,7 +161,7 @@ libraries = {
 }
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(21.7, -12)
+position = Vector2(1.90735e-06, -10)
 scale = Vector2(1.4, 1.4)
 target_position = Vector2(0, 40)
 
@@ -174,8 +174,9 @@ texture = ExtResource("4_a1wdx")
 texture_scale = 1.43
 
 [node name="ChatBubble" parent="." instance=ExtResource("6_slsed")]
+position = Vector2(-2, -82)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 modulate = Color(0.909804, 0.803922, 1, 0.25098)
-position = Vector2(-5.3, -3)
+position = Vector2(-27, -1)
 polygon = PackedVector2Array(26.3, -16, 61.3, 1, 26.3, 19, -9.7, 1)

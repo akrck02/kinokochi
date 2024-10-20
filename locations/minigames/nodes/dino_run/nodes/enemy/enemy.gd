@@ -8,8 +8,8 @@ var type : int = 0
 
 func _ready() -> void:
 	match type:
-		1: sprite.texture = preload("res://resources/sprites/npc/gomi.png")
-		2: sprite.texture = preload("res://resources/sprites/npc/cat.png")
+		1: sprite.texture = preload("res://entities/animals/nodes/turtle/sprites/gomi.png")
+		2: sprite.texture = preload("res://entities/animals/nodes/cat/sprites/cat.png")
 
 func _physics_process(_delta: float) -> void:
 	var direction = Vector2(-1,-.5)

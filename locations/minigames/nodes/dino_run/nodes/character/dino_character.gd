@@ -25,7 +25,7 @@ func _ready() -> void:
 	animation_player.play("walk")
 
 func _input(_event):
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed(Controls.INTERACT):
 		jump(null)
 
 # Handle input
@@ -36,7 +36,7 @@ func jump(_data : InputData):
 
 	jumping = true
 	tween = create_tween()
-	tween.tween_property(self, NodeExtensor.POSITION_PROPERTIES, original_position + (Vector2.UP * 60), jump_speed * .7).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(self, NodeProperties.Position, original_position + (Vector2.UP * 60), jump_speed * .7).set_trans(Tween.TRANS_LINEAR)
 	await tween.finished
 	tween.kill()
 	
@@ -46,7 +46,7 @@ func jump(_data : InputData):
 	await timer.timeout
 	
 	tween = create_tween()
-	tween.tween_property(self, NodeExtensor.POSITION_PROPERTIES, original_position, jump_speed * 2).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, NodeProperties.Position, original_position, jump_speed * 2).set_trans(Tween.TRANS_SINE)
 	await tween.finished
 	tween.kill()
 	jumping = false
